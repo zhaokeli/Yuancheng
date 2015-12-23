@@ -71,7 +71,7 @@ CString CADOConn::GetAppPath()
 	char lpFilePath[MAX_PATH];
 	CString strPath;
 
-	GetModuleFileName(AfxGetInstanceHandle(), lpFilePath, MAX_PATH);
+	GetModuleFileName(::GetModuleHandle(NULL), lpFilePath, MAX_PATH);
 	strPath = lpFilePath;
 	strPath = strPath.Left(strPath.ReverseFind('\\'));
 
@@ -125,7 +125,7 @@ void CADOConn::InitCADOConn()
 	}
 	catch (_com_error e)
 	{
-		AfxMessageBox(e.Description());
+		::MessageBox(NULL, e.Description(), "错误", MB_ICONEXCLAMATION);
 	}
 }
 
@@ -158,7 +158,7 @@ _RecordsetPtr& CADOConn::GetRecordSet(CString strSQL)
 	}
 	catch (_com_error e)
 	{
-		AfxMessageBox(e.Description());
+		::MessageBox(NULL, e.Description(), "错误", MB_ICONEXCLAMATION);
 	}
 
 	return m_pRecordset;
@@ -192,7 +192,7 @@ BOOL CADOConn::Open(CString strSQL)
 	}
 	catch (_com_error e)
 	{
-		AfxMessageBox(e.Description());
+		::MessageBox(NULL, e.Description(), "错误", MB_ICONEXCLAMATION);
 		return FALSE;
 	}
 
@@ -225,7 +225,7 @@ BOOL CADOConn::ExecuteSQL(CString strSQL)
 	}
 	catch (_com_error e)
 	{
-		AfxMessageBox(e.Description());
+		::MessageBox(NULL, e.Description(), "错误", MB_ICONEXCLAMATION);
 		return FALSE;
 	}
 	return TRUE;
@@ -431,7 +431,7 @@ CString CADOConn::GetFieldName(int index)
 	}
 	else
 	{
-		AfxMessageBox("Invalid index!");
+		::MessageBox(NULL,"Invalid index!" , "错误", MB_ICONEXCLAMATION);
 	}
 
 	return strFieldName;
@@ -503,7 +503,8 @@ void CADOConn::ExitConnect()
 	}
 	catch (_com_error e)
 	{
-		AfxMessageBox(e.Description());
+		::MessageBox(NULL, e.Description(), "错误", MB_ICONEXCLAMATION);
+
 	}
 }
 
@@ -516,48 +517,48 @@ void CADOConn::ExitConnect()
 返回值:
 修改记录:
 ************************************************************************/
-BOOL CADOConn::InitList(CListCtrl *listMain)
-{
-	int iMaxCol = 0, i;
-	_variant_t vIndex;
-
-	vIndex.vt = VT_I2;
-	iMaxCol = m_pRecordset->Fields->Count;
-	listMain->SetExtendedStyle(LVS_EX_GRIDLINES | LVS_EX_FULLROWSELECT);
-
-	for (i = 0; i < iMaxCol; i++)
-	{
-		CString strTitle;
-		vIndex.iVal = i;
-		strTitle = (LPCTSTR)m_pRecordset->Fields->GetItem(vIndex)->GetName();
-		listMain->InsertColumn(i, strTitle, LVCFMT_CENTER, 100, 0);
-	}
-
-	int iWidth = 0;
-	for (i = 0; i < iMaxCol; i++)
-	{
-		listMain->SetColumnWidth(i, LVSCW_AUTOSIZE_USEHEADER);
-		iWidth = iWidth + listMain->GetColumnWidth(i);
-	}
-
-	RECT rectList;
-	listMain->GetWindowRect(&rectList);
-	if (iWidth < (rectList.right - rectList.left))
-	{
-		iWidth = (rectList.right - rectList.left - iWidth) / iMaxCol;
-	}
-	else
-	{
-		return TRUE;
-	}
-
-	for (i = 0; i < iMaxCol; i++)
-	{
-		listMain->SetColumnWidth(i, listMain->GetColumnWidth(i) + iWidth);
-	}
-
-	return TRUE;
-}
+//BOOL CADOConn::InitList(CListCtrl *listMain)
+//{
+//	int iMaxCol = 0, i;
+//	_variant_t vIndex;
+//
+//	vIndex.vt = VT_I2;
+//	iMaxCol = m_pRecordset->Fields->Count;
+//	listMain->SetExtendedStyle(LVS_EX_GRIDLINES | LVS_EX_FULLROWSELECT);
+//
+//	for (i = 0; i < iMaxCol; i++)
+//	{
+//		CString strTitle;
+//		vIndex.iVal = i;
+//		strTitle = (LPCTSTR)m_pRecordset->Fields->GetItem(vIndex)->GetName();
+//		listMain->InsertColumn(i, strTitle, LVCFMT_CENTER, 100, 0);
+//	}
+//
+//	int iWidth = 0;
+//	for (i = 0; i < iMaxCol; i++)
+//	{
+//		listMain->SetColumnWidth(i, LVSCW_AUTOSIZE_USEHEADER);
+//		iWidth = iWidth + listMain->GetColumnWidth(i);
+//	}
+//
+//	RECT rectList;
+//	listMain->GetWindowRect(&rectList);
+//	if (iWidth < (rectList.right - rectList.left))
+//	{
+//		iWidth = (rectList.right - rectList.left - iWidth) / iMaxCol;
+//	}
+//	else
+//	{
+//		return TRUE;
+//	}
+//
+//	for (i = 0; i < iMaxCol; i++)
+//	{
+//		listMain->SetColumnWidth(i, listMain->GetColumnWidth(i) + iWidth);
+//	}
+//
+//	return TRUE;
+//}
 
 /************************************************************************
 函数名:  FillList
@@ -568,63 +569,63 @@ BOOL CADOConn::InitList(CListCtrl *listMain)
 返回值:
 修改记录:
 ************************************************************************/
-BOOL CADOConn::FillList(CListCtrl *listMain)
-{
-
-	int i, iType, iRow = 0, listWidth = 0;//iType:字段集的数据类型 listWidth:列表中列的宽度
-	_variant_t vIndex;
-	long lMax = 0;
-	lMax = m_pRecordset->Fields->Count;
-	vIndex.vt = VT_I2;
-	if (!m_pRecordset->adoEOF)
-	{
-		MoveFirst();
-		while (!m_pRecordset->adoEOF)
-		{
-			for (i = 0; i<lMax; i++)
-			{
-				CString strValue = "";
-				vIndex.iVal = i;
-				iType = m_pRecordset->Fields->GetItem(vIndex)->GetType();
-				switch (iType)
-				{
-				case ado_Field_Str:
-				case ado_Field_Text:
-					strValue = GetItemString(i);
-					break;
-				case ado_Field_Long:
-					strValue.Format(_T("%d"), GetItemLong(i));
-					break;
-				case ado_Field_Int:
-					strValue.Format(_T("%d"), GetItemInt(i));
-					break;
-					//				case ado_Field_Float:
-					//					strValue=GetValueFloatStr(i,0,2);
-					//					break;
-					//				case ado_Field_Double:
-					//					strValue=GetValueDoubleStr(i,0,2);
-					//					break;
-					//				case ado_Field_Byte:
-					//					strValue=GetValueByteStr(i,0);
-					//					break;
-				case ado_Field_Date:
-					strValue = GetItemString(i);
-					break;
-				default:
-					strValue = "";
-					break;
-				}
-
-				if (i == 0)
-					listMain->InsertItem(iRow, strValue, 0);
-				else
-					listMain->SetItemText(iRow, i, strValue);
-			}
-			m_pRecordset->MoveNext();
-		}
-		//移向开头
-		MoveFirst();
-	}
-
-	return TRUE;
-}
+//BOOL CADOConn::FillList(CListCtrl *listMain)
+//{
+//
+//	int i, iType, iRow = 0, listWidth = 0;//iType:字段集的数据类型 listWidth:列表中列的宽度
+//	_variant_t vIndex;
+//	long lMax = 0;
+//	lMax = m_pRecordset->Fields->Count;
+//	vIndex.vt = VT_I2;
+//	if (!m_pRecordset->adoEOF)
+//	{
+//		MoveFirst();
+//		while (!m_pRecordset->adoEOF)
+//		{
+//			for (i = 0; i<lMax; i++)
+//			{
+//				CString strValue = "";
+//				vIndex.iVal = i;
+//				iType = m_pRecordset->Fields->GetItem(vIndex)->GetType();
+//				switch (iType)
+//				{
+//				case ado_Field_Str:
+//				case ado_Field_Text:
+//					strValue = GetItemString(i);
+//					break;
+//				case ado_Field_Long:
+//					strValue.Format(_T("%d"), GetItemLong(i));
+//					break;
+//				case ado_Field_Int:
+//					strValue.Format(_T("%d"), GetItemInt(i));
+//					break;
+//					//				case ado_Field_Float:
+//					//					strValue=GetValueFloatStr(i,0,2);
+//					//					break;
+//					//				case ado_Field_Double:
+//					//					strValue=GetValueDoubleStr(i,0,2);
+//					//					break;
+//					//				case ado_Field_Byte:
+//					//					strValue=GetValueByteStr(i,0);
+//					//					break;
+//				case ado_Field_Date:
+//					strValue = GetItemString(i);
+//					break;
+//				default:
+//					strValue = "";
+//					break;
+//				}
+//
+//				if (i == 0)
+//					listMain->InsertItem(iRow, strValue, 0);
+//				else
+//					listMain->SetItemText(iRow, i, strValue);
+//			}
+//			m_pRecordset->MoveNext();
+//		}
+//		//移向开头
+//		MoveFirst();
+//	}
+//
+//	return TRUE;
+//}

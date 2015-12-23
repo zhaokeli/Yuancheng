@@ -6,7 +6,8 @@
 #if !defined(AFX_ADOCONN_H__6FC87078_9BAB_4B1F_B205_E932FD387E09__INCLUDED_)
 #define AFX_ADOCONN_H__6FC87078_9BAB_4B1F_B205_E932FD387E09__INCLUDED_
 
-#import "C:\Program Files\Common Files\System\ado\msado15.dll" no_namespace rename ("EOF", "adoEOF")
+//#import "C:\Program Files\Common Files\System\ado\msado15.dll" no_namespace rename ("EOF", "adoEOF")
+#import "C:\\Program Files\\Common Files\\System\\ado\\msado15.dll" no_namespace rename("EOF","adoEOF")
 
 #define ado_Field_Str 202
 #define ado_Field_Text 203
@@ -50,8 +51,8 @@ public:
 	CString GetFieldName(int index);
 	int GetFieldsCount();
 	long GetRecordCount();
-	BOOL InitList(CListCtrl *listMain);
-	BOOL FillList(CListCtrl *listMain);
+	//BOOL InitList(CListCtrl *listMain);
+	//BOOL FillList(CListCtrl *listMain);
 };
 
 #endif // !defined(AFX_ADOCONN_H__6FC87078_9BAB_4B1F_B205_E932FD387E09__INCLUDED_)
