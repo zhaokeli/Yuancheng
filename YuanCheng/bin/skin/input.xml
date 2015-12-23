@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Window size="260,350" sizebox="4,4,6,6"  roundcorner="5,5" caption="0,0,0,32">
+    <Default name="Button" value="normalimage=&apos;btn_default.png&apos; hotimage=&apos;btn_hover.png&apos; pushedimage=&apos;btn_down.png&apos;" />
+    <VerticalLayout bkcolor="#FFFFFBF0" bordersize="1" bordercolor="#0057C0FF">
+	 <HorizontalLayout name="HorizontalLayoutUI1"  height="40" bordersize="1"  bkcolor="#FF57C0FF" bkcolor2="#00FFFFFF">
+           
+            <HorizontalLayout name="HorizontalLayoutUI2" pos="10,0,10,0">
+                 <Label  name="wintitle" showhtml="true" text="  添加信息" />
+            </HorizontalLayout>
+            <HorizontalLayout name="HorizontalLayo" pos="0,0,10,0" width="30">
+                <Button name="btn_close" text="X" tooltip="关闭" bordersize="0"  width="20" height="20" padding="5,5,0,0" textcolor="#00FFFBF0" disabledtextcolor="#FFA7A6AA" align="center" hotimage="file=&apos;close.png&apos; mask=&apos;0xffff0000&apos; hole=&apos;true&apos;" pushedimage="close_down.png" />
+            </HorizontalLayout>
+        </HorizontalLayout>
+		 <HorizontalLayout padding="10,5,10,5"  inset="2,2,2,2" height="30" >
+            <Label text="IP:" width="40"  />
+            <Edit name="ip" tooltip="请输入ip地址" text="116.255.214.72"  border="1" font="1"   bkcolor="#FFFFFFFF"  bordersize="1"     bordercolor="#0057C0FF" textpadding="2,2,2,2" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" />
+        </HorizontalLayout>
+          <HorizontalLayout  padding="10,5,10,5"  inset="2,2,2,2" height="30"  >
+            <Label align="right" text="端口:" width="40"  />
+            <Edit name="port" tooltip="请输入端口默认为3389" text="21472"  border="1" font="1"   bkcolor="#FFFFFFFF"  bordersize="1" width="80"  bordercolor="#0057C0FF" textpadding="2,2,2,2" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" />
+        </HorizontalLayout>
+
+                  <HorizontalLayout  padding="10,5,10,5"   inset="2,2,2,2"  height="30"  >
+            <Label align="right" text="用户名:" width="40"  />
+            <Edit name="username" tooltip="请输入用户名" text="Administrator"  border="1" font="1"   bkcolor="#FFFFFFFF"  bordersize="1"  bordercolor="#0057C0FF" textpadding="2,2,2,2" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" />
+        </HorizontalLayout>
+
+         <HorizontalLayout   padding="10,5,10,5"  inset="2,2,2,2"  height="30"  >
+            <Label align="right" text="密码:" width="40"  />
+            <Edit name="pwd" tooltip="请输入密码" text="YlmWfphQq1H"  border="1" font="1"   bkcolor="#FFFFFFFF"  bordersize="1"      bordercolor="#0057C0FF" textpadding="2,2,2,2" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" />
+        </HorizontalLayout>
+
+         <HorizontalLayout  padding="10,5,10,5"  inset="2,2,2,2" height="80" >
+            <Label align="right" text="备注:" width="40"  />
+                <RichEdit name="note" text="备注" bordersize="1"  bordercolor="#0057C0FF" />
+        </HorizontalLayout>
+         <HorizontalLayout  padding="10,5,10,5"  inset="20,2,2,10" height="50">
+             <Button name="btn_ok" text="确定" tooltip="修改信息" width="90"  padding="10,5,0,0" bordercolor="#00D2D2D2" textcolor="#FF000000" roundborder="5,5" disabledtextcolor="#FFA7A6AA" font="2" align="center" normalimage="btn_default.png" hotimage="btn_hover.png" pushedimage="btn_down.png" />
+         <Button name="btn_cancel" text="取消" tooltip="取消" width="90"  padding="10,5,0,0" bordercolor="#00D2D2D2" textcolor="#FF000000" roundborder="5,5" disabledtextcolor="#FFA7A6AA" font="2" align="center" normalimage="btn_default.png" hotimage="btn_hover.png" pushedimage="btn_down.png" />
+          </HorizontalLayout>
+    </VerticalLayout>
+</Window>
