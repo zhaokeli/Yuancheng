@@ -16,11 +16,11 @@ CFrameWindowWnd::~CFrameWindowWnd()
 {
 }
 
-LPCTSTR CFrameWindowWnd::GetWindowClassName() const { return _T("UIMainFrame"); };
-
-UINT CFrameWindowWnd::GetClassStyle() const { return UI_CLASSSTYLE_FRAME | CS_DBLCLKS; };
-
-void CFrameWindowWnd::OnFinalMessage(HWND /*hWnd*/) { delete this; };
+//LPCTSTR CFrameWindowWnd::GetWindowClassName() const { return _T("UIMainFrame"); };
+//
+//UINT CFrameWindowWnd::GetClassStyle() const { return UI_CLASSSTYLE_FRAME | CS_DBLCLKS; };
+//
+//void CFrameWindowWnd::OnFinalMessage(HWND /*hWnd*/) { delete this; };
 
 void CFrameWindowWnd::init()
 {
@@ -176,9 +176,10 @@ LRESULT CFrameWindowWnd::OnCreate(UINT uMsg, WPARAM wParam, LPARAM lParam){
 		LONG styleValue = ::GetWindowLong(*this, GWL_STYLE);
 	styleValue &= ~WS_CAPTION;
 	::SetWindowLong(*this, GWL_STYLE, styleValue | WS_CLIPSIBLINGS | WS_CLIPCHILDREN);
+	//给窗口加阴影
 	 CWndShadow *m_WndShadow=new CWndShadow;
-        m_WndShadow->Create(m_hWnd);
-	m_WndShadow->SetSize(8);
+    m_WndShadow->Create(m_hWnd);
+	m_WndShadow->SetSize(4);
 	m_WndShadow->SetPosition(1,1);
 
 

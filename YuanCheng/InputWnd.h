@@ -1,6 +1,7 @@
 #pragma once
 #include "stdafx.h"
-class CInputWnd :public CWindowWnd, public INotifyUI
+#include "BaseWnd.h"
+class CInputWnd :public BaseWnd, public INotifyUI
 {
 public:
 	CInputWnd(void);
@@ -16,9 +17,9 @@ private:
 
 	void init();
 public:
-	UINT GetClassStyle() const;
-	LPCTSTR GetWindowClassName() const;
-	void OnFinalMessage(HWND /*hWnd*/) ;
+	//UINT GetClassStyle() const;
+	//LPCTSTR GetWindowClassName() const;
+	//void OnFinalMessage(HWND /*hWnd*/) ;
 
 	LRESULT OnNcHitTest(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled);
 	LRESULT HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam);

@@ -28,6 +28,9 @@ class BaseWnd: public CWindowWnd, public INotifyUI
 public:
 	BaseWnd(void);
 	~BaseWnd(void);
+	UINT GetClassStyle() const;
+	LPCTSTR GetWindowClassName() const;
+	void OnFinalMessage(HWND /*hWnd*/);
 
 protected:
 

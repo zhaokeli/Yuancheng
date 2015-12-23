@@ -25,9 +25,9 @@ private:
 public:
 	CFrameWindowWnd();
 	~CFrameWindowWnd();
-	UINT GetClassStyle() const;
-	LPCTSTR GetWindowClassName() const;
-	void OnFinalMessage(HWND /*hWnd*/) ;
+	//UINT GetClassStyle() const;
+	//LPCTSTR GetWindowClassName() const;
+	//void OnFinalMessage(HWND /*hWnd*/) ;
 	void init();
 	//初始化服务器列表
 	void initList();

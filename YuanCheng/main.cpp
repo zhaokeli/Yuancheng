@@ -46,7 +46,7 @@ CWndShadow::Initialize(hInstance);
     if( pFrame == NULL ) return 0;
     //pFrame->Create(NULL, _T("测试"), UI_WNDSTYLE_FRAME, WS_EX_WINDOWEDGE);//窗口可最大化
 
-	pFrame->Create(NULL, _T("测试"), UI_WNDSTYLE_DIALOG, WS_EX_WINDOWEDGE);//窗口不可最大化
+	pFrame->Create(NULL, _T("远程桌面管理工具"), UI_WNDSTYLE_DIALOG, WS_EX_WINDOWEDGE);//窗口不可最大化
 	//LONG styleValue = ::GetWindowLong(*pFrame, GWL_STYLE);
 	//styleValue &= ~WS_CAPTION;
 	//::SetWindowLong(*pFrame, GWL_STYLE, styleValue | WS_CLIPSIBLINGS | WS_CLIPCHILDREN);

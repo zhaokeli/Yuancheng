@@ -9,9 +9,9 @@ CInputWnd::CInputWnd(void)
 CInputWnd::~CInputWnd(void)
 {
 }
-LPCTSTR CInputWnd::GetWindowClassName() const { return _T("UIMainFrame"); };
-UINT CInputWnd::GetClassStyle() const { return UI_CLASSSTYLE_FRAME | CS_DBLCLKS; };
-void CInputWnd::OnFinalMessage(HWND /*hWnd*/) { delete this; };
+//LPCTSTR CInputWnd::GetWindowClassName() const { return _T("UIMainFrame"); };
+//UINT CInputWnd::GetClassStyle() const { return UI_CLASSSTYLE_FRAME | CS_DBLCLKS; };
+//void CInputWnd::OnFinalMessage(HWND /*hWnd*/) { delete this; };
 
 void CInputWnd::init(){
 		m_pIp= static_cast<CEditUI*>(m_pm.FindControl(_T("ip")));
