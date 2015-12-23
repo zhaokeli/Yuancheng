@@ -51,6 +51,9 @@
     <ClInclude Include="resource.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="ADOConn.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FrameWindowWnd.cpp">
@@ -84,6 +87,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="WndShadow.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ADOConn.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

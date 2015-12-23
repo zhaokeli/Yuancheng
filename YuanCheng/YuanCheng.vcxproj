@@ -83,6 +83,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="ADOConn.h" />
     <ClInclude Include="BaseWnd.h" />
     <ClInclude Include="Db.h" />
     <ClInclude Include="FileIO.h" />
@@ -97,6 +98,7 @@
     <ClInclude Include="WndShadow.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ADOConn.cpp" />
     <ClCompile Include="BaseWnd.cpp" />
     <ClCompile Include="Db.cpp" />
     <ClCompile Include="FileIO.cpp" />
