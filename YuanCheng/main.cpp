@@ -4,7 +4,7 @@
 // 程序入口及Duilib初始化部分
 int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE /*hPrevInstance*/, LPSTR /*lpCmdLine*/, int nCmdShow)
 {
-	//创建命名信标对象。 
+//创建命名信标对象。 
 HANDLE hSem=CreateSemaphore(NULL,1,1,"重复运行标记"); 
 if(hSem) //信标对象创建成功。 
 { 
@@ -35,12 +35,11 @@ if(hSem) //信标对象创建成功。
 	}
 }
 
-// Initiation of the shadow
-
+//初始化一个窗口
 CWndShadow::Initialize(hInstance);
 
     CPaintManagerUI::SetInstance(hInstance);
-    CPaintManagerUI::SetResourcePath(CPaintManagerUI::GetInstancePath()+_T("..//skin"));
+    CPaintManagerUI::SetResourcePath(CPaintManagerUI::GetInstancePath()+_T(".//skin"));
 	//CPaintManagerUI::SetResourceZip("skin.zip");
 
     CFrameWindowWnd* pFrame = new CFrameWindowWnd();

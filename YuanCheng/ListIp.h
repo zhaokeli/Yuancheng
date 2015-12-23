@@ -2,8 +2,8 @@
 #ifndef  _LISTIP_H_ 
 #define  _LISTIP_H_
 #include "../DuiLib/UIlib.h" 
-#ifdef _DEBUG
-#pragma comment(lib, "DuiLib.lib") 
+#ifdef DEBUG
+#pragma comment(lib, "DuiLib_d.lib") 
 #else
 #pragma comment(lib, "DuiLib.lib") 
 #endif

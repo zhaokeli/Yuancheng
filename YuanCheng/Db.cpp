@@ -5,14 +5,18 @@ CDb::CDb(void)
 	::CoInitialize(NULL);
 	try
 	{
-		m_conn.CreateInstance("ADODB.Connection");
-		CString conn="Provider=Microsoft.Jet.OLEDB.4.0;Data Source=..//data//data.mdb";
-		//SQL SERVER连接字符串
-		//CString conn="Driver={SQL Server};server=(local);uid=sa;database=pubs";//local可以改为127.0.0.1
-		if(FAILED(m_conn->Open((_bstr_t)conn,"","",-1)))
-		{
-			::MessageBox(NULL,"数据库连接失败","错误",MB_ICONEXCLAMATION);
-			return;
+		try {
+			m_conn.CreateInstance("ADODB.Connection");
+			CString conn = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=.//data//data.mdb";
+			//SQL SERVER连接字符串
+			//CString conn="Driver={SQL Server};server=(local);uid=sa;database=pubs";//local可以改为127.0.0.1
+			if (FAILED(m_conn->Open((_bstr_t)conn, "", "", -1)))
+			{
+				::MessageBox(NULL, "数据库连接失败", "错误", MB_ICONEXCLAMATION);
+				return;
+			}
+		}catch(_com_error &e){
+			::MessageBox(NULL, "数据库连接出现异常", "错误", MB_ICONEXCLAMATION);
 		}
 	}
 	catch(...)
