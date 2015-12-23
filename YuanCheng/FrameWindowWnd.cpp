@@ -336,18 +336,48 @@ void CFrameWindowWnd::BtnConClick(TNotifyUI& msg){
 
 	//¶ÁÅäÖÃÎÄ¼þ
 	CFileIO * fio=new CFileIO;
-	string str=fio->readAll("conf.db");
-
+	//string str=fio->readAll("conf.db");
+	CString s;
+	s.Format("\
+screen mode id:i:1 \n\
+desktopwidth:i:1280\n\
+desktopheight:i:750\n\
+session bpp:i:24\n\
+winposstr:s:2,3,188,8,1062,721\n\
+full address:s:#ip#\n\
+compression:i:1\n\
+keyboardhook:i:2\n\
+audiomode:i:0\n\
+redirectdrives:i:0\n\
+redirectprinters:i:0\n\
+redirectcomports:i:0\n\
+redirectsmartcards:i:0\n\
+displayconnectionbar:i:1\n\
+autoreconnection enabled:i:1\n\
+username:s:#username#\n\
+domain:s:\n\
+alternate shell:s:\n\
+shell working directory:s:\n\
+password 51:b:#pwd#\n\
+disable wallpaper:i:1\n\
+disable full window drag:i:1\n\
+disable menu anims:i:1\n\
+disable themes:i:0\n\
+disable cursor setting:i:0\n\
+bitmapcachepersistenable:i:1\
+		");
 	CMyString* strr=new CMyString;
 
 
-
+	string str = s.GetBuffer(0);
 	//Ìæ»»ÃÜÂë
 	str=strr->replace("#pwd#",enpwd,str);
 	//Ìæ»»ip
 	str=strr->replace("#ip#",ip,str);
 	//Ìæ»»ÓÃ»§Ãû
 	str=strr->replace("#username#",username,str);
+	//Ìæ»»¿Õ°×
+	//str = strr->replace(" ", "", str);
 
 	//Éú³ÉrdpÎÄ¼þ
 	fio->write("tem.tmp",str);
