@@ -465,25 +465,28 @@ void CWndShadow::MakeShadow(UINT32 *pShadBits, HWND hParent, RECT *rcParent)
 			}	// for() start of line
 
 			// End of line
-			for(j = max(j, min(ptAnchors[i - 1][1], ptAnchors[i + 1][1]) - 1);
-				j < ptAnchors[i][1];
-				j++)
-			{
-				for(int k = 0; k <= 2 * nKernelSize; k++)
-				{
-					UINT32 *pPixel = pShadBits +
-						(szShadow.cy - i - 1 + nKernelSize - k) * szShadow.cx + j - nKernelSize;
-					UINT32 *pKernelPixel = pKernel + k * (2 * nKernelSize + 1);
-					for(int l = 0; l <= 2 * nKernelSize; l++)
+				try {
+					for (j = max(j, min(ptAnchors[i - 1][1], ptAnchors[i + 1][1]) - 1);
+					j < ptAnchors[i][1];
+						j++)
 					{
-						if(*pPixel < *pKernelPixel)
-							*pPixel = *pKernelPixel;
-						pPixel++;
-						pKernelPixel++;
-					}
-				}
-			}	// for() end of line
+						for (int k = 0; k <= 2 * nKernelSize; k++)
+						{
+							UINT32 *pPixel = pShadBits +
+								(szShadow.cy - i - 1 + nKernelSize - k) * szShadow.cx + j - nKernelSize;
+							UINT32 *pKernelPixel = pKernel + k * (2 * nKernelSize + 1);
+							for (int l = 0; l <= 2 * nKernelSize; l++)
+							{
+								if (*pPixel < *pKernelPixel)
+									*pPixel = *pKernelPixel;
+								pPixel++;
+								pKernelPixel++;
+							}
+						}
+					}	// for() end of line
+				}catch (...) {
 
+				}
 		}
 	}	// for() Generate blurred border
 
