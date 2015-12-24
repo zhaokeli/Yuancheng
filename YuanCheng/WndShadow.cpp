@@ -456,7 +456,7 @@ void CWndShadow::MakeShadow(UINT32 *pShadBits, HWND hParent, RECT *rcParent)
 					UINT32 *pKernelPixel = pKernel + k * (2 * nKernelSize + 1);
 					for(int l = 0; l <= 2 * nKernelSize; l++)
 					{
-						if(*pPixel < *pKernelPixel)
+						if (*pPixel < *pKernelPixel)
 							*pPixel = *pKernelPixel;
 						pPixel++;
 						pKernelPixel++;
@@ -477,8 +477,10 @@ void CWndShadow::MakeShadow(UINT32 *pShadBits, HWND hParent, RECT *rcParent)
 							UINT32 *pKernelPixel = pKernel + k * (2 * nKernelSize + 1);
 							for (int l = 0; l <= 2 * nKernelSize; l++)
 							{
-								if (*pPixel < *pKernelPixel)
-									*pPixel = *pKernelPixel;
+								if (*pPixel) {
+									if (*pPixel < *pKernelPixel)
+										*pPixel = *pKernelPixel;
+								}
 								pPixel++;
 								pKernelPixel++;
 							}

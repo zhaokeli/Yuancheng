@@ -15,6 +15,7 @@ private:
 	CButtonUI* m_pModbtn;
 	CButtonUI* m_pDelbtn;
 	CRichEditUI* m_pNote;
+	CWndShadow *m_WndShadow;
 
 	//CButtonUI* m_pGetUrlContentBtn;
 	//CButtonUI* m_pPostBtn;

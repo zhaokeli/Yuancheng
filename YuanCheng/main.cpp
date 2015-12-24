@@ -35,8 +35,8 @@ if(hSem) //信标对象创建成功。
 	}
 }
 
-//初始化一个窗口
-CWndShadow::Initialize(hInstance);
+	//初始化一个窗口
+	CWndShadow::Initialize(hInstance);
 
     CPaintManagerUI::SetInstance(hInstance);
     CPaintManagerUI::SetResourcePath(CPaintManagerUI::GetInstancePath()+_T(".//skin"));

@@ -24,6 +24,7 @@ CFrameWindowWnd::~CFrameWindowWnd()
 
 void CFrameWindowWnd::init()
 {
+	m_WndShadow = new CWndShadow;
 	m_pTitleLab= static_cast<CLabelUI*>(m_pm.FindControl(_T("wintitle")));
 	m_pCloseBtn= static_cast<CButtonUI*>(m_pm.FindControl(_T("btn_close")));
 	m_pMinBtn= static_cast<CButtonUI*>(m_pm.FindControl(_T("btn_min")));
@@ -173,16 +174,6 @@ LRESULT CFrameWindowWnd::HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam)
 }
 
 LRESULT CFrameWindowWnd::OnCreate(UINT uMsg, WPARAM wParam, LPARAM lParam){
-		LONG styleValue = ::GetWindowLong(*this, GWL_STYLE);
-	styleValue &= ~WS_CAPTION;
-	::SetWindowLong(*this, GWL_STYLE, styleValue | WS_CLIPSIBLINGS | WS_CLIPCHILDREN);
-	//给窗口加阴影
-	 CWndShadow *m_WndShadow=new CWndShadow;
-    m_WndShadow->Create(m_hWnd);
-	m_WndShadow->SetSize(4);
-	m_WndShadow->SetPosition(1,1);
-
-
 	//设置程序运行标记
 	::SetProp(m_hWnd,"重复运行标记",(HANDLE)1); 
 	//使用xml界面
@@ -194,6 +185,15 @@ LRESULT CFrameWindowWnd::OnCreate(UINT uMsg, WPARAM wParam, LPARAM lParam){
 	m_pm.AttachDialog(pRoot);
 	m_pm.AddNotifier(this);
 	init();
+
+	LONG styleValue = ::GetWindowLong(*this, GWL_STYLE);
+	styleValue &= ~WS_CAPTION;
+	::SetWindowLong(*this, GWL_STYLE, styleValue | WS_CLIPSIBLINGS | WS_CLIPCHILDREN);
+	//给窗口加阴影
+	// CWndShadow *m_WndShadow=new CWndShadow;
+    m_WndShadow->Create(m_hWnd);
+	m_WndShadow->SetSize(4);
+	m_WndShadow->SetPosition(1,1);
 	return 0;
 }
 
