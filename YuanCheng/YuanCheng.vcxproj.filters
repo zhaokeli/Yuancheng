@@ -51,9 +51,6 @@
     <ClInclude Include="Db.h">
       <Filter>头文件\Model</Filter>
     </ClInclude>
-    <ClInclude Include="ADOConn.h">
-      <Filter>头文件\Model</Filter>
-    </ClInclude>
     <ClInclude Include="FileIO.h">
       <Filter>头文件\Core</Filter>
     </ClInclude>
@@ -85,9 +82,6 @@
     </ClCompile>
     <ClCompile Include="InputWnd.cpp">
       <Filter>源文件\Ui</Filter>
-    </ClCompile>
-    <ClCompile Include="ADOConn.cpp">
-      <Filter>源文件\Model</Filter>
     </ClCompile>
     <ClCompile Include="Db.cpp">
       <Filter>源文件\Model</Filter>

@@ -144,30 +144,46 @@ LRESULT CFrameWindowWnd::HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam)
 	BOOL bHandled=TRUE; 
 	switch(uMsg)  
 	{  
-	case WM_CREATE:        lRes=OnCreate(uMsg,wParam,lParam);break;  
+	case WM_CREATE:        
+		lRes=OnCreate(uMsg,wParam,lParam);
+		break;  
 		//能去除边框  
-	case WM_NCCALCSIZE:    return 0;break;  
-		//去除显示的标题栏  
-	case WM_SIZE:          lRes=OnSize(uMsg,wParam,lParam,bHandled);break;  
-		//解决按住左键或右键时会出现边框的问题  
-	case WM_NCACTIVATE:    lRes = OnNcActivate(uMsg, wParam, lParam, bHandled); break;  
-		//实现按住窗口（除按钮外）拖动窗口  
-	case WM_NCHITTEST:     lRes=OnNcHitTest(uMsg,wParam,lParam,bHandled);break;  
-		//获取边框最大最小值  
-	case WM_GETMINMAXINFO: lRes=OnGetMinMaxInfo(uMsg,wParam,lParam,bHandled);break; 
-	
+	case WM_NCCALCSIZE:    
+		return 0;
+		break;  
 
-	case WM_DESTROY: lRes=OnDestroy(uMsg,wParam,lParam);break; 
+		//去除显示的标题栏  
+	case WM_SIZE:         
+		//lRes=OnSize(uMsg,wParam,lParam,bHandled);
+		break;  
+
+		//解决按住左键或右键时会出现边框的问题  
+	case WM_NCACTIVATE:    
+		lRes = OnNcActivate(uMsg, wParam, lParam, bHandled); 
+		break;  
+
+		//实现按住窗口（除按钮外）拖动窗口  
+	case WM_NCHITTEST:     
+		lRes=OnNcHitTest(uMsg,wParam,lParam,bHandled);
+		break;  
+		//获取边框最大最小值  
+	case WM_GETMINMAXINFO: 
+		lRes=OnGetMinMaxInfo(uMsg,wParam,lParam,bHandled);
+		break; 
+
+	case WM_DESTROY: 
+		lRes=OnDestroy(uMsg,wParam,lParam);
+		break; 
 	
-	case WM_USER_SETTEXT: OnSetText(uMsg,wParam,lParam);break; 
+	case WM_USER_SETTEXT: 
+		OnSetText(uMsg,wParam,lParam);
+		break; 
 
 	default:               bHandled=FALSE;  
 	}  
 
-	if(bHandled)  
-		return lRes;  
-	if(m_pm.MessageHandler(uMsg,wParam,lParam,lRes))  
-		return lRes;  
+	if(bHandled)  return lRes;  
+	if(m_pm.MessageHandler(uMsg,wParam,lParam,lRes))  return lRes;  
 	return CWindowWnd::HandleMessage(uMsg,wParam,lParam);  
 
 }
@@ -266,7 +282,7 @@ LRESULT CFrameWindowWnd::OnSize(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& b
 	}  
 
 	bHandled = FALSE;  
-	return 0;  
+	return true;  
 }  
 
 LRESULT CFrameWindowWnd::OnNcActivate(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled){

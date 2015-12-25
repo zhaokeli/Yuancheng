@@ -5,15 +5,15 @@
     <Font name="宋体" size="12" bold="false" italic="false" />
     <Font name="宋体" size="14" bold="true" italic="false" />
     <Font name="宋体" size="22" bold="true" italic="true" />
-    <Default name="Button" value="normalimage=&apos;btn_default.png&apos; hotimage=&apos;btn_hover.png&apos; pushedimage=&apos;btn_down.png&apos;" />
+    <Default name="Button" value="hotimage=&quot;btn_hover.png&quot; pushedimage=&quot;btn_down.png&quot;" />
     <VerticalLayout  bkcolor="#FFFFFFFF" >
         <HorizontalLayout bordersize="1" height="40" bkcolor="#FF57C0FF" bkcolor2="#00FFFFFF">
             <HorizontalLayout>
                 <Label name="wintitle" padding="20,0,0,0" text="远程桌面管理" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" showhtml="true" />
             </HorizontalLayout>
             <HorizontalLayout width="55">
-                <Button name="btn_min" text="-" tooltip="最小化" width="20" height="20" padding="5,5,0,0" textcolor="#00FFFBF0" disabledtextcolor="#FFA7A6AA" align="center" hotimage="file=&apos;btn_hover.png&apos; hole=&apos;true&apos;" pushedimage="btn_down.png" />
-                <Button name="btn_close" text="X" tooltip="关闭" width="20" height="20" padding="5,5,0,0" textcolor="#00FFFBF0" disabledtextcolor="#FFA7A6AA" align="center" hotimage="file=&apos;close.png&apos; mask=&apos;0xffff0000&apos; hole=&apos;true&apos;" pushedimage="close_down.png" />
+                <Button name="btn_min" text="-" tooltip="最小化" width="20" height="20" padding="5,5,0,0" textcolor="#00FFFBF0" disabledtextcolor="#FFA7A6AA" align="center"  hotimage="btn_hover.png" pushedimage="btn_down.png" />
+                <Button name="btn_close" text="X" tooltip="关闭" width="20" height="20" padding="5,5,0,0" textcolor="#00FFFBF0" disabledtextcolor="#FFA7A6AA" align="center"  hotimage="close.png" pushedimage="close_down.png" />
             </HorizontalLayout>
         </HorizontalLayout>
         <HorizontalLayout height="250" >
@@ -25,7 +25,7 @@
                     <ListHeaderItem text="IP"   minwidth="100"   hotimage="file='list_header_hot.png'" pushedimage="file='list_header_pushed.png'" sepimage="file='list_header_sep.png'" sepwidth="3" />
 					<ListHeaderItem text="端口"  hotimage="file='list_header_hot.png'" pushedimage="file='list_header_pushed.png'" sepimage="file='list_header_sep.png'" sepwidth="1"  />
                     <ListHeaderItem text="用户名"   hotimage="file='list_header_hot.png'" pushedimage="file='list_header_pushed.png'" sepimage="file='list_header_sep.png'" sepwidth="2" />
-                   
+
                 </ListHeader>
             </List>
         </VerticalLayout>
@@ -44,7 +44,7 @@
                     <HorizontalLayout>
                      <Label text="<a>作者博客</a>" showhtml="true" font="4" />
                   </HorizontalLayout>
-                   
+
                     <HorizontalLayout>
                     <Option name="quanping" selected="true" normalimage="check.png" width="15" height="15" selectedimage="check_sel.png"  />
                     <Label text="全屏" width="50" height="15" padding="10,0,0,0" />

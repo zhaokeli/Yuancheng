@@ -56,7 +56,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -83,7 +83,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="ADOConn.h" />
     <ClInclude Include="BaseWnd.h" />
     <ClInclude Include="Db.h" />
     <ClInclude Include="FileIO.h" />
@@ -98,7 +97,6 @@
     <ClInclude Include="WndShadow.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ADOConn.cpp" />
     <ClCompile Include="BaseWnd.cpp" />
     <ClCompile Include="Db.cpp" />
     <ClCompile Include="FileIO.cpp" />

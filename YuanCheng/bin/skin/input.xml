@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <Window size="260,350" sizebox="4,4,6,6"  roundcorner="5,5" caption="0,0,0,32">
-    <Default name="Button" value="normalimage=&apos;btn_default.png&apos; hotimage=&apos;btn_hover.png&apos; pushedimage=&apos;btn_down.png&apos;" />
+    <Default name="Button" value="normalimage=&quot;btn_default.png&quot; hotimage=&quot;btn_hover.png&quot; pushedimage=&quot;btn_down.png&quot;" />
     <VerticalLayout bkcolor="#FFFFFBF0" bordersize="1" bordercolor="#0057C0FF">
 	 <HorizontalLayout name="HorizontalLayoutUI1"  height="40" bordersize="1"  bkcolor="#FF57C0FF" bkcolor2="#00FFFFFF">
-           
+
             <HorizontalLayout name="HorizontalLayoutUI2" pos="10,0,10,0">
                  <Label  name="wintitle" showhtml="true" text="  添加信息" />
             </HorizontalLayout>
             <HorizontalLayout name="HorizontalLayo" pos="0,0,10,0" width="30">
-                <Button name="btn_close" text="X" tooltip="关闭" bordersize="0"  width="20" height="20" padding="5,5,0,0" textcolor="#00FFFBF0" disabledtextcolor="#FFA7A6AA" align="center" hotimage="file=&apos;close.png&apos; mask=&apos;0xffff0000&apos; hole=&apos;true&apos;" pushedimage="close_down.png" />
+                <Button name="btn_close" text="X" tooltip="关闭" bordersize="0"  width="20" height="20" padding="5,5,0,0" textcolor="#00FFFBF0" disabledtextcolor="#FFA7A6AA" align="center" hotimage="file=&quot;close.png&quot; mask=&quot;0xffff0000&quot; hole=&quot;true&quot;" pushedimage="close_down.png" />
             </HorizontalLayout>
         </HorizontalLayout>
 		 <HorizontalLayout padding="10,5,10,5"  inset="2,2,2,2" height="30" >
