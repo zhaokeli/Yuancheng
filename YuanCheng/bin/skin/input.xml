@@ -27,7 +27,7 @@
 
          <HorizontalLayout   padding="10,5,10,5"  inset="2,2,2,2"  height="30"  >
             <Label align="right" text="密码:" width="40"  />
-            <Edit name="pwd" tooltip="请输入密码" text="YlmWfphQq1H"  border="1" font="1"   bkcolor="#FFFFFFFF"  bordersize="1"      bordercolor="#0057C0FF" textpadding="2,2,2,2" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" />
+            <Edit name="pwd" tooltip="请输入密码" text=""  border="1" font="1"   bkcolor="#FFFFFFFF"  bordersize="1"      bordercolor="#0057C0FF" textpadding="2,2,2,2" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" />
         </HorizontalLayout>
 
          <HorizontalLayout  padding="10,5,10,5"  inset="2,2,2,2" height="80" >

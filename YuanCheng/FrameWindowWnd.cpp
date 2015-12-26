@@ -333,7 +333,7 @@ string CFrameWindowWnd::edcodePwd(string pw){
 		count++;
 	}
 	return (string)dest;
-}
+}															
 
 void CFrameWindowWnd::BtnConClick(TNotifyUI& msg){
 	if (selectedItem->index==-1)
