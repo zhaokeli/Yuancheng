@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="BaseWnd" Collapsed="true">
+    <Position X="3.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>MAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BaseWnd.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CDb" Collapsed="true">
+    <Position X="6" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIACAAAAIAAAACACAAAAAAAAAAAIAAAAAAAAAAACAAA=</HashCode>
+      <FileName>Db.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CFileIO" Collapsed="true">
+    <Position X="7.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAAAAAAAAgAAAAAAAAAAgAQAAAAAQAAA=</HashCode>
+      <FileName>FileIO.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CFrameWindowWnd" Collapsed="true">
+    <Position X="3.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>KwBBAABQAAMEIBICCEQAoAAAADAAOBJCAAACgAEAAAg=</HashCode>
+      <FileName>FrameWindowWnd.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CInputWnd" Collapsed="true">
+    <Position X="9.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CgBAAABAAAAAIBYAAAAAAAAIABAAAAJCAAAACAAQAAI=</HashCode>
+      <FileName>InputWnd.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CListIp" Collapsed="true">
+    <Position X="6" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ListIp.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IMyLock" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAQAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>lock.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Mutex" Collapsed="true">
+    <Position X="0.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAIAQA=</HashCode>
+      <FileName>lock.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CLock" Collapsed="true">
+    <Position X="7.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAEAAAAAAACAA=</HashCode>
+      <FileName>lock.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MyLog" Collapsed="true">
+    <Position X="9.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAEAEAAAAAAAAA=</HashCode>
+      <FileName>MyLog.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CMyString">
+    <Position X="9.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAIBAAAAAAAAAAgAAAAACAABAAAAAAAAABAAABACA=</HashCode>
+      <FileName>MyString.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CPing" Collapsed="true">
+    <Position X="6" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAFAAEAAAgAAAAAAAABIQAACAABAAAA=</HashCode>
+      <FileName>Ping.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CWndShadow" Collapsed="true">
+    <Position X="7.75" Y="2.5" Width="1.5" />
+    <NestedTypes>
+      <Typedef Name="CWndShadow::pfnUpdateLayeredWindow" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>WndShadow.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Typedef>
+      <Enum Name="CWndShadow::ShadowStatus" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>WndShadow.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>ACQAAAACAqBAA0AgAAAIAEgEBAAAAkAAMAsAgAkAAAA=</HashCode>
+      <FileName>WndShadow.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="IpHeader" Collapsed="true">
+    <Position X="7.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAACAAQAAAAAAAAAgAAAgAAAIEAAAEgAAQAAAIAAA=</HashCode>
+      <FileName>Ping.cpp</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="IcmpHeader" Collapsed="true">
+    <Position X="6" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAIAAAAAAAAAAAAAAgIAAAAAAQIAAAAAAAA=</HashCode>
+      <FileName>Ping.cpp</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="SetCText" Collapsed="true">
+    <Position X="7.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAAAAAAAAAAAAAAAEAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>BaseWnd.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="Prama" Collapsed="true">
+    <Position X="9.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAQQAAAAAAAAAAAAEAABAIAEAAAAAQAAAAAAA=</HashCode>
+      <FileName>BaseWnd.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="ServerInfo" Collapsed="true">
+    <Position X="6" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAgAAAAAgAgAAAAgAAABAgA=</HashCode>
+      <FileName>ListIp.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Font Name="微软雅黑" Size="9" />
+</ClassDiagram>
