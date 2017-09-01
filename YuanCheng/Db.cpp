@@ -12,7 +12,7 @@ CDb::CDb(void)
 				return;
 			}
 		
-			CString conn = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=E:/VS/vc++/YuanCheng/YuanCheng/bin/data/data.mdb";
+			CString conn = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=./bin/data/data.mdb";
 			//CString conn = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=./bin/data/data.mdb";
 			//SQL SERVER连接字符串
 			//CString conn="Driver={SQL Server};server=(local);uid=sa;database=pubs";//local可以改为127.0.0.1

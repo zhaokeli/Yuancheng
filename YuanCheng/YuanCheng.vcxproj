@@ -44,11 +44,11 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>$(ProjectDir)bin\</OutDir>
     <TargetName>$(ProjectName)_d</TargetName>
-    <LibraryPath>E:\VS\vc++\Yuancheng\DuiLib\bin;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(ProjectDir)../DuiLib/bin/;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(ProjectDir)bin\</OutDir>
-    <LibraryPath>E:\VS\vc++\YuanCheng\DuiLib\bin;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(ProjectDir)../DuiLib/bin/</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
