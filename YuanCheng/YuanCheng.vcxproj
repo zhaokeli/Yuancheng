@@ -64,6 +64,8 @@
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <OutputFile>$(TargetDir)$(TargetName)$(TargetExt)</OutputFile>
+      <ProgramDatabaseFile>$(ProjectDir)Debug\$(TargetName).pdb</ProgramDatabaseFile>
+      <ProfileGuidedDatabase>$(ProjectDir)Debug\$(TargetName).pgd</ProfileGuidedDatabase>
     </Link>
     <PostBuildEvent>
       <Command>xcopy /e /r /y $(ProjectDir)assets $(SolutionDir)bin</Command>
@@ -87,6 +89,9 @@
       <OutputFile>$(TargetDir)$(TargetName)$(TargetExt)</OutputFile>
       <AdditionalLibraryDirectories>E:\VS\vc++\YuanCheng\DuiLib\bin;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ShowProgress>LinkVerboseLib</ShowProgress>
+      <ProgramDatabaseFile>$(ProjectDir)Release\$(TargetName).pdb</ProgramDatabaseFile>
+      <SuppressStartupBanner>false</SuppressStartupBanner>
+      <ProfileGuidedDatabase>$(ProjectDir)Release\$(TargetName).pgd</ProfileGuidedDatabase>
     </Link>
     <PostBuildEvent>
       <Command>xcopy /e /r /y $(ProjectDir)assets $(SolutionDir)bin</Command>
