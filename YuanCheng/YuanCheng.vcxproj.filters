@@ -31,6 +31,9 @@
     <Filter Include="源文件\Core">
       <UniqueIdentifier>{aebae6cd-311e-448a-9f8d-07cb86098356}</UniqueIdentifier>
     </Filter>
+    <Filter Include="data">
+      <UniqueIdentifier>{f7a75559-efbe-4633-9b8b-bd8dc9fb6ea2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -117,5 +120,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
+    <None Include="data\data.mdb">
+      <Filter>data</Filter>
+    </None>
   </ItemGroup>
 </Project>

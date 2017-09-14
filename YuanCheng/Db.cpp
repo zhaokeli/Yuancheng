@@ -1,4 +1,5 @@
 #include "Db.h"
+#include "shlwapi.h"
 CDb::CDb(void)
 {
 	//初始化COM
@@ -8,26 +9,29 @@ CDb::CDb(void)
 		try {
 			if (FAILED(m_conn.CreateInstance("ADODB.Connection")))
 			{
-				::MessageBox(NULL, "Create Instance failed!", "错误", MB_ICONEXCLAMATION);
+				::MessageBox(NULL, _T("Create Instance failed!"), _T("错误"), MB_ICONEXCLAMATION);
 				return;
 			}
-		
-			CString conn = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=./bin/data/data.mdb";
+			TCHAR curDirPath[MAX_PATH];
+			::GetModuleFileName(NULL, curDirPath,MAX_PATH);
+			PathRemoveFileSpec(curDirPath);
+			CString ss = curDirPath;
+			CString conn = _T("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=")+ss+_T("./data/data.mdb");
 			//CString conn = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=./bin/data/data.mdb";
 			//SQL SERVER连接字符串
 			//CString conn="Driver={SQL Server};server=(local);uid=sa;database=pubs";//local可以改为127.0.0.1
 			if (FAILED(m_conn->Open((_bstr_t)conn, "", "", -1)))
 			{
-				::MessageBox(NULL, "数据库连接失败", "错误", MB_ICONEXCLAMATION);
+				::MessageBox(NULL, _T("数据库连接失败"), _T("错误"), MB_ICONEXCLAMATION);
 				return;
 			}
 		}catch(_com_error &e){
-			::MessageBox(NULL, e.Description(), "错误", MB_ICONEXCLAMATION);
+			::MessageBox(NULL, e.Description(), _T("错误"), MB_ICONEXCLAMATION);
 		}
 	}
 	catch(...)
 	{
-		::MessageBox(NULL,"数据库连接出现异常","错误",MB_ICONEXCLAMATION);
+		::MessageBox(NULL, _T("数据库连接出现异常"), _T("错误"),MB_ICONEXCLAMATION);
 	}
 
 }
