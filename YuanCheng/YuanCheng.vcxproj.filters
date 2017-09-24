@@ -123,5 +123,6 @@
     <None Include="data\data.mdb">
       <Filter>data</Filter>
     </None>
+    <None Include="assets\skin\skin.zip" />
   </ItemGroup>
 </Project>

@@ -4,7 +4,6 @@
 class CFrameWindowWnd: public BaseWnd
 {
 private:
-	CPaintManagerUI m_pm;
 	CLabelUI*  m_pTitleLab;
 	CButtonUI* m_pCloseBtn;
 	CButtonUI* m_pMinBtn;
@@ -27,13 +26,15 @@ private:
 public:
 	CFrameWindowWnd();
 	~CFrameWindowWnd();
+	//UILIB_RESOURCETYPE GetResourceType();
 	//UINT GetClassStyle() const;
 	//LPCTSTR GetWindowClassName() const;
 	//void OnFinalMessage(HWND /*hWnd*/) ;
 	void init();
 	//初始化服务器列表
 	void initList();
-	 LRESULT OnCreate(UINT uMsg, WPARAM wParam, LPARAM lParam);
+
+	 LRESULT OnCreate(UINT uMsg, WPARAM wParam, LPARAM lParam,BOOL& bHandled);
 	 LRESULT OnDestroy(UINT uMsg, WPARAM wParam, LPARAM lParam);
 	 LRESULT OnNcHitTest(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled);
 	 LRESULT OnNcActivate(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled);
@@ -55,6 +56,19 @@ private:
 	void BtnConClick(TNotifyUI& msg);
 
 	void ItemSelectClick(TNotifyUI& msg);
+
+	virtual CDuiString GetSkinFile() override;
+
+	//virtual CDuiString GetSkinFolder() override;
+
+	//virtual UILIB_RESOURCETYPE GetResourceType() const override;
+
+	//virtual LPCTSTR GetResourceID() const override;
+
+
+
+	// 通过 WindowImplBase 继承
+	virtual LPCTSTR GetWindowClassName(void) const override;
 
 };
 

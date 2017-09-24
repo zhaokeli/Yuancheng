@@ -131,6 +131,7 @@
     <Image Include="..\ico.ico" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="assets\skin\skin.zip" />
     <None Include="ClassDiagram.cd" />
     <None Include="data\data.mdb" />
   </ItemGroup>

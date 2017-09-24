@@ -3,6 +3,8 @@
 #include "Db.h"
 #include   "windows.h "
 #include   "shellapi.h "
+#include "resource.h"
+
 //创建一个互斥对象  
 #define  WM_USER_SETTEXT WM_USER+2//设置文本消息
 Mutex g_Lock;
@@ -13,7 +15,6 @@ CFrameWindowWnd::CFrameWindowWnd()
 {
 	selectedItem->index = -1;
 }
-
 CFrameWindowWnd::~CFrameWindowWnd()
 {
 }
@@ -26,26 +27,26 @@ CFrameWindowWnd::~CFrameWindowWnd()
 
 void CFrameWindowWnd::init()
 {
-	m_pTitleLab = static_cast<CLabelUI*>(m_pm.FindControl(_T("wintitle")));
-	m_pCloseBtn = static_cast<CButtonUI*>(m_pm.FindControl(_T("btn_close")));
-	m_pMinBtn = static_cast<CButtonUI*>(m_pm.FindControl(_T("btn_min")));
+	m_pTitleLab = static_cast<CLabelUI*>(m_PaintManager.FindControl(_T("wintitle")));
+	m_pCloseBtn = static_cast<CButtonUI*>(m_PaintManager.FindControl(_T("btn_close")));
+	m_pMinBtn = static_cast<CButtonUI*>(m_PaintManager.FindControl(_T("btn_min")));
 
-	m_pConbtn = static_cast<CButtonUI*>(m_pm.FindControl(_T("btn_con")));
-	m_pAddbtn = static_cast<CButtonUI*>(m_pm.FindControl(_T("btn_add")));
-	m_pModbtn = static_cast<CButtonUI*>(m_pm.FindControl(_T("btn_set")));
-	m_pDelbtn = static_cast<CButtonUI*>(m_pm.FindControl(_T("btn_del")));
+	m_pConbtn = static_cast<CButtonUI*>(m_PaintManager.FindControl(_T("btn_con")));
+	m_pAddbtn = static_cast<CButtonUI*>(m_PaintManager.FindControl(_T("btn_add")));
+	m_pModbtn = static_cast<CButtonUI*>(m_PaintManager.FindControl(_T("btn_set")));
+	m_pDelbtn = static_cast<CButtonUI*>(m_PaintManager.FindControl(_T("btn_del")));
 
-	m_pIplist = static_cast<CListIp*>(m_pm.FindControl(_T("iplist")));
-	m_pNote = static_cast<CRichEditUI*>(m_pm.FindControl(_T("note")));
-	m_pText = static_cast<CTextUI*>(m_pm.FindControl(_T("text_boke")));
+	m_pIplist = static_cast<CListIp*>(m_PaintManager.FindControl(_T("iplist")));
+	m_pNote = static_cast<CRichEditUI*>(m_PaintManager.FindControl(_T("note")));
+	m_pText = static_cast<CTextUI*>(m_PaintManager.FindControl(_T("text_boke")));
 
 	//初始化服务器数据列表
 	initList();
-	//m_pGetUrlContentBtn= static_cast<CButtonUI*>(m_pm.FindControl(_T("btn_guc")));
-	//m_pPostBtn= static_cast<CButtonUI*>(m_pm.FindControl(_T("btn_post")));
-	//m_pUrlText= static_cast<CEditUI*>(m_pm.FindControl(_T("urltext")));	
-	//m_pPageCodeRdt= static_cast<CRichEditUI*>(m_pm.FindControl(_T("pagecode")));
-	//m_pPostDataRdt= static_cast<CRichEditUI*>(m_pm.FindControl(_T("postdata")));
+	//m_pGetUrlContentBtn= static_cast<CButtonUI*>(m_PaintManager.FindControl(_T("btn_guc")));
+	//m_pPostBtn= static_cast<CButtonUI*>(m_PaintManager.FindControl(_T("btn_post")));
+	//m_pUrlText= static_cast<CEditUI*>(m_PaintManager.FindControl(_T("urltext")));	
+	//m_pPageCodeRdt= static_cast<CRichEditUI*>(m_PaintManager.FindControl(_T("pagecode")));
+	//m_pPostDataRdt= static_cast<CRichEditUI*>(m_PaintManager.FindControl(_T("postdata")));
 }
 
 void CFrameWindowWnd::initList() {
@@ -97,6 +98,7 @@ void CFrameWindowWnd::initList() {
 		}
 	}
 }
+
 
 DWORD WINAPI CFrameWindowWnd::GetUrlContent(LPVOID lpParameter) {
 	try {
@@ -161,11 +163,11 @@ LRESULT CFrameWindowWnd::HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam)
 
 
 	LRESULT lRes = 0;
-	BOOL bHandled = TRUE;
+	BOOL bHandled = TRUE;//如果为真就不向上传递啦
 	switch (uMsg)
 	{
 	case WM_CREATE:
-		lRes = OnCreate(uMsg, wParam, lParam);
+		lRes = OnCreate(uMsg, wParam, lParam, bHandled);
 		break;
 		//能去除边框  
 	case WM_NCCALCSIZE:
@@ -203,33 +205,39 @@ LRESULT CFrameWindowWnd::HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam)
 	}
 
 	if (bHandled)  return lRes;
-	if (m_pm.MessageHandler(uMsg, wParam, lParam, lRes))  return lRes;
-	return CWindowWnd::HandleMessage(uMsg, wParam, lParam);
+	if (m_PaintManager.MessageHandler(uMsg, wParam, lParam, lRes))  return lRes;
+	//return CWindowWnd::HandleMessage(uMsg, wParam, lParam);
+	return WindowImplBase::HandleMessage(uMsg, wParam, lParam);
 
 }
 
-LRESULT CFrameWindowWnd::OnCreate(UINT uMsg, WPARAM wParam, LPARAM lParam) {
-	//设置程序运行标记
-	::SetProp(m_hWnd, "重复运行标记", (HANDLE)1);
-	//使用xml界面
-	m_pm.Init(m_hWnd);
-	CDialogBuilder builder;
-	CControlUI* pRoot = NULL;
-	pRoot = builder.Create(_T("main.xml"), (UINT)0, NULL, &m_pm);
-	ASSERT(pRoot && "Failed to parse XML");
-	m_pm.AttachDialog(pRoot);
-	m_pm.AddNotifier(this);
-	init();
 
-	LONG styleValue = ::GetWindowLong(*this, GWL_STYLE);
-	styleValue &= ~WS_CAPTION;
-	::SetWindowLong(*this, GWL_STYLE, styleValue | WS_CLIPSIBLINGS | WS_CLIPCHILDREN);
-	//给窗口加阴影
-	CWndShadow *m_WndShadow = new CWndShadow;
-	m_WndShadow->Create(m_hWnd);
-	m_WndShadow->SetSize(4);
-	m_WndShadow->SetPosition(1, 1);
-	return 0;
+
+LRESULT CFrameWindowWnd::OnCreate(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled) {
+	////设置程序运行标记
+	//::SetProp(m_hWnd, "重复运行标记", (HANDLE)1);
+	////使用xml界面
+	//m_PaintManager.Init(m_hWnd);
+	//CDialogBuilder builder;
+	//CControlUI* pRoot = NULL;
+	//pRoot = builder.Create(_T("main.xml"), (UINT)0, NULL, &m_PaintManager);
+	//ASSERT(pRoot && "Failed to parse XML");
+	//m_PaintManager.AttachDialog(pRoot);
+	//m_PaintManager.AddNotifier(this);
+	//init();
+
+	//LONG styleValue = ::GetWindowLong(*this, GWL_STYLE);
+	//styleValue &= ~WS_CAPTION;
+	//::SetWindowLong(*this, GWL_STYLE, styleValue | WS_CLIPSIBLINGS | WS_CLIPCHILDREN);
+	////给窗口加阴影
+	//CWndShadow *m_WndShadow = new CWndShadow;
+	//m_WndShadow->Create(m_hWnd);
+	//m_WndShadow->SetSize(4);
+	//m_WndShadow->SetPosition(1, 1);
+
+	WindowImplBase::OnCreate(uMsg, wParam, lParam, bHandled);
+	init();
+	return bHandled;
 }
 
 LRESULT CFrameWindowWnd::OnDestroy(UINT uMsg, WPARAM wParam, LPARAM lParam) {
@@ -250,7 +258,7 @@ LRESULT CFrameWindowWnd::OnNcHitTest(UINT uMsg, WPARAM wParam, LPARAM lParam, BO
 	::GetClientRect(*this, &rcClient);
 
 	if (!::IsZoomed(*this)) {
-		RECT rcSizeBox = m_pm.GetSizeBox();    // GetSizeBox用来获取xml中Window标签的sizebox属性，该属性指示你的鼠标移动到窗口边框多少个像素会变成指示符（这个指示符表示可以改变窗口大小的指示符）
+		RECT rcSizeBox = m_PaintManager.GetSizeBox();    // GetSizeBox用来获取xml中Window标签的sizebox属性，该属性指示你的鼠标移动到窗口边框多少个像素会变成指示符（这个指示符表示可以改变窗口大小的指示符）
 		if (pt.y < rcClient.top + rcSizeBox.top) {
 			if (pt.x < rcClient.left + rcSizeBox.left) return HTTOPLEFT;
 			if (pt.x > rcClient.right - rcSizeBox.right) return HTTOPRIGHT;
@@ -264,9 +272,9 @@ LRESULT CFrameWindowWnd::OnNcHitTest(UINT uMsg, WPARAM wParam, LPARAM lParam, BO
 		if (pt.x < rcClient.left + rcSizeBox.left) return HTLEFT;
 		if (pt.x > rcClient.right - rcSizeBox.right) return HTRIGHT;
 	}
-	RECT rcCaption = m_pm.GetCaptionRect();    // GetCaptionRect用来获取xml中Window标签的caption属性，该属性指示标题栏的大小
+	RECT rcCaption = m_PaintManager.GetCaptionRect();    // GetCaptionRect用来获取xml中Window标签的caption属性，该属性指示标题栏的大小
 	if (pt.x >= rcClient.left + rcCaption.left && pt.x < rcClient.right - rcCaption.right && pt.y >= rcCaption.top && pt.y < rcCaption.bottom) {
-		CControlUI* pControl = static_cast<CControlUI*>(m_pm.FindControl(pt));
+		CControlUI* pControl = static_cast<CControlUI*>(m_PaintManager.FindControl(pt));
 		if (pControl && _tcsicmp(pControl->GetClass(), _T("ButtonUI")) != 0 && _tcsicmp(pControl->GetClass(), _T("OptionUI")) != 0)
 			return HTCAPTION;
 	}
@@ -284,7 +292,7 @@ LRESULT CFrameWindowWnd::OnSetText(UINT uMsg, WPARAM wParam, LPARAM lParam) {
 LRESULT CFrameWindowWnd::OnSize(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled)
 {
 	if (!::IsIconic(*this));
-	SIZE szRoundCorner = m_pm.GetRoundCorner();//这个是圆角，是椭圆的半径  
+	SIZE szRoundCorner = m_PaintManager.GetRoundCorner();//这个是圆角，是椭圆的半径  
 											   //这里有个很巧妙的用法，在xml文件中一定要设置圆角（roundcorner），  
 											   //不然不会进入下面的if，也就会出现标题栏。  
 	if (!::IsIconic(*this) && (szRoundCorner.cx != 0 || szRoundCorner.cy != 0)) {
@@ -475,10 +483,10 @@ void CFrameWindowWnd::ItemSelectClick(TNotifyUI& msg) {
 
 
 
-		CLabelUI * pidstr = static_cast<CLabelUI*>(m_pm.FindControl(idstr));
-		CLabelUI * pipstr = static_cast<CLabelUI*>(m_pm.FindControl(ipstr));
-		CLabelUI * pportstr = static_cast<CLabelUI*>(m_pm.FindControl(portstr));
-		CLabelUI * punamestr = static_cast<CLabelUI*>(m_pm.FindControl(unamestr));
+		CLabelUI * pidstr = static_cast<CLabelUI*>(m_PaintManager.FindControl(idstr));
+		CLabelUI * pipstr = static_cast<CLabelUI*>(m_PaintManager.FindControl(ipstr));
+		CLabelUI * pportstr = static_cast<CLabelUI*>(m_PaintManager.FindControl(portstr));
+		CLabelUI * punamestr = static_cast<CLabelUI*>(m_PaintManager.FindControl(unamestr));
 		LPCTSTR st = pidstr->GetText();
 		selectedItem->id = string(st);
 		st = pipstr->GetText();
@@ -503,4 +511,32 @@ void CFrameWindowWnd::ItemSelectClick(TNotifyUI& msg) {
 		//::MessageBox(m_hWnd,msg.pSender->GetName(),"提醒",NULL);
 
 	}
+}
+
+DuiLib::CDuiString CFrameWindowWnd::GetSkinFile()
+{
+	return "main.xml";
+}
+
+//DuiLib::CDuiString CFrameWindowWnd::GetSkinFolder()
+//{
+//	return "skin";
+//	//return "";
+//}
+//
+//DuiLib::UILIB_RESOURCETYPE CFrameWindowWnd::GetResourceType() const
+//{
+//	return UILIB_FILE;
+//	//下面是资源zip文件,调试期间用上面那个就可以
+//	//return UILIB_ZIPRESOURCE;
+//}
+//
+//LPCTSTR CFrameWindowWnd::GetResourceID() const
+//{
+//	return MAKEINTRESOURCE(IDR_ZIPRES1);
+//}
+
+LPCTSTR CFrameWindowWnd::GetWindowClassName(void) const
+{
+	return "yuancheng";
 }
