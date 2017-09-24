@@ -62,6 +62,7 @@ LRESULT CInputWnd::HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam)
 		break;
 	case WM_NCHITTEST:
 		lRes=OnNcHitTest(uMsg, wParam, lParam, bHandled);
+		//bHandled = false;
 		break;
 	default:
 		bHandled = FALSE;
