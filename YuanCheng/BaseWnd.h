@@ -28,7 +28,9 @@ class BaseWnd: public WindowImplBase
 public:
 	BaseWnd(void);
 	~BaseWnd(void);
+	//返回加载皮肤的方法是zip压缩包还是文件夹还是zip资源
 	UILIB_RESOURCETYPE GetResourceType() const;
+	//如果是皮肤是zip资源就返回资源id
 	LPCTSTR GetResourceID() const;
 	UINT GetClassStyle() const;
 	LPCTSTR GetWindowClassName() const;
