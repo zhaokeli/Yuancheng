@@ -1,3 +1,3 @@
-# è¿œç¨‹æ¡Œé¢ç®¡ç†å·¥å…·
-æœ¬è½¯ä»¶ä½¿ç”¨ **c++** **duilib**å¼€å‘<br>
-åšå®¢ <a href="http://www.zhaokeli.com" target="_blank">http://www.zhaokeli.com</a>
+# Ô¶³Ì×ÀÃæ¹ÜÀí¹¤¾ß
+±¾Èí¼şÊ¹ÓÃ **c++** **duilib**¿ª·¢<br>
+²©¿Í <a href="http://www.zhaokeli.com" target="_blank">http://www.zhaokeli.com</a>

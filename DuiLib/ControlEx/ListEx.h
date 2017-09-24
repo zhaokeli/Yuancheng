@@ -13,24 +13,24 @@ class CListUIEx : public CListUI
 {
 public:
 	/**
-	 * æ„é€ å‡½æ•°
+	 * ¹¹Ôìº¯Êı
 	 */
 	CListUIEx();
 
 	/**
-	 * ææ„å‡½æ•°
+	 * Îö¹¹º¯Êı
 	 */
 	virtual ~CListUIEx();
 
 	/**
-	 * æ’å…¥åˆ—,ç…§æ—§,ä»0å¼€å§‹
+	 * ²åÈëÁĞ,ÕÕ¾É,´Ó0¿ªÊ¼
 	 * 
-	 * @param	nCol					åˆ—æ•°,éœ€è¦ä»0å¼€å§‹ä¾æ¬¡æ’å…¥
-	 * @param	lpszColumnHeaderStr		æ¯ä¸€åˆ—æ ‡é¢˜
-	 * @param	uTextStyle				æ ‡é¢˜æ–‡å­—å¯¹é½æ–¹å¼
-	 * @param	nWidth					åˆ—å®½
+	 * @param	nCol					ÁĞÊı,ĞèÒª´Ó0¿ªÊ¼ÒÀ´Î²åÈë
+	 * @param	lpszColumnHeaderStr		Ã¿Ò»ÁĞ±êÌâ
+	 * @param	uTextStyle				±êÌâÎÄ×Ö¶ÔÆë·½Ê½
+	 * @param	nWidth					ÁĞ¿í
 	 * 
-	 * @return	è¿”å›Trueä¸ºæˆåŠŸ,Falseä¸ºå¤±è´¥
+	 * @return	·µ»ØTrueÎª³É¹¦,FalseÎªÊ§°Ü
 	 */
 	BOOL InsertColumn(
 		int nCol,
@@ -40,32 +40,32 @@ public:
 		);
 	BOOL InsertColumn( int nCol, CListHeaderItemUI *pHeaderItem );
 	/**
-	 * æ’å…¥è¡Œ,ç…§æ—§,ä»0å¼€å§‹
+	 * ²åÈëĞĞ,ÕÕ¾É,´Ó0¿ªÊ¼
 	 * 
-	 * @param	nItem					è¡Œæ•°,éœ€è¦ä»0å¼€å§‹ä¾æ¬¡æ’å…¥
+	 * @param	nItem					ĞĞÊı,ĞèÒª´Ó0¿ªÊ¼ÒÀ´Î²åÈë
 	 *
-	 * @return	æˆåŠŸåˆ™è¿”å›è¡Œæ•°,å¦åˆ™è¿”å›-1
+	 * @return	³É¹¦Ôò·µ»ØĞĞÊı,·ñÔò·µ»Ø-1
 	 */
 	int InsertItem(int nItem, int nHeight = 20);
 	int InsertItem(int nItem, int nHeight, CListContainerElementUI *pListItem);
 	void SetItemData(int nItem, int nColumn, LPCTSTR Text, LPCTSTR Name);
 	void SetItemData(int nItem, int nColumn, CControlUI* pControl);
 	/**
-	 * æ ¹æ®ç´¢å¼•è·å–è¡Œæ§ä»¶
+	 * ¸ù¾İË÷Òı»ñÈ¡ĞĞ¿Ø¼ş
 	 * 
-	 * @param	iIndex					è¡Œæ•°,ä»0åˆ°æœ€å¤§è¡Œæ•°
+	 * @param	iIndex					ĞĞÊı,´Ó0µ½×î´óĞĞÊı
 	 * 
-	 * @return	æˆåŠŸæ—¶è¿”å›å­æ§ä»¶åœ°å€,å¦åˆ™è¿”å›NULL
+	 * @return	³É¹¦Ê±·µ»Ø×Ó¿Ø¼şµØÖ·,·ñÔò·µ»ØNULL
 	 */
 	CListContainerElementUI* GetListItem(int iIndex);
 
 	/**
-	 * è·å–å…·ä½“ä½ç½®çš„æ§ä»¶
+	 * »ñÈ¡¾ßÌåÎ»ÖÃµÄ¿Ø¼ş
 	 * 
-	 * @param	iIndex					è¡Œæ•°,ä»0åˆ°æœ€å¤§è¡Œæ•°
-	 * @param	iSubIndex					åˆ—æ•°,ä»0åˆ°æœ€å¤§è¡Œæ•°
+	 * @param	iIndex					ĞĞÊı,´Ó0µ½×î´óĞĞÊı
+	 * @param	iSubIndex					ÁĞÊı,´Ó0µ½×î´óĞĞÊı
 	 * 
-	 * @return	æˆåŠŸæ—¶è¿”å›å­æ§ä»¶åœ°å€,å¦åˆ™è¿”å›NULL
+	 * @return	³É¹¦Ê±·µ»Ø×Ó¿Ø¼şµØÖ·,·ñÔò·µ»ØNULL
 	 */
 	CHorizontalLayoutUI* GetListSubItem(int iIndex, int iSubIndex);
 	BOOL SetHeaderItemData(int nColumn, CControlUI* pControl);

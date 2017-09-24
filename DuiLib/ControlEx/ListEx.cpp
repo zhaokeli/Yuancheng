@@ -11,7 +11,7 @@ CListUIEx::~CListUIEx()
 {
 }
 
-//é€šè¿‡ä»£ç åˆ›å»ºåˆ—  
+//Í¨¹ı´úÂë´´½¨ÁĞ  
 BOOL CListUIEx::InsertColumn(
 		int nCol,
 		LPCTSTR lpszColumnHeaderStr,
@@ -69,7 +69,7 @@ BOOL CListUIEx::SetHeaderItemData(int nColumn, CControlUI* pControl)
 int CListUIEx::InsertItem(int nItem, int nHeight)
 {
 	CListContainerElementUI *pListItem = new CListContainerElementUI;
-	pListItem->SetFixedHeight(nHeight);/*å›ºå®šä¸€ä¸ªè¡Œé«˜*/
+	pListItem->SetFixedHeight(nHeight);/*¹Ì¶¨Ò»¸öĞĞ¸ß*/
 
 	pListItem->m_pHeader = CListUI::GetHeader();
 	if (NULL != pListItem->m_pHeader)
@@ -109,18 +109,18 @@ void CListUIEx::SetItemData(int nItem,
 							LPCTSTR Text, LPCTSTR Name)
 {
 	CLabelUI *pLabel = new CLabelUI;
-	pLabel->SetText(Text);//æ§ä»¶å±æ€§å°±æ ¹æ®éœ€æ±‚è®¾ç½®å§,æˆ‘ç®€å•è®¾ç½®ä¸€ä¸‹
+	pLabel->SetText(Text);//¿Ø¼şÊôĞÔ¾Í¸ù¾İĞèÇóÉèÖÃ°É,ÎÒ¼òµ¥ÉèÖÃÒ»ÏÂ
 	pLabel->SetTextStyle(DT_CENTER);
 	pLabel->SetAttribute("endellipsis", "true");
 	pLabel->SetName(Name);
-	SetItemData(nItem, nColumn, pLabel);//æ·»åŠ åˆ°çˆ¶æ§ä»¶
+	SetItemData(nItem, nColumn, pLabel);//Ìí¼Óµ½¸¸¿Ø¼ş
 }
 
 void CListUIEx::SetItemData(int nItem, int nColumn,	CControlUI* pControl)
 {
 	CHorizontalLayoutUI *pSubHor = GetListSubItem(nItem, nColumn);
 	pSubHor->SetAttribute("inset", "3,1,3,1");
-	pSubHor->Add(pControl);//æ·»åŠ åˆ°çˆ¶æ§ä»¶
+	pSubHor->Add(pControl);//Ìí¼Óµ½¸¸¿Ø¼ş
 }
 
 CListContainerElementUI* CListUIEx::GetListItem(int iIndex)
@@ -130,7 +130,7 @@ CListContainerElementUI* CListUIEx::GetListItem(int iIndex)
 
 CHorizontalLayoutUI* CListUIEx::GetListSubItem(int iIndex, int iSubIndex)
 {
-	//è·å–å…·ä½“è¡Œæ§ä»¶
+	//»ñÈ¡¾ßÌåĞĞ¿Ø¼ş
 	CListContainerElementUI *pListItem = static_cast<CListContainerElementUI*>(CListUI::GetItemAt(iIndex));
 	if (pListItem == NULL)
 		return NULL;
