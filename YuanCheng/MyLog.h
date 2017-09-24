@@ -9,7 +9,7 @@ public:
 	MyLog(void);
 	~MyLog(void);
 	/**
-	 *记录日志文件
+	 *璁板綍鏃ュ織鏂囦欢
 	 **/
 	static void WriteLog(CString str);
 };

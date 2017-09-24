@@ -20,7 +20,7 @@ static char THIS_FILE[] = __FILE__;
 
 CADOConn::CADOConn()
 {
-	//Êı¾İ¿âÀàĞÍ£ºAccess
+	//æ•°æ®åº“ç±»å‹ï¼šAccess
 	m_iDatabaseType = 1;
 	m_strDatabaseName = _bstr_t("./data/data.mdb");
 }
@@ -31,13 +31,13 @@ CADOConn::~CADOConn()
 }
 
 /************************************************************************
-º¯ÊıÃû:  CADOConn
-×÷  Õß:	 Ì·ÓÑÁÁ(Charles Tan)
-ÈÕ  ÆÚ:	 2013-3-5
-×÷  ÓÃ:  ½«Êı¾İ¿âÃû³Æ´«µİ¸øm_strDatabaseName,²¢ÅĞ¶ÏÊı¾İ¿âÀàĞÍ
-ĞÎ²ÎÊı:  strDatabaseName Êı¾İ¿âÃû³Æ
-·µ»ØÖµ:
-ĞŞ¸Ä¼ÇÂ¼:
+å‡½æ•°å:  CADOConn
+ä½œ  è€…:	 è°­å‹äº®(Charles Tan)
+æ—¥  æœŸ:	 2013-3-5
+ä½œ  ç”¨:  å°†æ•°æ®åº“åç§°ä¼ é€’ç»™m_strDatabaseName,å¹¶åˆ¤æ–­æ•°æ®åº“ç±»å‹
+å½¢å‚æ•°:  strDatabaseName æ•°æ®åº“åç§°
+è¿”å›å€¼:
+ä¿®æ”¹è®°å½•:
 ************************************************************************/
 CADOConn::CADOConn(CString strDatabaseName)
 {
@@ -58,13 +58,13 @@ CADOConn::CADOConn(CString strDatabaseName)
 }
 
 /************************************************************************
-º¯ÊıÃû:  GetAppPath
-×÷  Õß:	 Ì·ÓÑÁÁ(Charles Tan)
-ÈÕ  ÆÚ:	 2013-3-18
-×÷  ÓÃ:  »ñÈ¡µ±Ç°³ÌĞòµÄ¿ÉÖ´ĞĞÎÄ¼şËùÔÚµÄÄ¿Â¼
-ĞÎ²ÎÊı:
-·µ»ØÖµ:
-ĞŞ¸Ä¼ÇÂ¼:
+å‡½æ•°å:  GetAppPath
+ä½œ  è€…:	 è°­å‹äº®(Charles Tan)
+æ—¥  æœŸ:	 2013-3-18
+ä½œ  ç”¨:  è·å–å½“å‰ç¨‹åºçš„å¯æ‰§è¡Œæ–‡ä»¶æ‰€åœ¨çš„ç›®å½•
+å½¢å‚æ•°:
+è¿”å›å€¼:
+ä¿®æ”¹è®°å½•:
 ************************************************************************/
 CString CADOConn::GetAppPath()
 {
@@ -79,27 +79,27 @@ CString CADOConn::GetAppPath()
 }
 
 /************************************************************************
-º¯ÊıÃû:  InitCADOConn
-×÷  Õß:	 Ì·ÓÑÁÁ(Charles Tan)
-ÈÕ  ÆÚ:	 2013-3-5
-×÷  ÓÃ:  ³õÊ¼»¯Êı¾İ¿âÁ¬½Ó
-ĞÎ²ÎÊı:
-·µ»ØÖµ:
-ĞŞ¸Ä¼ÇÂ¼:
+å‡½æ•°å:  InitCADOConn
+ä½œ  è€…:	 è°­å‹äº®(Charles Tan)
+æ—¥  æœŸ:	 2013-3-5
+ä½œ  ç”¨:  åˆå§‹åŒ–æ•°æ®åº“è¿æ¥
+å½¢å‚æ•°:
+è¿”å›å€¼:
+ä¿®æ”¹è®°å½•:
 ************************************************************************/
 void CADOConn::InitCADOConn()
 {
 	CString toolPath = GetAppPath();
 
-	//³õÊ¼»¯OLE/COM¿â»·¾³
+	//åˆå§‹åŒ–OLE/COMåº“ç¯å¢ƒ
 	::CoInitialize(NULL);
 	try
 	{
 		m_pConnection = NULL;
 		m_pRecordset = NULL;
-		//´´½¨Connection¶ÔÏó
+		//åˆ›å»ºConnectionå¯¹è±¡
 		m_pConnection.CreateInstance("ADODB.Connection");
-		//ÉèÖÃÁ¬½Ó×Ö·û´®£¬±ØĞëÊÇBSTRĞÍ»òÕß_bstr_tÀàĞÍ
+		//è®¾ç½®è¿æ¥å­—ç¬¦ä¸²ï¼Œå¿…é¡»æ˜¯BSTRå‹æˆ–è€…_bstr_tç±»å‹
 		_bstr_t strConnect;
 
 		switch (m_iDatabaseType)
@@ -125,24 +125,24 @@ void CADOConn::InitCADOConn()
 	}
 	catch (_com_error e)
 	{
-		::MessageBox(NULL, e.Description(), "´íÎó", MB_ICONEXCLAMATION);
+		::MessageBox(NULL, e.Description(), "é”™è¯¯", MB_ICONEXCLAMATION);
 	}
 }
 
 /************************************************************************
-º¯ÊıÃû:  GetRecordSet
-×÷  Õß:	 Ì·ÓÑÁÁ(Charles Tan)
-ÈÕ  ÆÚ:	 2013-3-5
-×÷  ÓÃ:  Ö´ĞĞ²éÑ¯
-ĞÎ²ÎÊı:  strSQL SQLÓï¾ä
-·µ»ØÖµ:  m_pRecordset ×Ö¶Î¼¯µÄÖ¸Õë
-ĞŞ¸Ä¼ÇÂ¼:
+å‡½æ•°å:  GetRecordSet
+ä½œ  è€…:	 è°­å‹äº®(Charles Tan)
+æ—¥  æœŸ:	 2013-3-5
+ä½œ  ç”¨:  æ‰§è¡ŒæŸ¥è¯¢
+å½¢å‚æ•°:  strSQL SQLè¯­å¥
+è¿”å›å€¼:  m_pRecordset å­—æ®µé›†çš„æŒ‡é’ˆ
+ä¿®æ”¹è®°å½•:
 ************************************************************************/
 _RecordsetPtr& CADOConn::GetRecordSet(CString strSQL)
 {
 	try
 	{
-		//Á¬½ÓÊı¾İ¿â£¬Èç¹ûConnection¶ÔÏóÎª¿Õ£¬ÔòÖØĞÂÁ¬½ÓÊı¾İ¿â
+		//è¿æ¥æ•°æ®åº“ï¼Œå¦‚æœConnectionå¯¹è±¡ä¸ºç©ºï¼Œåˆ™é‡æ–°è¿æ¥æ•°æ®åº“
 		if (m_pConnection == NULL)
 		{
 			InitCADOConn();
@@ -150,34 +150,34 @@ _RecordsetPtr& CADOConn::GetRecordSet(CString strSQL)
 
 		strSQL.TrimLeft();
 		strSQL.TrimRight();
-		//´´½¨¼ÇÂ¼¼¯¶ÔÏó
+		//åˆ›å»ºè®°å½•é›†å¯¹è±¡
 		m_pRecordset.CreateInstance(__uuidof(Recordset));
-		//È¡µÃ±íÖĞµÄ¼ÇÂ¼
+		//å–å¾—è¡¨ä¸­çš„è®°å½•
 		m_pRecordset->Open(_bstr_t(strSQL), m_pConnection.GetInterfacePtr(), adOpenDynamic, adLockOptimistic, adCmdText);
 		return m_pRecordset;
 	}
 	catch (_com_error e)
 	{
-		::MessageBox(NULL, e.Description(), "´íÎó", MB_ICONEXCLAMATION);
+		::MessageBox(NULL, e.Description(), "é”™è¯¯", MB_ICONEXCLAMATION);
 	}
 
 	return m_pRecordset;
 }
 
 /************************************************************************
-º¯ÊıÃû:  Open
-×÷  Õß:	 Ì·ÓÑÁÁ(Charles Tan)
-ÈÕ  ÆÚ:	 2013-3-5
-×÷  ÓÃ:  ´ò¿ª×Ö·û¼¯
-ĞÎ²ÎÊı:  strSQL SQLÓï¾ä
-·µ»ØÖµ:  TRUE:³É¹¦ FALSE:Ê§°Ü
-ĞŞ¸Ä¼ÇÂ¼:
+å‡½æ•°å:  Open
+ä½œ  è€…:	 è°­å‹äº®(Charles Tan)
+æ—¥  æœŸ:	 2013-3-5
+ä½œ  ç”¨:  æ‰“å¼€å­—ç¬¦é›†
+å½¢å‚æ•°:  strSQL SQLè¯­å¥
+è¿”å›å€¼:  TRUE:æˆåŠŸ FALSE:å¤±è´¥
+ä¿®æ”¹è®°å½•:
 ************************************************************************/
 BOOL CADOConn::Open(CString strSQL)
 {
 	try
 	{
-		//Á¬½ÓÊı¾İ¿â£¬Èç¹ûConnection¶ÔÏóÎª¿Õ£¬ÔòÖØĞÂÁ¬½ÓÊı¾İ¿â
+		//è¿æ¥æ•°æ®åº“ï¼Œå¦‚æœConnectionå¯¹è±¡ä¸ºç©ºï¼Œåˆ™é‡æ–°è¿æ¥æ•°æ®åº“
 		if (m_pConnection == NULL)
 		{
 			InitCADOConn();
@@ -185,14 +185,14 @@ BOOL CADOConn::Open(CString strSQL)
 
 		strSQL.TrimLeft();
 		strSQL.TrimRight();
-		//´´½¨¼ÇÂ¼¼¯¶ÔÏó
+		//åˆ›å»ºè®°å½•é›†å¯¹è±¡
 		m_pRecordset.CreateInstance(__uuidof(Recordset));
-		//È¡µÃ±íÖĞµÄ¼ÇÂ¼
+		//å–å¾—è¡¨ä¸­çš„è®°å½•
 		m_pRecordset->Open(_bstr_t(strSQL), m_pConnection.GetInterfacePtr(), adOpenDynamic, adLockOptimistic, adCmdText);
 	}
 	catch (_com_error e)
 	{
-		::MessageBox(NULL, e.Description(), "´íÎó", MB_ICONEXCLAMATION);
+		::MessageBox(NULL, e.Description(), "é”™è¯¯", MB_ICONEXCLAMATION);
 		return FALSE;
 	}
 
@@ -200,19 +200,19 @@ BOOL CADOConn::Open(CString strSQL)
 }
 
 /************************************************************************
-º¯ÊıÃû:  ExecuteSQL
-×÷  Õß:	 Ì·ÓÑÁÁ(Charles Tan)
-ÈÕ  ÆÚ:	 2013-3-5
-×÷  ÓÃ:  Ö´ĞĞSQLÓï¾ä(Insert Update delete)
-ĞÎ²ÎÊı:  strSQL SQLÓï¾ä
-·µ»ØÖµ:  TRUE:³É¹¦ FALSE:Ê§°Ü
-ĞŞ¸Ä¼ÇÂ¼:
+å‡½æ•°å:  ExecuteSQL
+ä½œ  è€…:	 è°­å‹äº®(Charles Tan)
+æ—¥  æœŸ:	 2013-3-5
+ä½œ  ç”¨:  æ‰§è¡ŒSQLè¯­å¥(Insert Update delete)
+å½¢å‚æ•°:  strSQL SQLè¯­å¥
+è¿”å›å€¼:  TRUE:æˆåŠŸ FALSE:å¤±è´¥
+ä¿®æ”¹è®°å½•:
 ************************************************************************/
 BOOL CADOConn::ExecuteSQL(CString strSQL)
 {
 	try
 	{
-		//Á¬½ÓÊı¾İ¿â£¬Èç¹ûConnection¶ÔÏóÎª¿Õ£¬ÔòÖØĞÂÁ¬½ÓÊı¾İ¿â
+		//è¿æ¥æ•°æ®åº“ï¼Œå¦‚æœConnectionå¯¹è±¡ä¸ºç©ºï¼Œåˆ™é‡æ–°è¿æ¥æ•°æ®åº“
 		if (m_pConnection == NULL)
 		{
 			InitCADOConn();
@@ -225,20 +225,20 @@ BOOL CADOConn::ExecuteSQL(CString strSQL)
 	}
 	catch (_com_error e)
 	{
-		::MessageBox(NULL, e.Description(), "´íÎó", MB_ICONEXCLAMATION);
+		::MessageBox(NULL, e.Description(), "é”™è¯¯", MB_ICONEXCLAMATION);
 		return FALSE;
 	}
 	return TRUE;
 }
 
 /************************************************************************
-º¯ÊıÃû:  MoveFirst
-×÷  Õß:	 Ì·ÓÑÁÁ(Charles Tan)
-ÈÕ  ÆÚ:	 2013-3-6
-×÷  ÓÃ:  ¼ÇÂ¼¼¯ÒÆÏò¿ªÍ·
-ĞÎ²ÎÊı:
-·µ»ØÖµ:  TRUE:³É¹¦ FALSE:Ê§°Ü
-ĞŞ¸Ä¼ÇÂ¼:
+å‡½æ•°å:  MoveFirst
+ä½œ  è€…:	 è°­å‹äº®(Charles Tan)
+æ—¥  æœŸ:	 2013-3-6
+ä½œ  ç”¨:  è®°å½•é›†ç§»å‘å¼€å¤´
+å½¢å‚æ•°:
+è¿”å›å€¼:  TRUE:æˆåŠŸ FALSE:å¤±è´¥
+ä¿®æ”¹è®°å½•:
 ************************************************************************/
 BOOL CADOConn::MoveFirst()
 {
@@ -254,13 +254,13 @@ BOOL CADOConn::MoveFirst()
 }
 
 /************************************************************************
-º¯ÊıÃû:  MoveNext
-×÷  Õß:	 Ì·ÓÑÁÁ(Charles Tan)
-ÈÕ  ÆÚ:	 2013-3-6
-×÷  ÓÃ:  ¼ÇÂ¼¼¯ÏòÏÂÒÆ¶¯
-ĞÎ²ÎÊı:
-·µ»ØÖµ:  TRUE:³É¹¦ FALSE:Ê§°Ü
-ĞŞ¸Ä¼ÇÂ¼:
+å‡½æ•°å:  MoveNext
+ä½œ  è€…:	 è°­å‹äº®(Charles Tan)
+æ—¥  æœŸ:	 2013-3-6
+ä½œ  ç”¨:  è®°å½•é›†å‘ä¸‹ç§»åŠ¨
+å½¢å‚æ•°:
+è¿”å›å€¼:  TRUE:æˆåŠŸ FALSE:å¤±è´¥
+ä¿®æ”¹è®°å½•:
 ************************************************************************/
 BOOL CADOConn::MoveNext()
 {
@@ -283,13 +283,13 @@ BOOL CADOConn::MoveNext()
 }
 
 /************************************************************************
-º¯ÊıÃû:  GetItemString
-×÷  Õß:	 Ì·ÓÑÁÁ(Charles Tan)
-ÈÕ  ÆÚ:	 2013-3-6
-×÷  ÓÃ:  È¡µÃ×Ö¶ÎÖĞµÄ×Ö·û´®
-ĞÎ²ÎÊı:  index:×Ö¶Î¼¯ÖĞµÄË÷Òı
-·µ»ØÖµ:
-ĞŞ¸Ä¼ÇÂ¼:
+å‡½æ•°å:  GetItemString
+ä½œ  è€…:	 è°­å‹äº®(Charles Tan)
+æ—¥  æœŸ:	 2013-3-6
+ä½œ  ç”¨:  å–å¾—å­—æ®µä¸­çš„å­—ç¬¦ä¸²
+å½¢å‚æ•°:  index:å­—æ®µé›†ä¸­çš„ç´¢å¼•
+è¿”å›å€¼:
+ä¿®æ”¹è®°å½•:
 ************************************************************************/
 CString CADOConn::GetItemString(int index)
 {
@@ -330,13 +330,13 @@ CString CADOConn::GetItemString(int index)
 }
 
 /************************************************************************
-º¯ÊıÃû:  GetItemInt
-×÷  Õß:	 Ì·ÓÑÁÁ(Charles Tan)
-ÈÕ  ÆÚ:	 2013-3-18
-×÷  ÓÃ:  È¡µÃ×Ö¶ÎÖĞµÄÕûÊı
-ĞÎ²ÎÊı:  index:×Ö¶Î¼¯ÖĞµÄË÷Òı
-·µ»ØÖµ:
-ĞŞ¸Ä¼ÇÂ¼:
+å‡½æ•°å:  GetItemInt
+ä½œ  è€…:	 è°­å‹äº®(Charles Tan)
+æ—¥  æœŸ:	 2013-3-18
+ä½œ  ç”¨:  å–å¾—å­—æ®µä¸­çš„æ•´æ•°
+å½¢å‚æ•°:  index:å­—æ®µé›†ä¸­çš„ç´¢å¼•
+è¿”å›å€¼:
+ä¿®æ”¹è®°å½•:
 ************************************************************************/
 int CADOConn::GetItemInt(int index)
 {
@@ -373,13 +373,13 @@ int CADOConn::GetItemInt(int index)
 }
 
 /************************************************************************
-º¯ÊıÃû:  GetItemLong
-×÷  Õß:	 Ì·ÓÑÁÁ(Charles Tan)
-ÈÕ  ÆÚ:	 2013-3-18
-×÷  ÓÃ:  È¡µÃ×Ö¶ÎÖĞµÄÕûÊı
-ĞÎ²ÎÊı:  index:×Ö¶Î¼¯ÖĞµÄË÷Òı
-·µ»ØÖµ:
-ĞŞ¸Ä¼ÇÂ¼:
+å‡½æ•°å:  GetItemLong
+ä½œ  è€…:	 è°­å‹äº®(Charles Tan)
+æ—¥  æœŸ:	 2013-3-18
+ä½œ  ç”¨:  å–å¾—å­—æ®µä¸­çš„æ•´æ•°
+å½¢å‚æ•°:  index:å­—æ®µé›†ä¸­çš„ç´¢å¼•
+è¿”å›å€¼:
+ä¿®æ”¹è®°å½•:
 ************************************************************************/
 long CADOConn::GetItemLong(int index)
 {
@@ -410,13 +410,13 @@ long CADOConn::GetItemLong(int index)
 }
 
 /************************************************************************
-º¯ÊıÃû:  GetFieldName
-×÷  Õß:	 Ì·ÓÑÁÁ(Charles Tan)
-ÈÕ  ÆÚ:	 2013-3-6
-×÷  ÓÃ:  È¡µÃÁĞ±êÌâ
-ĞÎ²ÎÊı:  index:×Ö¶Î¼¯ÖĞµÄË÷Òı,×îĞ¡ÖµÎª0
-·µ»ØÖµ:
-ĞŞ¸Ä¼ÇÂ¼:
+å‡½æ•°å:  GetFieldName
+ä½œ  è€…:	 è°­å‹äº®(Charles Tan)
+æ—¥  æœŸ:	 2013-3-6
+ä½œ  ç”¨:  å–å¾—åˆ—æ ‡é¢˜
+å½¢å‚æ•°:  index:å­—æ®µé›†ä¸­çš„ç´¢å¼•,æœ€å°å€¼ä¸º0
+è¿”å›å€¼:
+ä¿®æ”¹è®°å½•:
 ************************************************************************/
 CString CADOConn::GetFieldName(int index)
 {
@@ -431,20 +431,20 @@ CString CADOConn::GetFieldName(int index)
 	}
 	else
 	{
-		::MessageBox(NULL,"Invalid index!" , "´íÎó", MB_ICONEXCLAMATION);
+		::MessageBox(NULL,"Invalid index!" , "é”™è¯¯", MB_ICONEXCLAMATION);
 	}
 
 	return strFieldName;
 }
 
 /************************************************************************
-º¯ÊıÃû:  GetFieldsCount
-×÷  Õß:	 Ì·ÓÑÁÁ(Charles Tan)
-ÈÕ  ÆÚ:	 2013-3-6
-×÷  ÓÃ:  È¡µÃÁĞÊı
-ĞÎ²ÎÊı:
-·µ»ØÖµ:
-ĞŞ¸Ä¼ÇÂ¼:
+å‡½æ•°å:  GetFieldsCount
+ä½œ  è€…:	 è°­å‹äº®(Charles Tan)
+æ—¥  æœŸ:	 2013-3-6
+ä½œ  ç”¨:  å–å¾—åˆ—æ•°
+å½¢å‚æ•°:
+è¿”å›å€¼:
+ä¿®æ”¹è®°å½•:
 ************************************************************************/
 int CADOConn::GetFieldsCount()
 {
@@ -453,13 +453,13 @@ int CADOConn::GetFieldsCount()
 }
 
 /************************************************************************
-º¯ÊıÃû:  adoEOF
-×÷  Õß:	 Ì·ÓÑÁÁ(Charles Tan)
-ÈÕ  ÆÚ:	 2013-3-6
-×÷  ÓÃ:  ÅĞ¶Ï×Ö¶Î¼¯ÊÇ·ñ½áÊø
-ĞÎ²ÎÊı:
-·µ»ØÖµ:  TRUE:½áÊø FALSE:Î´½áÊø
-ĞŞ¸Ä¼ÇÂ¼:
+å‡½æ•°å:  adoEOF
+ä½œ  è€…:	 è°­å‹äº®(Charles Tan)
+æ—¥  æœŸ:	 2013-3-6
+ä½œ  ç”¨:  åˆ¤æ–­å­—æ®µé›†æ˜¯å¦ç»“æŸ
+å½¢å‚æ•°:
+è¿”å›å€¼:  TRUE:ç»“æŸ FALSE:æœªç»“æŸ
+ä¿®æ”¹è®°å½•:
 ************************************************************************/
 BOOL CADOConn::adoEOF()
 {
@@ -474,13 +474,13 @@ BOOL CADOConn::adoEOF()
 }
 
 /************************************************************************
-º¯ÊıÃû:  ExitConnect
-×÷  Õß:	 Ì·ÓÑÁÁ(Charles Tan)
-ÈÕ  ÆÚ:	 2013-3-6
-×÷  ÓÃ:  ÍË³öÁ¬½Ó
-ĞÎ²ÎÊı:
-·µ»ØÖµ:
-ĞŞ¸Ä¼ÇÂ¼:
+å‡½æ•°å:  ExitConnect
+ä½œ  è€…:	 è°­å‹äº®(Charles Tan)
+æ—¥  æœŸ:	 2013-3-6
+ä½œ  ç”¨:  é€€å‡ºè¿æ¥
+å½¢å‚æ•°:
+è¿”å›å€¼:
+ä¿®æ”¹è®°å½•:
 ************************************************************************/
 void CADOConn::ExitConnect()
 {
@@ -498,24 +498,24 @@ void CADOConn::ExitConnect()
 		m_pRecordset = NULL;
 		m_pConnection = NULL;
 
-		//ÊÍ·ÅOLE/COM¿â»·¾³
+		//é‡Šæ”¾OLE/COMåº“ç¯å¢ƒ
 		::CoUninitialize();
 	}
 	catch (_com_error e)
 	{
-		::MessageBox(NULL, e.Description(), "´íÎó", MB_ICONEXCLAMATION);
+		::MessageBox(NULL, e.Description(), "é”™è¯¯", MB_ICONEXCLAMATION);
 
 	}
 }
 
 /************************************************************************
-º¯ÊıÃû:  InitList
-×÷  Õß:	 Ì·ÓÑÁÁ(Charles Tan)
-ÈÕ  ÆÚ:	 2013-3-19
-×÷  ÓÃ:  ³õÊ¼»¯ÁĞ±í
-ĞÎ²ÎÊı:
-·µ»ØÖµ:
-ĞŞ¸Ä¼ÇÂ¼:
+å‡½æ•°å:  InitList
+ä½œ  è€…:	 è°­å‹äº®(Charles Tan)
+æ—¥  æœŸ:	 2013-3-19
+ä½œ  ç”¨:  åˆå§‹åŒ–åˆ—è¡¨
+å½¢å‚æ•°:
+è¿”å›å€¼:
+ä¿®æ”¹è®°å½•:
 ************************************************************************/
 //BOOL CADOConn::InitList(CListCtrl *listMain)
 //{
@@ -561,18 +561,18 @@ void CADOConn::ExitConnect()
 //}
 
 /************************************************************************
-º¯ÊıÃû:  FillList
-×÷  Õß:	 Ì·ÓÑÁÁ(Charles Tan)
-ÈÕ  ÆÚ:	 2013-3-19
-×÷  ÓÃ:  Ìî³äÁĞ±í
-ĞÎ²ÎÊı:
-·µ»ØÖµ:
-ĞŞ¸Ä¼ÇÂ¼:
+å‡½æ•°å:  FillList
+ä½œ  è€…:	 è°­å‹äº®(Charles Tan)
+æ—¥  æœŸ:	 2013-3-19
+ä½œ  ç”¨:  å¡«å……åˆ—è¡¨
+å½¢å‚æ•°:
+è¿”å›å€¼:
+ä¿®æ”¹è®°å½•:
 ************************************************************************/
 //BOOL CADOConn::FillList(CListCtrl *listMain)
 //{
 //
-//	int i, iType, iRow = 0, listWidth = 0;//iType:×Ö¶Î¼¯µÄÊı¾İÀàĞÍ listWidth:ÁĞ±íÖĞÁĞµÄ¿í¶È
+//	int i, iType, iRow = 0, listWidth = 0;//iType:å­—æ®µé›†çš„æ•°æ®ç±»å‹ listWidth:åˆ—è¡¨ä¸­åˆ—çš„å®½åº¦
 //	_variant_t vIndex;
 //	long lMax = 0;
 //	lMax = m_pRecordset->Fields->Count;
@@ -623,7 +623,7 @@ void CADOConn::ExitConnect()
 //			}
 //			m_pRecordset->MoveNext();
 //		}
-//		//ÒÆÏò¿ªÍ·
+//		//ç§»å‘å¼€å¤´
 //		MoveFirst();
 //	}
 //

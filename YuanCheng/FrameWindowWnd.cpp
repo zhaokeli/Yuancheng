@@ -3,11 +3,11 @@
 #include "Db.h"
 #include   "windows.h "
 #include   "shellapi.h "
-//´´½¨Ò»¸ö»¥³â¶ÔÏó  
-#define  WM_USER_SETTEXT WM_USER+2//ÉèÖÃÎÄ±¾ÏûÏ¢
+//åˆ›å»ºä¸€ä¸ªäº’æ–¥å¯¹è±¡  
+#define  WM_USER_SETTEXT WM_USER+2//è®¾ç½®æ–‡æœ¬æ¶ˆæ¯
 Mutex g_Lock;
 CInputWnd * pinputmsg;
-//µ±Ç°Ñ¡ÖĞµÄ·şÎñÆ÷ÁĞ±íÏîÄ¿
+//å½“å‰é€‰ä¸­çš„æœåŠ¡å™¨åˆ—è¡¨é¡¹ç›®
 ServerInfo *selectedItem = new ServerInfo;
 CFrameWindowWnd::CFrameWindowWnd()
 {
@@ -39,7 +39,7 @@ void CFrameWindowWnd::init()
 	m_pNote = static_cast<CRichEditUI*>(m_pm.FindControl(_T("note")));
 	m_pText = static_cast<CTextUI*>(m_pm.FindControl(_T("text_boke")));
 
-	//³õÊ¼»¯·şÎñÆ÷Êı¾İÁĞ±í
+	//åˆå§‹åŒ–æœåŠ¡å™¨æ•°æ®åˆ—è¡¨
 	initList();
 	//m_pGetUrlContentBtn= static_cast<CButtonUI*>(m_pm.FindControl(_T("btn_guc")));
 	//m_pPostBtn= static_cast<CButtonUI*>(m_pm.FindControl(_T("btn_post")));
@@ -90,7 +90,7 @@ void CFrameWindowWnd::initList() {
 
 				//if (pList->GetHeader()->GetCount() > 3)
 				//{
-				//	pList->SetItemData(nIndex, 3, "ĞÂÔöÁĞÊı¾İ", "testid1");
+				//	pList->SetItemData(nIndex, 3, "æ–°å¢åˆ—æ•°æ®", "testid1");
 				//}
 				rs->MoveNext();
 			}
@@ -166,26 +166,26 @@ LRESULT CFrameWindowWnd::HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam)
 	case WM_CREATE:
 		lRes = OnCreate(uMsg, wParam, lParam);
 		break;
-		//ÄÜÈ¥³ı±ß¿ò  
+		//èƒ½å»é™¤è¾¹æ¡†  
 	case WM_NCCALCSIZE:
 		return 0;
 		break;
 
-		//È¥³ıÏÔÊ¾µÄ±êÌâÀ¸  
+		//å»é™¤æ˜¾ç¤ºçš„æ ‡é¢˜æ   
 	case WM_SIZE:
 		//lRes=OnSize(uMsg,wParam,lParam,bHandled);
 		break;
 
-		//½â¾ö°´×¡×ó¼ü»òÓÒ¼üÊ±»á³öÏÖ±ß¿òµÄÎÊÌâ  
+		//è§£å†³æŒ‰ä½å·¦é”®æˆ–å³é”®æ—¶ä¼šå‡ºç°è¾¹æ¡†çš„é—®é¢˜  
 	case WM_NCACTIVATE:
 		lRes = OnNcActivate(uMsg, wParam, lParam, bHandled);
 		break;
 
-		//ÊµÏÖ°´×¡´°¿Ú£¨³ı°´Å¥Íâ£©ÍÏ¶¯´°¿Ú  
+		//å®ç°æŒ‰ä½çª—å£ï¼ˆé™¤æŒ‰é’®å¤–ï¼‰æ‹–åŠ¨çª—å£  
 	case WM_NCHITTEST:
 		lRes = OnNcHitTest(uMsg, wParam, lParam, bHandled);
 		break;
-		//»ñÈ¡±ß¿ò×î´ó×îĞ¡Öµ  
+		//è·å–è¾¹æ¡†æœ€å¤§æœ€å°å€¼  
 	case WM_GETMINMAXINFO:
 		lRes = OnGetMinMaxInfo(uMsg, wParam, lParam, bHandled);
 		break;
@@ -208,9 +208,9 @@ LRESULT CFrameWindowWnd::HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam)
 }
 
 LRESULT CFrameWindowWnd::OnCreate(UINT uMsg, WPARAM wParam, LPARAM lParam) {
-	//ÉèÖÃ³ÌĞòÔËĞĞ±ê¼Ç
-	::SetProp(m_hWnd, "ÖØ¸´ÔËĞĞ±ê¼Ç", (HANDLE)1);
-	//Ê¹ÓÃxml½çÃæ
+	//è®¾ç½®ç¨‹åºè¿è¡Œæ ‡è®°
+	::SetProp(m_hWnd, "é‡å¤è¿è¡Œæ ‡è®°", (HANDLE)1);
+	//ä½¿ç”¨xmlç•Œé¢
 	m_pm.Init(m_hWnd);
 	CDialogBuilder builder;
 	CControlUI* pRoot = NULL;
@@ -223,7 +223,7 @@ LRESULT CFrameWindowWnd::OnCreate(UINT uMsg, WPARAM wParam, LPARAM lParam) {
 	LONG styleValue = ::GetWindowLong(*this, GWL_STYLE);
 	styleValue &= ~WS_CAPTION;
 	::SetWindowLong(*this, GWL_STYLE, styleValue | WS_CLIPSIBLINGS | WS_CLIPCHILDREN);
-	//¸ø´°¿Ú¼ÓÒõÓ°
+	//ç»™çª—å£åŠ é˜´å½±
 	CWndShadow *m_WndShadow = new CWndShadow;
 	m_WndShadow->Create(m_hWnd);
 	m_WndShadow->SetSize(4);
@@ -232,10 +232,10 @@ LRESULT CFrameWindowWnd::OnCreate(UINT uMsg, WPARAM wParam, LPARAM lParam) {
 }
 
 LRESULT CFrameWindowWnd::OnDestroy(UINT uMsg, WPARAM wParam, LPARAM lParam) {
-	//ÒÆ³ıÉú³ÉµÄÁÙÊ±ÎÄ¼ş
+	//ç§»é™¤ç”Ÿæˆçš„ä¸´æ—¶æ–‡ä»¶
 	remove("tem.tmp");
-	//ÒÆ³ı±ê¼Ç
-	::RemoveProp(m_hWnd, "ÖØ¸´ÔËĞĞ±ê¼Ç");
+	//ç§»é™¤æ ‡è®°
+	::RemoveProp(m_hWnd, "é‡å¤è¿è¡Œæ ‡è®°");
 	::PostQuitMessage(0);
 	return 0;
 }
@@ -249,7 +249,7 @@ LRESULT CFrameWindowWnd::OnNcHitTest(UINT uMsg, WPARAM wParam, LPARAM lParam, BO
 	::GetClientRect(*this, &rcClient);
 
 	if (!::IsZoomed(*this)) {
-		RECT rcSizeBox = m_pm.GetSizeBox();    // GetSizeBoxÓÃÀ´»ñÈ¡xmlÖĞWindow±êÇ©µÄsizeboxÊôĞÔ£¬¸ÃÊôĞÔÖ¸Ê¾ÄãµÄÊó±êÒÆ¶¯µ½´°¿Ú±ß¿ò¶àÉÙ¸öÏñËØ»á±ä³ÉÖ¸Ê¾·û£¨Õâ¸öÖ¸Ê¾·û±íÊ¾¿ÉÒÔ¸Ä±ä´°¿Ú´óĞ¡µÄÖ¸Ê¾·û£©
+		RECT rcSizeBox = m_pm.GetSizeBox();    // GetSizeBoxç”¨æ¥è·å–xmlä¸­Windowæ ‡ç­¾çš„sizeboxå±æ€§ï¼Œè¯¥å±æ€§æŒ‡ç¤ºä½ çš„é¼ æ ‡ç§»åŠ¨åˆ°çª—å£è¾¹æ¡†å¤šå°‘ä¸ªåƒç´ ä¼šå˜æˆæŒ‡ç¤ºç¬¦ï¼ˆè¿™ä¸ªæŒ‡ç¤ºç¬¦è¡¨ç¤ºå¯ä»¥æ”¹å˜çª—å£å¤§å°çš„æŒ‡ç¤ºç¬¦ï¼‰
 		if (pt.y < rcClient.top + rcSizeBox.top) {
 			if (pt.x < rcClient.left + rcSizeBox.left) return HTTOPLEFT;
 			if (pt.x > rcClient.right - rcSizeBox.right) return HTTOPRIGHT;
@@ -263,7 +263,7 @@ LRESULT CFrameWindowWnd::OnNcHitTest(UINT uMsg, WPARAM wParam, LPARAM lParam, BO
 		if (pt.x < rcClient.left + rcSizeBox.left) return HTLEFT;
 		if (pt.x > rcClient.right - rcSizeBox.right) return HTRIGHT;
 	}
-	RECT rcCaption = m_pm.GetCaptionRect();    // GetCaptionRectÓÃÀ´»ñÈ¡xmlÖĞWindow±êÇ©µÄcaptionÊôĞÔ£¬¸ÃÊôĞÔÖ¸Ê¾±êÌâÀ¸µÄ´óĞ¡
+	RECT rcCaption = m_pm.GetCaptionRect();    // GetCaptionRectç”¨æ¥è·å–xmlä¸­Windowæ ‡ç­¾çš„captionå±æ€§ï¼Œè¯¥å±æ€§æŒ‡ç¤ºæ ‡é¢˜æ çš„å¤§å°
 	if (pt.x >= rcClient.left + rcCaption.left && pt.x < rcClient.right - rcCaption.right && pt.y >= rcCaption.top && pt.y < rcCaption.bottom) {
 		CControlUI* pControl = static_cast<CControlUI*>(m_pm.FindControl(pt));
 		if (pControl && _tcsicmp(pControl->GetClass(), _T("ButtonUI")) != 0 && _tcsicmp(pControl->GetClass(), _T("OptionUI")) != 0)
@@ -283,9 +283,9 @@ LRESULT CFrameWindowWnd::OnSetText(UINT uMsg, WPARAM wParam, LPARAM lParam) {
 LRESULT CFrameWindowWnd::OnSize(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled)
 {
 	if (!::IsIconic(*this));
-	SIZE szRoundCorner = m_pm.GetRoundCorner();//Õâ¸öÊÇÔ²½Ç£¬ÊÇÍÖÔ²µÄ°ë¾¶  
-											   //ÕâÀïÓĞ¸öºÜÇÉÃîµÄÓÃ·¨£¬ÔÚxmlÎÄ¼şÖĞÒ»¶¨ÒªÉèÖÃÔ²½Ç£¨roundcorner£©£¬  
-											   //²»È»²»»á½øÈëÏÂÃæµÄif£¬Ò²¾Í»á³öÏÖ±êÌâÀ¸¡£  
+	SIZE szRoundCorner = m_pm.GetRoundCorner();//è¿™ä¸ªæ˜¯åœ†è§’ï¼Œæ˜¯æ¤­åœ†çš„åŠå¾„  
+											   //è¿™é‡Œæœ‰ä¸ªå¾ˆå·§å¦™çš„ç”¨æ³•ï¼Œåœ¨xmlæ–‡ä»¶ä¸­ä¸€å®šè¦è®¾ç½®åœ†è§’ï¼ˆroundcornerï¼‰ï¼Œ  
+											   //ä¸ç„¶ä¸ä¼šè¿›å…¥ä¸‹é¢çš„ifï¼Œä¹Ÿå°±ä¼šå‡ºç°æ ‡é¢˜æ ã€‚  
 	if (!::IsIconic(*this) && (szRoundCorner.cx != 0 || szRoundCorner.cy != 0)) {
 		CRect rcWnd;
 		::GetWindowRect(*this, &rcWnd);
@@ -330,7 +330,7 @@ string CFrameWindowWnd::edcodePwd(string pw) {
 	std::wstring wstr(pw.length(), L' ');
 	std::copy(pw.begin(), pw.end(), wstr.begin());
 	const wchar_t* pwd = wstr.c_str();
-	//Éú³ÉrdpÃÜÂë
+	//ç”Ÿæˆrdpå¯†ç 
 	DATA_BLOB DataIn;
 	DATA_BLOB DataOut;
 	BYTE *pbDataInput = (BYTE *)pwd;
@@ -357,19 +357,19 @@ string CFrameWindowWnd::edcodePwd(string pw) {
 void CFrameWindowWnd::BtnConClick(TNotifyUI& msg) {
 	if (selectedItem->index == -1)
 	{
-		::MessageBox(m_hWnd, "ÇëÑ¡ÔñÒ»¸ö·şÎñÆ÷", "ÌáĞÑ", NULL);
+		::MessageBox(m_hWnd, "è¯·é€‰æ‹©ä¸€ä¸ªæœåŠ¡å™¨", "æé†’", NULL);
 		return;
 	}
-	string key = "adminrootkl";//¼ÓÃÜkey
+	string key = "adminrootkl";//åŠ å¯†key
 	string enpwd, ip, username;
 	ip = selectedItem->ip + ":" + selectedItem->port;
 	username = selectedItem->uname;
 
-	//°ÑÃÜÂë¼ÓÃÜ
+	//æŠŠå¯†ç åŠ å¯†
 	string pwd = selectedItem->pwd;
 	enpwd = edcodePwd(pwd);
 
-	//¶ÁÅäÖÃÎÄ¼ş
+	//è¯»é…ç½®æ–‡ä»¶
 	CFileIO * fio = new CFileIO;
 	//string str=fio->readAll("conf.db");
 	CString s;
@@ -405,21 +405,21 @@ bitmapcachepersistenable:i:1\
 
 
 	string str = s.GetBuffer(0);
-	//Ìæ»»ÃÜÂë
+	//æ›¿æ¢å¯†ç 
 	str = strr->replace("#pwd#", enpwd, str);
-	//Ìæ»»ip
+	//æ›¿æ¢ip
 	str = strr->replace("#ip#", ip, str);
-	//Ìæ»»ÓÃ»§Ãû
+	//æ›¿æ¢ç”¨æˆ·å
 	str = strr->replace("#username#", username, str);
-	//Ìæ»»¿Õ°×
+	//æ›¿æ¢ç©ºç™½
 	//str = strr->replace(" ", "", str);
 
-	//Éú³ÉrdpÎÄ¼ş
+	//ç”Ÿæˆrdpæ–‡ä»¶
 	fio->write("tem.tmp", str);
 
 	delete fio;
 
-	//ÔËĞĞÔ¶³Ì²ÎÊı
+	//è¿è¡Œè¿œç¨‹å‚æ•°
 	WinExec("mstsc.exe /console /f tem.tmp", SW_HIDE);
 
 
@@ -429,10 +429,10 @@ bitmapcachepersistenable:i:1\
 
 void CFrameWindowWnd::BtnAddClick(TNotifyUI& msg) {
 	pinputmsg = new CInputWnd;
-	pinputmsg->Create(GetHWND(), _T("ĞÅÏ¢´°¿Ú"), UI_WNDSTYLE_DIALOG, UI_WNDSTYLE_EX_FRAME);
+	pinputmsg->Create(GetHWND(), _T("ä¿¡æ¯çª—å£"), UI_WNDSTYLE_DIALOG, UI_WNDSTYLE_EX_FRAME);
 	pinputmsg->CenterWindow();
 	pinputmsg->ShowModal();
-	//×¢ÒâÏÂÃæÕâÒ»¾ä±ØĞëÓĞ¿ÉÒÔ°ÑÏûÏ¢Ñ­»·¹Òµ½ĞÂ½¨µÄ´°¿ÚÉÏ
+	//æ³¨æ„ä¸‹é¢è¿™ä¸€å¥å¿…é¡»æœ‰å¯ä»¥æŠŠæ¶ˆæ¯å¾ªç¯æŒ‚åˆ°æ–°å»ºçš„çª—å£ä¸Š
 	CPaintManagerUI::MessageLoop();
 	initList();
 	return;
@@ -441,7 +441,7 @@ void CFrameWindowWnd::BtnAddClick(TNotifyUI& msg) {
 void CFrameWindowWnd::BtnDelClick(TNotifyUI& msg) {
 	if (selectedItem->index == -1 || selectedItem->id == "")
 	{
-		::MessageBox(m_hWnd, "ÇëÑ¡ÔñÒ»¸ö·şÎñÆ÷", "ÌáĞÑ", NULL);
+		::MessageBox(m_hWnd, "è¯·é€‰æ‹©ä¸€ä¸ªæœåŠ¡å™¨", "æé†’", NULL);
 		return;
 	}
 	string id = selectedItem->id;
@@ -449,11 +449,11 @@ void CFrameWindowWnd::BtnDelClick(TNotifyUI& msg) {
 	CDb *db = new CDb;
 	if (db->ExecuteSql(CString(sql.c_str())))
 	{
-		::MessageBox(m_hWnd, "É¾³ı³É¹¦", "ÌáĞÑ", NULL);
+		::MessageBox(m_hWnd, "åˆ é™¤æˆåŠŸ", "æé†’", NULL);
 		initList();
 	}
 	else {
-		::MessageBox(m_hWnd, "É¾³ıÊ§°Ü", "ÌáĞÑ", NULL);
+		::MessageBox(m_hWnd, "åˆ é™¤å¤±è´¥", "æé†’", NULL);
 	}
 	return;
 }
@@ -465,7 +465,7 @@ void CFrameWindowWnd::BtnModClick(TNotifyUI& msg) {
 void CFrameWindowWnd::ItemSelectClick(TNotifyUI& msg) {
 	if (msg.pSender->GetName() == "iplist") {
 
-		//±£´æµ±Ç°Ñ¡ÖĞÏîÄ¿ĞÅÏ¢
+		//ä¿å­˜å½“å‰é€‰ä¸­é¡¹ç›®ä¿¡æ¯
 		CString idstr, ipstr, portstr, unamestr;
 		idstr.Format("id%lu", msg.wParam);
 		ipstr.Format("ip%lu", msg.wParam);
@@ -491,15 +491,15 @@ void CFrameWindowWnd::ItemSelectClick(TNotifyUI& msg) {
 
 		CMyString* str1 = new CMyString;
 		CDb* db = new CDb;
-		string str2 = pidstr->GetText();//È¡µ±Ç°Êı¾İid
-										//È¡ÃÜÂë
+		string str2 = pidstr->GetText();//å–å½“å‰æ•°æ®id
+										//å–å¯†ç 
 		string pwd = db->getByfield("list", str2, "pwd").c_str();
 		selectedItem->pwd = str1->deString(pwd.c_str(), "adminrootkl");
-		//ÉèÖÃ±¸×¢ĞÅÏ¢
+		//è®¾ç½®å¤‡æ³¨ä¿¡æ¯
 		m_pNote->SetText(db->getByfield("list", str2, "note").c_str());
 
 
-		//::MessageBox(m_hWnd,msg.pSender->GetName(),"ÌáĞÑ",NULL);
+		//::MessageBox(m_hWnd,msg.pSender->GetName(),"æé†’",NULL);
 
 	}
 }

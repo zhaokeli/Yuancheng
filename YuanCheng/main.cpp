@@ -1,4 +1,4 @@
-﻿#pragma once 
+#pragma once 
 #include "FrameWindowWnd.h"
 
 // 程序入口及Duilib初始化部分

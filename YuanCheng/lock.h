@@ -3,7 +3,7 @@
 
 #include <windows.h>
 
-//Ëø½Ó¿ÚÀà
+//é”æ¥å£ç±»
 class IMyLock
 {
 public:
@@ -13,7 +13,7 @@ public:
 	virtual void Unlock() const = 0;
 };
 
-//»¥³â¶ÔÏóËøÀà
+//äº’æ–¥å¯¹è±¡é”ç±»
 class Mutex : public IMyLock
 {
 public:
@@ -27,7 +27,7 @@ private:
 	HANDLE m_mutex;
 };
 
-//Ëø
+//é”
 class CLock
 {
 public:
