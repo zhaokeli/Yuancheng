@@ -441,7 +441,7 @@ void CFrameWindowWnd::BtnAddClick(TNotifyUI& msg) {
 	pinputmsg->Create(m_hWnd, _T("add account"), UI_WNDSTYLE_DIALOG, UI_WNDSTYLE_EX_FRAME);
 	pinputmsg->CenterWindow();
 	pinputmsg->ShowModal();
-	//注意下面这一句必须有可以把消息循环挂到新建的窗口上
+	//注意下面这一句必须有可以把消息循环挂到新建的窗口上,要不然会出现关掉一个另一个也会关掉的情况
 	CPaintManagerUI::MessageLoop();
 	initList();
 	return;
