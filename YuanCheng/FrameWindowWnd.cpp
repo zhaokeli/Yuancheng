@@ -113,7 +113,8 @@ void CFrameWindowWnd::Notify(TNotifyUI& msg)
 	{
 		CDuiString stype = msg.sType;
 		CDuiString sname = msg.pSender->GetName();
-		
+		MyLog::WriteLog(sname.GetData());
+		MyLog::WriteLog(stype.GetData());
 		if (stype == _T("click")) {
 			if (sname == _T("btn_close")) {
 				Close();
