@@ -14,7 +14,7 @@ private:
 	CRichEditUI* m_pNote;
 	void init();
 public:
-	LRESULT OnNcHitTest(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled);
+	//LRESULT OnNcHitTest(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled);
 	LRESULT HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam);
 	void Notify(TNotifyUI& msg);
 	//添加一条信息
