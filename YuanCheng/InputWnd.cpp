@@ -42,27 +42,6 @@ void CInputWnd::Notify(TNotifyUI& msg)
 }
 LRESULT CInputWnd::HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
-	//if( uMsg == WM_CREATE ) {
-	//	
-	//	LONG styleValue = ::GetWindowLong(*this, GWL_STYLE);
-	//	styleValue &= ~WS_CAPTION;
-	//	::SetWindowLong(*this, GWL_STYLE, styleValue | WS_CLIPSIBLINGS | WS_CLIPCHILDREN);
-	//	CWndShadow *m_WndShadow=new CWndShadow;
-	//	m_WndShadow->Create(m_hWnd);
-	//	m_WndShadow->SetSize(8);
-	//	m_WndShadow->SetPosition(1,1);
-	//	//使用xml界面
-	//	m_PaintManager.Init(m_hWnd);
-	//	CDialogBuilder builder;
-	//	CControlUI* pRoot = builder.Create(_T("input.xml"), (UINT)0, NULL, &m_PaintManager);
-	//	ASSERT(pRoot && "Failed to parse XML");
-	//	m_PaintManager.AttachDialog(pRoot);
-	//	m_PaintManager.AddNotifier(this);
-	//	
-	//	init();
-	//	return 0;
-	//}
-	//else
 	BOOL bHandled = true;//true处理完后直接返回false为传给父类处理
 	LRESULT lRes = 0;
 	switch (uMsg)
@@ -166,6 +145,24 @@ CDuiString CInputWnd::GetSkinFile()
 
 LRESULT CInputWnd::OnCreate(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled)
 {
+	//	
+	//	LONG styleValue = ::GetWindowLong(*this, GWL_STYLE);
+	//	styleValue &= ~WS_CAPTION;
+	//	::SetWindowLong(*this, GWL_STYLE, styleValue | WS_CLIPSIBLINGS | WS_CLIPCHILDREN);
+	//	CWndShadow *m_WndShadow=new CWndShadow;
+	//	m_WndShadow->Create(m_hWnd);
+	//	m_WndShadow->SetSize(8);
+	//	m_WndShadow->SetPosition(1,1);
+	//	//使用xml界面
+	//	m_PaintManager.Init(m_hWnd);
+	//	CDialogBuilder builder;
+	//	CControlUI* pRoot = builder.Create(_T("input.xml"), (UINT)0, NULL, &m_PaintManager);
+	//	ASSERT(pRoot && "Failed to parse XML");
+	//	m_PaintManager.AttachDialog(pRoot);
+	//	m_PaintManager.AddNotifier(this);
+	//	
+	//	init();
+	//	return 0;
 	BaseWnd::OnCreate(uMsg, wParam, lParam, bHandled);
 	init();
 	return bHandled;

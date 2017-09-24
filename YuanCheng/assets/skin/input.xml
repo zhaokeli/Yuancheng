@@ -12,8 +12,8 @@
             </HorizontalLayout>
         </HorizontalLayout>
 		 <HorizontalLayout padding="10,5,10,5"  inset="2,2,2,2" height="30" >
-            <Label text="IPp:" width="40"  />
-            <Edit name="ip" tooltip="请输入ip地址" text="116.255.214.72"  border="1" font="1"   bkcolor="#FFFFFFFF"  bordersize="1"     bordercolor="#0057C0FF" textpadding="2,2,2,2" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" />
+            <Label text="IP:" width="40"  />
+            <Edit name="ip" tooltip="请输入ip地址" text="116.255.214.72"  border="2" font="1"   bkcolor="#FFFFFFFF"  bordersize="1"     bordercolor="#0057C0FF" textpadding="2,2,2,2" textcolor="#FFff0000" disabledtextcolor="#FFA7A6AA" />
         </HorizontalLayout>
           <HorizontalLayout  padding="10,5,10,5"  inset="2,2,2,2" height="30"  >
             <Label align="right" text="端口:" width="40"  />
