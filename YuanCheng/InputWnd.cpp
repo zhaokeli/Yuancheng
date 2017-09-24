@@ -49,7 +49,7 @@ LRESULT CInputWnd::HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam)
 		m_WndShadow->Create(m_hWnd);
 		m_WndShadow->SetSize(8);
 		m_WndShadow->SetPosition(1,1);
-		//Ê¹ÓÃxml½çÃæ
+		//ä½¿ç”¨xmlç•Œé¢
 		m_pm.Init(m_hWnd);
 		CDialogBuilder builder;
 		CControlUI* pRoot = builder.Create(_T("input.xml"), (UINT)0, NULL, &m_pm);
@@ -93,7 +93,7 @@ LRESULT CInputWnd::OnNcHitTest(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bH
 	::GetClientRect(*this, &rcClient);
 
 	if( !::IsZoomed(*this) ) {
-		RECT rcSizeBox = m_pm.GetSizeBox();    // GetSizeBoxÓÃÀ´»ñÈ¡xmlÖĞWindow±êÇ©µÄsizeboxÊôĞÔ£¬¸ÃÊôĞÔÖ¸Ê¾ÄãµÄÊó±êÒÆ¶¯µ½´°¿Ú±ß¿ò¶àÉÙ¸öÏñËØ»á±ä³ÉÖ¸Ê¾·û£¨Õâ¸öÖ¸Ê¾·û±íÊ¾¿ÉÒÔ¸Ä±ä´°¿Ú´óĞ¡µÄÖ¸Ê¾·û£©
+		RECT rcSizeBox = m_pm.GetSizeBox();    // GetSizeBoxç”¨æ¥è·å–xmlä¸­Windowæ ‡ç­¾çš„sizeboxå±æ€§ï¼Œè¯¥å±æ€§æŒ‡ç¤ºä½ çš„é¼ æ ‡ç§»åŠ¨åˆ°çª—å£è¾¹æ¡†å¤šå°‘ä¸ªåƒç´ ä¼šå˜æˆæŒ‡ç¤ºç¬¦ï¼ˆè¿™ä¸ªæŒ‡ç¤ºç¬¦è¡¨ç¤ºå¯ä»¥æ”¹å˜çª—å£å¤§å°çš„æŒ‡ç¤ºç¬¦ï¼‰
 		if( pt.y < rcClient.top + rcSizeBox.top ) {
 			if( pt.x < rcClient.left + rcSizeBox.left ) return HTTOPLEFT;
 			if( pt.x > rcClient.right - rcSizeBox.right ) return HTTOPRIGHT;
@@ -107,7 +107,7 @@ LRESULT CInputWnd::OnNcHitTest(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bH
 		if( pt.x < rcClient.left + rcSizeBox.left ) return HTLEFT;
 		if( pt.x > rcClient.right - rcSizeBox.right ) return HTRIGHT;
 	}
-	RECT rcCaption = m_pm.GetCaptionRect();    // GetCaptionRectÓÃÀ´»ñÈ¡xmlÖĞWindow±êÇ©µÄcaptionÊôĞÔ£¬¸ÃÊôĞÔÖ¸Ê¾±êÌâÀ¸µÄ´óĞ¡
+	RECT rcCaption = m_pm.GetCaptionRect();    // GetCaptionRectç”¨æ¥è·å–xmlä¸­Windowæ ‡ç­¾çš„captionå±æ€§ï¼Œè¯¥å±æ€§æŒ‡ç¤ºæ ‡é¢˜æ çš„å¤§å°
 	if( pt.x >= rcClient.left + rcCaption.left && pt.x < rcClient.right - rcCaption.right && pt.y >= rcCaption.top && pt.y < rcCaption.bottom ) {
 		CControlUI* pControl = static_cast<CControlUI*>(m_pm.FindControl(pt));
 		if( pControl && _tcsicmp(pControl->GetClass(), _T("ButtonUI")) != 0 && _tcsicmp(pControl->GetClass(), _T("OptionUI")) != 0)
@@ -126,10 +126,10 @@ void CInputWnd::BtnOkClick(){
 	note=string(m_pNote->GetText());
 	if (ip=="" || port=="" || uname==""|| pwd=="")
 	{
-		::MessageBox(NULL,"ĞÅÏ¢²»ÄÜÎª¿Õ","ÌáĞÑ",NULL);
+		::MessageBox(NULL,"ä¿¡æ¯ä¸èƒ½ä¸ºç©º","æé†’",NULL);
 		return;
 	}
-	//¼ÓÃÜ
+	//åŠ å¯†
 	const char* key="adminrootkl";
 	CMyString* temstr=new CMyString;
 	ip=temstr->enString(ip.c_str(),key);
@@ -143,11 +143,11 @@ void CInputWnd::BtnOkClick(){
 	bool result=db->ExecuteSql(CString(sql.c_str()));
 	if (result)
 	{
-		::MessageBox(NULL,"Ìí¼Ó³É¹¦","ÌáĞÑ",NULL);
+		::MessageBox(NULL,"æ·»åŠ æˆåŠŸ","æé†’",NULL);
 	} 
 	else
 	{
-		::MessageBox(NULL,"Ìí¼ÓÊ§°Ü","ÌáĞÑ",NULL);
+		::MessageBox(NULL,"æ·»åŠ å¤±è´¥","æé†’",NULL);
 	}
 	this->Close();
 }

@@ -31,7 +31,7 @@ public:
 	//LPCTSTR GetWindowClassName() const;
 	//void OnFinalMessage(HWND /*hWnd*/) ;
 	void init();
-	//初始化服务器列表
+	//鍒濆鍖栨湇鍔″櫒鍒楄〃
 	void initList();
 	 LRESULT OnCreate(UINT uMsg, WPARAM wParam, LPARAM lParam);
 	 LRESULT OnDestroy(UINT uMsg, WPARAM wParam, LPARAM lParam);
@@ -43,7 +43,7 @@ public:
 	 LRESULT HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam);
 	 void Notify(TNotifyUI& msg);
 	 static DWORD WINAPI GetUrlContent(LPVOID lpParameter);
-	 //生成加密密码
+	 //鐢熸垚鍔犲瘑瀵嗙爜
 	 string edcodePwd(string pwd);
 
 

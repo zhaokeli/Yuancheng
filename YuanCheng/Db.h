@@ -9,11 +9,11 @@ class CDb
 {
 public:
 	CDb(void);
-	//µÃµ½Êı¾İ¼¯
+	//å¾—åˆ°æ•°æ®é›†
 	_RecordsetPtr GetRs(CString strSql);
-	//Ö´ĞĞSQLÓï¾ä
+	//æ‰§è¡ŒSQLè¯­å¥
 	bool ExecuteSql(CString& strSql);
-	//Í¨¹ıidÈ¡µ¥¸ö¼ÇÂ¼µÄÒ»¸ö×Ö¶Î
+	//é€šè¿‡idå–å•ä¸ªè®°å½•çš„ä¸€ä¸ªå­—æ®µ
 	string getByfield(string table,string id,string field);
 public:
 	~CDb(void);

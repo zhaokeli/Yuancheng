@@ -2,14 +2,14 @@
 #include "shlwapi.h"
 CDb::CDb(void)
 {
-	//³õÊ¼»¯COM
+	//åˆå§‹åŒ–COM
 	::CoInitialize(NULL);
 	try
 	{
 		try {
 			if (FAILED(m_conn.CreateInstance("ADODB.Connection")))
 			{
-				::MessageBox(NULL, _T("Create Instance failed!"), _T("´íÎó"), MB_ICONEXCLAMATION);
+				::MessageBox(NULL, _T("Create Instance failed!"), _T("é”™è¯¯"), MB_ICONEXCLAMATION);
 				return;
 			}
 			TCHAR curDirPath[MAX_PATH];
@@ -18,20 +18,20 @@ CDb::CDb(void)
 			CString ss = curDirPath;
 			CString conn = _T("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=")+ss+_T("./data/data.mdb");
 			//CString conn = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=./bin/data/data.mdb";
-			//SQL SERVERÁ¬½Ó×Ö·û´®
-			//CString conn="Driver={SQL Server};server=(local);uid=sa;database=pubs";//local¿ÉÒÔ¸ÄÎª127.0.0.1
+			//SQL SERVERè¿æ¥å­—ç¬¦ä¸²
+			//CString conn="Driver={SQL Server};server=(local);uid=sa;database=pubs";//localå¯ä»¥æ”¹ä¸º127.0.0.1
 			if (FAILED(m_conn->Open((_bstr_t)conn, "", "", -1)))
 			{
-				::MessageBox(NULL, _T("Êı¾İ¿âÁ¬½ÓÊ§°Ü"), _T("´íÎó"), MB_ICONEXCLAMATION);
+				::MessageBox(NULL, _T("æ•°æ®åº“è¿æ¥å¤±è´¥"), _T("é”™è¯¯"), MB_ICONEXCLAMATION);
 				return;
 			}
 		}catch(_com_error &e){
-			::MessageBox(NULL, e.Description(), _T("´íÎó"), MB_ICONEXCLAMATION);
+			::MessageBox(NULL, e.Description(), _T("é”™è¯¯"), MB_ICONEXCLAMATION);
 		}
 	}
 	catch(...)
 	{
-		::MessageBox(NULL, _T("Êı¾İ¿âÁ¬½Ó³öÏÖÒì³£"), _T("´íÎó"),MB_ICONEXCLAMATION);
+		::MessageBox(NULL, _T("æ•°æ®åº“è¿æ¥å‡ºç°å¼‚å¸¸"), _T("é”™è¯¯"),MB_ICONEXCLAMATION);
 	}
 
 }

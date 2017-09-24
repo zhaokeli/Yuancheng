@@ -24,6 +24,6 @@ public:
 	LRESULT OnNcHitTest(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled);
 	LRESULT HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam);
 	void Notify(TNotifyUI& msg);
-	//ÃÌº”“ªÃı–≈œ¢
+	//Ê∑ªÂä†‰∏ÄÊù°‰ø°ÊÅØ
 	void BtnOkClick();
 };
