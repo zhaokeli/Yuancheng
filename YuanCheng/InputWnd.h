@@ -24,6 +24,7 @@ public:
 
 	virtual LRESULT OnCreate(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled) override;
 
-	virtual LPCTSTR GetWindowClassName(void) const override;
+
+	//virtual LPCTSTR GetWindowClassName(void) const override;
 
 };

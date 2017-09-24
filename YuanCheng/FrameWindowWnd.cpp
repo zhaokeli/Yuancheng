@@ -1,6 +1,3 @@
-m_hWnd
-m_hWnd
-m_hWnd
 #include "FrameWindowWnd.h"
 #include "InputWnd.h"
 #include "Db.h"
@@ -166,7 +163,7 @@ LRESULT CFrameWindowWnd::HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam)
 
 
 	LRESULT lRes = 0;
-	BOOL bHandled = TRUE;//如果为真就不向上传递啦
+	BOOL bHandled = TRUE;// true处理完后直接返回false为传给父类处理
 	switch (uMsg)
 	{
 	case WM_CREATE:
@@ -204,7 +201,8 @@ LRESULT CFrameWindowWnd::HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam)
 		OnSetText(uMsg, wParam, lParam);
 		break;
 
-	default:               bHandled = FALSE;
+	default:               
+		bHandled = FALSE;
 	}
 
 	if (bHandled)  return lRes;
