@@ -21,4 +21,9 @@ public:
 	void BtnOkClick();
 	// 通过 BaseWnd 继承
 	virtual CDuiString GetSkinFile() override;
+
+	virtual LRESULT OnCreate(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled) override;
+
+	virtual LPCTSTR GetWindowClassName(void) const override;
+
 };

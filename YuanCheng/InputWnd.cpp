@@ -40,48 +40,54 @@ void CInputWnd::Notify(TNotifyUI& msg)
 }
 LRESULT CInputWnd::HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
+	
+	LRESULT lRes = 0;
+	BOOL bHandled = TRUE;//如果为真就不向上传递啦
+	switch (uMsg)
+	{
+	case WM_CREATE:
+		lRes = OnCreate(uMsg, wParam, lParam, bHandled);
+		break;
+	case WM_DESTROY:
+		::PostQuitMessage(0);
+		break;
+	case WM_NCACTIVATE:
+		if (!::IsIconic(m_hWnd)) {
+		lRes= (wParam == 0) ? TRUE : FALSE;
+		}
+		break;
+	case WM_NCCALCSIZE:
+		lRes= 0;
+	case WM_NCHITTEST:
+		OnNcHitTest(uMsg, wParam, lParam, bHandled);
+		lRes= 1;
+		break;
+	}
 	//if( uMsg == WM_CREATE ) {
-	//	
-	//	LONG styleValue = ::GetWindowLong(*this, GWL_STYLE);
-	//	styleValue &= ~WS_CAPTION;
-	//	::SetWindowLong(*this, GWL_STYLE, styleValue | WS_CLIPSIBLINGS | WS_CLIPCHILDREN);
-	//	CWndShadow *m_WndShadow=new CWndShadow;
-	//	m_WndShadow->Create(m_hWnd);
-	//	m_WndShadow->SetSize(8);
-	//	m_WndShadow->SetPosition(1,1);
-	//	//使用xml界面
-	//	m_PaintManager.Init(m_hWnd);
-	//	CDialogBuilder builder;
-	//	CControlUI* pRoot = builder.Create(_T("input.xml"), (UINT)0, NULL, &m_PaintManager);
-	//	ASSERT(pRoot && "Failed to parse XML");
-	//	m_PaintManager.AttachDialog(pRoot);
-	//	m_PaintManager.AddNotifier(this);
-	//	
-	//	init();
-	//	return 0;
+	//	lRes= OnCreate(uMsg, wParam, lParam,bHandled);
 	//}
 	//else
-		if( uMsg == WM_DESTROY ) {
-		::PostQuitMessage(0);
-	}
-	else if( uMsg == WM_NCACTIVATE ) {
-		if( !::IsIconic(m_hWnd) ) {
-			return (wParam == 0) ? TRUE : FALSE;
-		}
-	}
-	else if( uMsg == WM_NCCALCSIZE ) {
-		return 0;
-	}
-	else if( uMsg == WM_NCHITTEST ) {
-		BOOL bHandled = TRUE;
-		return  OnNcHitTest(uMsg, wParam, lParam,bHandled);
-		return true;
-		//}
-		//else if( uMsg == WM_NCPAINT ) {
-		//  return 0;
-	}
-	LRESULT lRes = 0;
-	if( m_PaintManager.MessageHandler(uMsg, wParam, lParam, lRes) ) return lRes;
+	//	if( uMsg == WM_DESTROY ) {
+	//	::PostQuitMessage(0);
+	//}
+	//else if( uMsg == WM_NCACTIVATE ) {
+	//	if( !::IsIconic(m_hWnd) ) {
+	//		return (wParam == 0) ? TRUE : FALSE;
+	//	}
+	//}
+	//else if( uMsg == WM_NCCALCSIZE ) {
+	//	return 0;
+	//}
+	//else if( uMsg == WM_NCHITTEST ) {
+	//	
+	//	return  OnNcHitTest(uMsg, wParam, lParam,bHandled);
+	//	return true;
+	//	//}
+	//	//else if( uMsg == WM_NCPAINT ) {
+	//	//  return 0;
+	//}
+	if (bHandled)return lRes;
+	if( m_PaintManager.MessageHandler(uMsg, wParam, lParam,lRes) ) return lRes;
 	return BaseWnd::HandleMessage(uMsg, wParam, lParam);
 }
 
@@ -155,4 +161,36 @@ void CInputWnd::BtnOkClick(){
 CDuiString CInputWnd::GetSkinFile()
 {
 	return "input.xml";
+}
+
+LRESULT CInputWnd::OnCreate(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled)
+{
+	//	
+	//	LONG styleValue = ::GetWindowLong(*this, GWL_STYLE);
+	//	styleValue &= ~WS_CAPTION;
+	//	::SetWindowLong(*this, GWL_STYLE, styleValue | WS_CLIPSIBLINGS | WS_CLIPCHILDREN);
+	//	CWndShadow *m_WndShadow=new CWndShadow;
+	//	m_WndShadow->Create(m_hWnd);
+	//	m_WndShadow->SetSize(8);
+	//	m_WndShadow->SetPosition(1,1);
+	//	//使用xml界面
+	//	m_PaintManager.Init(m_hWnd);
+	//	CDialogBuilder builder;
+	//	CControlUI* pRoot = builder.Create(_T("input.xml"), (UINT)0, NULL, &m_PaintManager);
+	//	ASSERT(pRoot && "Failed to parse XML");
+	//	m_PaintManager.AttachDialog(pRoot);
+	//	m_PaintManager.AddNotifier(this);
+	//	
+	//	init();
+	//	return 0;
+	BaseWnd::OnCreate(uMsg, wParam, lParam, bHandled);
+	init();
+	return bHandled;
+	//throw std::logic_error("The method or operation is not implemented.");
+}
+
+LPCTSTR CInputWnd::GetWindowClassName(void) const
+{
+	return "addck";
+	//throw std::logic_error("The method or operation is not implemented.");
 }

@@ -1,3 +1,6 @@
+m_hWnd
+m_hWnd
+m_hWnd
 #include "FrameWindowWnd.h"
 #include "InputWnd.h"
 #include "Db.h"
@@ -206,8 +209,7 @@ LRESULT CFrameWindowWnd::HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam)
 
 	if (bHandled)  return lRes;
 	if (m_PaintManager.MessageHandler(uMsg, wParam, lParam, lRes))  return lRes;
-	//return CWindowWnd::HandleMessage(uMsg, wParam, lParam);
-	return WindowImplBase::HandleMessage(uMsg, wParam, lParam);
+	return BaseWnd::HandleMessage(uMsg, wParam, lParam);
 
 }
 
@@ -438,7 +440,7 @@ bitmapcachepersistenable:i:1\
 
 void CFrameWindowWnd::BtnAddClick(TNotifyUI& msg) {
 	pinputmsg = new CInputWnd;
-	pinputmsg->Create(GetHWND(), _T("信息窗口"), UI_WNDSTYLE_DIALOG, UI_WNDSTYLE_EX_FRAME);
+	pinputmsg->Create(m_hWnd, _T("add account"), UI_WNDSTYLE_DIALOG, UI_WNDSTYLE_EX_FRAME);
 	pinputmsg->CenterWindow();
 	pinputmsg->ShowModal();
 	//注意下面这一句必须有可以把消息循环挂到新建的窗口上
