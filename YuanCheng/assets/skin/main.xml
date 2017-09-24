@@ -42,7 +42,7 @@
                 </VerticalLayout>
                 <VerticalLayout padding="10,10,10,10" width="120">
                     <HorizontalLayout>
-                     <Label text="<a>作者博客</a>" showhtml="true" font="4" />
+                     <Text name="text_boke" text="<a>作者博客</a>" showhtml="true" font="4" />
                   </HorizontalLayout>
 
                     <HorizontalLayout>
