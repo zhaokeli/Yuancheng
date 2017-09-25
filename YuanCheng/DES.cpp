@@ -141,9 +141,18 @@ string CDES::Bits2Hex(char* bytes, int bytelength)
 	 return Bits2Hex((char*)restr.data(), strlen(restr.c_str()));
  }
  string CDES::DeCode(string str, string sKey) {
-	 string restr = "";
-	 CDES::RunDES(CDES::DECRYPT,CDES::CBC,CDES::PAD_PKCS_7, (const unsigned char*)sKey.c_str(), (const unsigned char*)str.c_str(), (unsigned char*)restr.c_str(), strlen(str.c_str()), (const unsigned char*)sKey.c_str(), strlen(sKey.c_str()));
-	 return Bits2Hex((char*)restr.data(), strlen(restr.c_str()));
+	 try {
+		 char* c = Hex2Bits(str);
+		 //string restr = "";
+		 char Out[1024] = { 0 };
+		 memset(Out, 0x00, 1024);
+		 CDES::RunDES(CDES::DECRYPT, CDES::CBC, CDES::PAD_PKCS_7, (const unsigned char*)sKey.c_str(), (const unsigned char*)c, (unsigned char*)Out, strlen(str.c_str()), (const unsigned char*)sKey.c_str(), strlen(sKey.c_str()));
+		 string s = Out;
+		 return s;
+	 }
+	 catch (...) {
+		 return "";
+	 }
  }
 
 /*******************************************************************/
