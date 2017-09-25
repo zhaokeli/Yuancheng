@@ -11,28 +11,24 @@
             </HorizontalLayout>
         </HorizontalLayout>
         <HorizontalLayout padding="5,5,5,5" inset="2,2,2,2" height="30">
-            <Label align="right" text="IP:" width="60" />
-            <RichEdit name="note2" tooltip="请输入ip地址" inset="10,5,0,5" text="" bordersize="1" bordercolor="#0057C0FF" />
+            <Label align="right" valign="vcenter" text="IP:" width="60" />
+            <Edit name="ip" tooltip="请输入ip地址" text="116.255.214.72" border="1" font="1" bkcolor="#FFFFFFFF" bordersize="1" bordercolor="#0057C0FF" textpadding="10,2,2,2" textcolor="#FFff0000" disabledtextcolor="#FFA7A6AA" />
         </HorizontalLayout>
-        <HorizontalLayout padding="5,5,5,5" inset="2,2,2,2" height="40">
-            <Label text="IP:" width="60" />
-            <Edit name="ip" tooltip="请输入ip地址" text="116.255.214.72" border="1" font="1" bkcolor="#FFFFFFFF" bordersize="1" bordercolor="#0057C0FF" textpadding="2,2,2,2" textcolor="#FFff0000" disabledtextcolor="#FFA7A6AA" />
+        <HorizontalLayout padding="5,5,5,5" inset="2,2,2,2" height="30">
+            <Label align="right" valign="vcenter" text="端口:" width="60" />
+            <Edit name="port" tooltip="请输入端口默认为3389" text="21472" border="1" font="1" bkcolor="#FFFFFFFF" bordersize="1" width="80" bordercolor="#0057C0FF" textpadding="10,2,2,2" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" />
         </HorizontalLayout>
-        <HorizontalLayout padding="5,5,5,5" inset="2,2,2,2" height="40">
-            <Label align="right" text="端口:" width="60" />
-            <Edit name="port" tooltip="请输入端口默认为3389" text="21472" border="1" font="1" bkcolor="#FFFFFFFF" bordersize="1" width="80" bordercolor="#0057C0FF" textpadding="2,2,2,2" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" />
+        <HorizontalLayout padding="5,5,5,5" inset="2,2,2,2" height="30">
+            <Label align="right" valign="vcenter" text="用户名:" width="60" />
+            <Edit name="username" tooltip="请输入用户名" text="Administrator" border="1" font="1" bkcolor="#FFFFFFFF" bordersize="1" bordercolor="#0057C0FF" textpadding="10,2,2,2" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" />
         </HorizontalLayout>
-        <HorizontalLayout padding="5,5,5,5" inset="2,2,2,2" height="40">
-            <Label align="right" text="用户名:" width="60" />
-            <Edit name="username" tooltip="请输入用户名" text="Administrator" border="1" font="1" bkcolor="#FFFFFFFF" bordersize="1" bordercolor="#0057C0FF" textpadding="2,2,2,2" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" />
-        </HorizontalLayout>
-        <HorizontalLayout padding="5,5,5,5" inset="2,2,2,2" height="40">
-            <Label align="right" text="密码:" width="60" />
-            <Edit name="pwd" tooltip="请输入密码" text="" border="1" font="1" bkcolor="#FFFFFFFF" bordersize="1" bordercolor="#0057C0FF" textpadding="2,2,2,2" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" />
+        <HorizontalLayout padding="5,5,5,5" inset="2,2,2,2" height="30">
+            <Label align="right" valign="vcenter" text="密码:" width="60" />
+            <Edit name="pwd" tooltip="请输入密码" text="" border="1" font="1" bkcolor="#FFFFFFFF" bordersize="1" bordercolor="#0057C0FF" textpadding="10,2,2,2" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" />
         </HorizontalLayout>
         <HorizontalLayout padding="5,5,5,5" inset="2,2,2,2" height="80">
-            <Label align="right" text="备注:" width="60" />
-            <RichEdit name="note" text="备注" bordersize="1" bordercolor="#0057C0FF" />
+            <Label align="right" valign="vcenter" text="备注:" width="60" />
+            <RichEdit name="note" text="备注" inset="10,2,2,2" bordersize="1" bordercolor="#0057C0FF" />
         </HorizontalLayout>
         <HorizontalLayout padding="5,5,5,5" inset="20,2,2,10" height="50">
             <Button name="btn_ok" text="确定" tooltip="修改信息" width="90" padding="10,5,0,0" bordercolor="#00D2D2D2" textcolor="#FF000000" roundborder="5,5" disabledtextcolor="#FFA7A6AA" font="2" align="center" normalimage="btn_default.png" hotimage="btn_hover.png" pushedimage="btn_down.png" />

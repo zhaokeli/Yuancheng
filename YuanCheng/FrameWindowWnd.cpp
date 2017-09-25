@@ -206,7 +206,7 @@ LRESULT CFrameWindowWnd::HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam)
 	}
 
 	if (bHandled)  return lRes;
-	if (m_PaintManager.MessageHandler(uMsg, wParam, lParam, lRes))  return lRes;
+	//if (m_PaintManager.MessageHandler(uMsg, wParam, lParam, lRes))  return lRes;
 	return BaseWnd::HandleMessage(uMsg, wParam, lParam);
 
 }

@@ -68,7 +68,7 @@ LRESULT CInputWnd::HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam)
 		bHandled = FALSE;
 	}
 	if (bHandled)  return lRes;
-	if (m_PaintManager.MessageHandler(uMsg, wParam, lParam, lRes)) return lRes;
+	//if (m_PaintManager.MessageHandler(uMsg, wParam, lParam, lRes)) return lRes;
 	//return CWindowWnd::HandleMessage(uMsg, wParam, lParam);
 	return BaseWnd::HandleMessage(uMsg, wParam, lParam);
 }
