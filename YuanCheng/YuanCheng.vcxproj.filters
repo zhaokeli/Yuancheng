@@ -72,6 +72,9 @@
     <ClInclude Include="WndShadow.h">
       <Filter>头文件\Ui</Filter>
     </ClInclude>
+    <ClInclude Include="DES.h">
+      <Filter>头文件\Core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -106,6 +109,9 @@
     </ClCompile>
     <ClCompile Include="WndShadow.cpp">
       <Filter>源文件\Ui</Filter>
+    </ClCompile>
+    <ClCompile Include="DES.cpp">
+      <Filter>源文件\Core</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
