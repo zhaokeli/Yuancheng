@@ -1,7 +1,6 @@
 #include "FrameWindowWnd.h"
 #include "InputWnd.h"
 #include "Db.h"
-#include   "windows.h "
 #include   "shellapi.h "
 #include "resource.h"
 
@@ -36,12 +35,12 @@ void CFrameWindowWnd::init()
 	m_pModbtn = static_cast<CButtonUI*>(m_PaintManager.FindControl(_T("btn_set")));
 	m_pDelbtn = static_cast<CButtonUI*>(m_PaintManager.FindControl(_T("btn_del")));
 
-	m_pIplist = static_cast<CListIp*>(m_PaintManager.FindControl(_T("iplist")));
+	//m_pIplist = static_cast<CListIp*>(m_PaintManager.FindControl(_T("iplist")));
 	m_pNote = static_cast<CRichEditUI*>(m_PaintManager.FindControl(_T("note")));
 	m_pText = static_cast<CTextUI*>(m_PaintManager.FindControl(_T("text_boke")));
 
 	//初始化服务器数据列表
-	initList();
+	//initList();
 	//m_pGetUrlContentBtn= static_cast<CButtonUI*>(m_PaintManager.FindControl(_T("btn_guc")));
 	//m_pPostBtn= static_cast<CButtonUI*>(m_PaintManager.FindControl(_T("btn_post")));
 	//m_pUrlText= static_cast<CEditUI*>(m_PaintManager.FindControl(_T("urltext")));	
@@ -118,8 +117,9 @@ void CFrameWindowWnd::Notify(TNotifyUI& msg)
 		MyLog::WriteLog(sname.GetData());
 		MyLog::WriteLog(stype.GetData());
 		if (stype == _T("click")) {
-			if (sname == _T("btn_close")) {
-				Close();
+			if (msg.pSender ==m_pCloseBtn) {
+				Close(0);
+				return;
 			}
 			else if (sname == _T("btn_min")) {
 				::SendMessage(m_hWnd, WM_SYSCOMMAND, SC_MINIMIZE, 0);
@@ -160,58 +160,19 @@ void CFrameWindowWnd::Notify(TNotifyUI& msg)
 
 LRESULT CFrameWindowWnd::HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
-
-
 	LRESULT lRes = 0;
-	BOOL bHandled = TRUE;// true处理完后直接返回false为传给父类处理
+	BOOL bHandled = TRUE;
 	switch (uMsg)
 	{
-	case WM_CREATE:
-		lRes = OnCreate(uMsg, wParam, lParam, bHandled);
-		break;
-		//能去除边框  
-	case WM_NCCALCSIZE:
-		return 0;
-		break;
-
-		//去除显示的标题栏  
-	case WM_SIZE:
-		//lRes=OnSize(uMsg,wParam,lParam,bHandled);
-		break;
-
-		//解决按住左键或右键时会出现边框的问题  
-	case WM_NCACTIVATE:
-		lRes = OnNcActivate(uMsg, wParam, lParam, bHandled);
-		break;
-
-		//实现按住窗口（除按钮外）拖动窗口  
-	case WM_NCHITTEST:
-		lRes = OnNcHitTest(uMsg, wParam, lParam, bHandled);
-		break;
-		//获取边框最大最小值  
-	case WM_GETMINMAXINFO:
-		lRes = OnGetMinMaxInfo(uMsg, wParam, lParam, bHandled);
-		break;
-
-	case WM_DESTROY:
-		lRes = OnDestroy(uMsg, wParam, lParam);
-		break;
-
-	case WM_USER_SETTEXT:
-		OnSetText(uMsg, wParam, lParam);
-		break;
-
-	default:               
-		bHandled = FALSE;
+	case WM_CREATE:			lRes = OnCreate(uMsg, wParam, lParam, bHandled); break;
+	case WM_DESTROY:		lRes = OnDestroy(uMsg, wParam, lParam, bHandled); break;
+	default:				bHandled = FALSE; break;
 	}
-
-	if (bHandled)  return lRes;
-	//if (m_PaintManager.MessageHandler(uMsg, wParam, lParam, lRes))  return lRes;
-	return BaseWnd::HandleMessage(uMsg, wParam, lParam);
-
+	if (bHandled) return lRes;
+	if (m_PaintManager.MessageHandler(uMsg, wParam, lParam, lRes))
+		return lRes;
+	return __super::HandleMessage(uMsg, wParam, lParam);
 }
-
-
 
 LRESULT CFrameWindowWnd::OnCreate(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled) {
 	////设置程序运行标记
@@ -235,12 +196,12 @@ LRESULT CFrameWindowWnd::OnCreate(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL&
 	//m_WndShadow->SetSize(4);
 	//m_WndShadow->SetPosition(1, 1);
 
-	WindowImplBase::OnCreate(uMsg, wParam, lParam, bHandled);
+	__super::OnCreate(uMsg, wParam, lParam, bHandled);
 	init();
 	return bHandled;
 }
 
-LRESULT CFrameWindowWnd::OnDestroy(UINT uMsg, WPARAM wParam, LPARAM lParam) {
+LRESULT CFrameWindowWnd::OnDestroy(UINT uMsg, WPARAM wParam, LPARAM lParam,BOOL &bHandled) {
 	//移除生成的临时文件
 	remove("tem.tmp");
 	//移除标记
@@ -249,91 +210,6 @@ LRESULT CFrameWindowWnd::OnDestroy(UINT uMsg, WPARAM wParam, LPARAM lParam) {
 	return 0;
 }
 
-LRESULT CFrameWindowWnd::OnNcHitTest(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled)
-{
-	POINT pt; pt.x = GET_X_LPARAM(lParam); pt.y = GET_Y_LPARAM(lParam);
-	::ScreenToClient(*this, &pt);
-
-	RECT rcClient;
-	::GetClientRect(*this, &rcClient);
-
-	if (!::IsZoomed(*this)) {
-		RECT rcSizeBox = m_PaintManager.GetSizeBox();    // GetSizeBox用来获取xml中Window标签的sizebox属性，该属性指示你的鼠标移动到窗口边框多少个像素会变成指示符（这个指示符表示可以改变窗口大小的指示符）
-		if (pt.y < rcClient.top + rcSizeBox.top) {
-			if (pt.x < rcClient.left + rcSizeBox.left) return HTTOPLEFT;
-			if (pt.x > rcClient.right - rcSizeBox.right) return HTTOPRIGHT;
-			return HTTOP;
-		}
-		else if (pt.y > rcClient.bottom - rcSizeBox.bottom) {
-			if (pt.x < rcClient.left + rcSizeBox.left) return HTBOTTOMLEFT;
-			if (pt.x > rcClient.right - rcSizeBox.right) return HTBOTTOMRIGHT;
-			return HTBOTTOM;
-		}
-		if (pt.x < rcClient.left + rcSizeBox.left) return HTLEFT;
-		if (pt.x > rcClient.right - rcSizeBox.right) return HTRIGHT;
-	}
-	RECT rcCaption = m_PaintManager.GetCaptionRect();    // GetCaptionRect用来获取xml中Window标签的caption属性，该属性指示标题栏的大小
-	if (pt.x >= rcClient.left + rcCaption.left && pt.x < rcClient.right - rcCaption.right && pt.y >= rcCaption.top && pt.y < rcCaption.bottom) {
-		CControlUI* pControl = static_cast<CControlUI*>(m_PaintManager.FindControl(pt));
-		if (pControl && _tcsicmp(pControl->GetClass(), _T("ButtonUI")) != 0 && _tcsicmp(pControl->GetClass(), _T("OptionUI")) != 0)
-			return HTCAPTION;
-	}
-
-	return HTCLIENT;
-}
-
-LRESULT CFrameWindowWnd::OnSetText(UINT uMsg, WPARAM wParam, LPARAM lParam) {
-	SetCText* ct = (SetCText*)wParam;
-	//CRichEditUI* m_prdt=(CRichEditUI*)ct->m_pcontrol;
-	ct->m_pcontrol->SetText(ct->m_settext);
-	return 1;
-}
-
-LRESULT CFrameWindowWnd::OnSize(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled)
-{
-	if (!::IsIconic(*this));
-	SIZE szRoundCorner = m_PaintManager.GetRoundCorner();//这个是圆角，是椭圆的半径  
-											   //这里有个很巧妙的用法，在xml文件中一定要设置圆角（roundcorner），  
-											   //不然不会进入下面的if，也就会出现标题栏。  
-	if (!::IsIconic(*this) && (szRoundCorner.cx != 0 || szRoundCorner.cy != 0)) {
-		CRect rcWnd;
-		::GetWindowRect(*this, &rcWnd);
-		//rcWnd.Offset(-rcWnd.left, -rcWnd.top);  
-		rcWnd.right++; rcWnd.bottom++;
-		RECT rc = { rcWnd.left, rcWnd.top + szRoundCorner.cx, rcWnd.right, rcWnd.bottom };
-		HRGN hRgn1 = ::CreateRectRgnIndirect(&rc);
-		HRGN hRgn2 = ::CreateRoundRectRgn(rcWnd.left, rcWnd.top, rcWnd.right, rcWnd.bottom - szRoundCorner.cx, szRoundCorner.cx, szRoundCorner.cy);
-		::CombineRgn(hRgn1, hRgn1, hRgn2, RGN_OR);
-		::SetWindowRgn(*this, hRgn1, TRUE);
-		::DeleteObject(hRgn1);
-		::DeleteObject(hRgn2);
-	}
-
-	bHandled = FALSE;
-	return true;
-}
-
-LRESULT CFrameWindowWnd::OnNcActivate(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled) {
-	if (::IsIconic(*this)) bHandled = FALSE;
-	return (wParam == 0) ? TRUE : FALSE;
-}
-
-LRESULT CFrameWindowWnd::OnGetMinMaxInfo(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled) {
-	MONITORINFO oMonitor = {};
-	oMonitor.cbSize = sizeof(oMonitor);
-	::GetMonitorInfo(::MonitorFromWindow(*this, MONITOR_DEFAULTTOPRIMARY), &oMonitor);
-	CRect rcWork = oMonitor.rcWork;
-	//rcWork.Offset(-rcWork.left, -rcWork.top);  
-
-	LPMINMAXINFO lpMMI = (LPMINMAXINFO)lParam;
-	lpMMI->ptMaxPosition.x = rcWork.left;
-	lpMMI->ptMaxPosition.y = rcWork.top;
-	lpMMI->ptMaxSize.x = rcWork.right;
-	lpMMI->ptMaxSize.y = rcWork.bottom;
-
-	bHandled = FALSE;
-	return 0;
-}
 
 string CFrameWindowWnd::edcodePwd(string pw) {
 	std::wstring wstr(pw.length(), L' ');
@@ -442,8 +318,8 @@ void CFrameWindowWnd::BtnAddClick(TNotifyUI& msg) {
 	pinputmsg->CenterWindow();
 	pinputmsg->ShowModal();
 	//注意下面这一句必须有可以把消息循环挂到新建的窗口上,要不然会出现关掉一个另一个也会关掉的情况
-	CPaintManagerUI::MessageLoop();
-	initList();
+	//CPaintManagerUI::MessageLoop();
+	//initList();
 	return;
 }
 
@@ -517,24 +393,6 @@ DuiLib::CDuiString CFrameWindowWnd::GetSkinFile()
 {
 	return "main.xml";
 }
-
-//DuiLib::CDuiString CFrameWindowWnd::GetSkinFolder()
-//{
-//	return "skin";
-//	//return "";
-//}
-//
-//DuiLib::UILIB_RESOURCETYPE CFrameWindowWnd::GetResourceType() const
-//{
-//	return UILIB_FILE;
-//	//下面是资源zip文件,调试期间用上面那个就可以
-//	//return UILIB_ZIPRESOURCE;
-//}
-//
-//LPCTSTR CFrameWindowWnd::GetResourceID() const
-//{
-//	return MAKEINTRESOURCE(IDR_ZIPRES1);
-//}
 
 LPCTSTR CFrameWindowWnd::GetWindowClassName(void) const
 {

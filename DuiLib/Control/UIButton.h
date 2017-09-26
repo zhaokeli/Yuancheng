@@ -5,7 +5,7 @@
 
 namespace DuiLib
 {
-	class UILIB_API CButtonUI : public CLabelUI
+	class DUILIB_API CButtonUI : public CLabelUI
 	{
 	public:
 		CButtonUI();
@@ -33,8 +33,15 @@ namespace DuiLib
 		LPCTSTR GetHotForeImage();
 		void SetHotForeImage(LPCTSTR pStrImage);
 
+		// 对应按钮的5个状态图
+		void SetFiveStatusImage(LPCTSTR pStrImage);
+		void SetFadeAlphaDelta(BYTE uDelta);
+		BYTE GetFadeAlphaDelta();
+
 		void SetHotBkColor(DWORD dwColor);
 		DWORD GetHotBkColor() const;
+		void SetPushedBkColor(DWORD dwColor);
+		DWORD GetPushedBkColor() const;
 		void SetHotTextColor(DWORD dwColor);
 		DWORD GetHotTextColor() const;
 		void SetPushedTextColor(DWORD dwColor);
@@ -43,25 +50,35 @@ namespace DuiLib
 		DWORD GetFocusedTextColor() const;
 		SIZE EstimateSize(SIZE szAvailable);
 		void SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue);
-
+		//这个是自定义添加上去的
+		void PaintBkColor(HDC hDC);
 		void PaintText(HDC hDC);
 		void PaintStatusImage(HDC hDC);
 
 	protected:
+		enum
+		{ 
+			FADE_TIMERID = 11,
+			FADE_ELLAPSE = 30,
+		};
+
 		UINT m_uButtonState;
 
 		DWORD m_dwHotBkColor;
+		DWORD m_dwPushedBkColor;
 		DWORD m_dwHotTextColor;
 		DWORD m_dwPushedTextColor;
 		DWORD m_dwFocusedTextColor;
+		BYTE m_uFadeAlpha;
+		BYTE m_uFadeAlphaDelta;
 
-		CDuiString m_sNormalImage;
-		CDuiString m_sHotImage;
-		CDuiString m_sHotForeImage;
-		CDuiString m_sPushedImage;
-		CDuiString m_sPushedForeImage;
-		CDuiString m_sFocusedImage;
-		CDuiString m_sDisabledImage;
+		TDrawInfo m_diNormal;
+		TDrawInfo m_diHot;
+		TDrawInfo m_diHotFore;
+		TDrawInfo m_diPushed;
+		TDrawInfo m_diPushedFore;
+		TDrawInfo m_diFocused;
+		TDrawInfo m_diDisabled;
 	};
 
 }	// namespace DuiLib

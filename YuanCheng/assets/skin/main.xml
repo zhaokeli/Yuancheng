@@ -6,8 +6,8 @@
     <Font name="宋体" size="14" bold="true" italic="false" />
     <Font name="宋体" size="22" bold="true" italic="true" />
 <!--     <Default name="Button" value="bordersize=&quot;1&quot; bordercolor=&quot;#cccccc&quot; textcolor=&quot;#FFFFFFFF&quot; bkcolor=&quot;#FF1AAD19&quot; hotbkcolor=&quot;#ff129611&quot; pushedbkcolor=&quot;#ff1AAD19&quot;  padding=&quot;0,5,0,5&quot; minwidth=&quot;80&quot; minheight=&quot;40&quot;" /> -->
-<!--     <style name="stdbtn" value="bordersize=&quot;1&quot; bordercolor=&quot;#cccccc&quot; textcolor=&quot;#FFFFFFFF&quot; bkcolor=&quot;#FF1AAD19&quot; hotbkcolor=&quot;#ff129611&quot; pushedbkcolor=&quot;#ff1AAD19&quot;  padding=&quot;0,5,0,5&quot;" /> -->
-    <Default name="Button" value="bordersize=&quot;1&quot; bordercolor=&quot;#cccccc&quot; textcolor=&quot;#FFFFFFFF&quot; bkcolor=&quot;#FF1AAD19&quot; hotbkcolor=&quot;#ff129611&quot; pushedbkcolor=&quot;#ff1AAD19&quot;  padding=&quot;0,5,0,5&quot;" />
+    <!-- <Default name="Button" value="bordersize=&quot;1&quot; bordercolor=&quot;#cccccc&quot; textcolor=&quot;#FFFFFFFF&quot; bkcolor=&quot;#FF1AAD19&quot; hotbkcolor=&quot;#ff129611&quot; pushedbkcolor=&quot;#ff1AAD19&quot;  padding=&quot;0,5,0,5&quot;" /> -->
+    <Style name="btn_default" value="bordersize=&quot;1&quot; bordercolor=&quot;#cccccc&quot; textcolor=&quot;#FFFFFFFF&quot; bkcolor=&quot;#FF1AAD19&quot; hotbkcolor=&quot;#ff129611&quot; pushedbkcolor=&quot;#ff1AAD19&quot;  padding=&quot;0,5,0,5&quot;" />
     <VerticalLayout  bkcolor="#FFFFFFFF" >
         <HorizontalLayout bordersize="1" height="40" bkcolor="#FF57C0FF" bkcolor2="#00FFFFFF">
             <HorizontalLayout>
@@ -22,21 +22,21 @@
         <VerticalLayout padding="10,10,10,10" text="列表" width="350"bordersize="1" inset="2,2,2,2" bordercolor="#0057C0FF">
              <List name="iplist" bkcolor="#FFFFFFFF" inset="0,0,0,0" itemshowhtml="true" vscrollbar="true" hscrollbar="true" headerbkimage="file='list_header_bg.png'" itemalign="center" itembkcolor="#FFFFFFFF" itemaltbk="true" hscrollbar="true" menu="true">
                 <ListHeader>
-					<ListHeaderItem text="编号" maxwidth="40"  hotimage="file='list_header_hot.png'" pushedimage="file='list_header_pushed.png'" sepimage="file='list_header_sep.png'" sepwidth="3" />
+                    <ListHeaderItem text="编号" maxwidth="40"  hotimage="file='list_header_hot.png'" pushedimage="file='list_header_pushed.png'" sepimage="file='list_header_sep.png'" sepwidth="3" />
                      <ListHeaderItem text="状态"  maxwidth="40"  hotimage="file='list_header_hot.png'" pushedimage="file='list_header_pushed.png'" sepimage="file='list_header_sep.png'" sepwidth="2"  />
                     <ListHeaderItem text="IP"   minwidth="100"   hotimage="file='list_header_hot.png'" pushedimage="file='list_header_pushed.png'" sepimage="file='list_header_sep.png'" sepwidth="3" />
-					<ListHeaderItem text="端口"  hotimage="file='list_header_hot.png'" pushedimage="file='list_header_pushed.png'" sepimage="file='list_header_sep.png'" sepwidth="1"  />
+                    <ListHeaderItem text="端口"  hotimage="file='list_header_hot.png'" pushedimage="file='list_header_pushed.png'" sepimage="file='list_header_sep.png'" sepwidth="1"  />
                     <ListHeaderItem text="用户名"   hotimage="file='list_header_hot.png'" pushedimage="file='list_header_pushed.png'" sepimage="file='list_header_sep.png'" sepwidth="2" />
 
                 </ListHeader>
             </List>
         </VerticalLayout>
-		<VerticalLayout padding="10,10,10,10" width="120">
+        <VerticalLayout padding="10,10,10,10" width="120">
             <Button name="btn_con" text="连接" tooltip="连接服务器" width="90" height="40" roundcorner="4,4" roundborder="5,5" />
-            <Button name="btn_add" style="stdbtn" text="添加" tooltip="添加新的服务器" width="90" height="40" />
+            <Button name="btn_add" style="btn_default" text="添加" tooltip="添加新的服务器" width="90" height="40" />
              <Button name="btn_del" text="删除" tooltip="删除服务器" width="90" height="40" />
               <Button name="btn_mod" text="修改" tooltip="修改服务器" width="90" height="40" />
-		</VerticalLayout>
+        </VerticalLayout>
         </HorizontalLayout>
         <HorizontalLayout>
                 <VerticalLayout padding="10,10,10,10" text="列表" width="350" inset="2,2,2,2" bordersize="1"  bordercolor="#0057C0FF">

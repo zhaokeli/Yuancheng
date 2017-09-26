@@ -5,6 +5,8 @@
 //#include "KLinet.h"
 //#include "Db.h"
 //#include "FrameWindowWnd.h"
+#ifndef   _STDAFX_H_
+#define   _STDAFX_H_
 #ifndef   _WIN32_WINNT 
 #define   _WIN32_WINNT   0x0501
 #endif 
@@ -23,7 +25,6 @@
 #include "wincrypt.h"
 #include "lock.h"
 #include "../DuiLib/UIlib.h" 
-#include "WndShadow.h"
 #ifdef _DEBUG
 #pragma comment(lib, "DuiLib_d.lib") 
 #else
@@ -37,4 +38,5 @@ using namespace DuiLib;
 #pragma comment(lib,"Crypt32.lib")
 
 using namespace std;
-#include "ListIp.h"
+
+#endif 

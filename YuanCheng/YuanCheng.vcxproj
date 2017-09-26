@@ -44,8 +44,10 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>$(SolutionDir)bin\</OutDir>
     <TargetName>$(ProjectName)_d</TargetName>
-    <LibraryPath>$(SolutionDir)/DuiLib/bin/;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)bin/;$(LibraryPath)</LibraryPath>
     <IntDir>$(ProjectDir)Debug\</IntDir>
+    <IncludePath>$(ProjectDir);$(IncludePath)</IncludePath>
+    <ReferencePath>$(SolutionDir)bin;$(ReferencePath)</ReferencePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)bin\</OutDir>
@@ -57,7 +59,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;_DEBUG;_WINDOWS;UILIB_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
@@ -99,6 +101,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="BaseWnd.h" />
+    <ClInclude Include="ControlEx\ListEx.h" />
     <ClInclude Include="Db.h" />
     <ClInclude Include="DES.h" />
     <ClInclude Include="FileIO.h" />
@@ -110,10 +113,10 @@
     <ClInclude Include="MyString.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="stdafx.h" />
-    <ClInclude Include="WndShadow.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BaseWnd.cpp" />
+    <ClCompile Include="ControlEx\ListEx.cpp" />
     <ClCompile Include="Db.cpp" />
     <ClCompile Include="DES.cpp" />
     <ClCompile Include="FileIO.cpp" />
@@ -124,7 +127,6 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MyLog.cpp" />
     <ClCompile Include="MyString.cpp" />
-    <ClCompile Include="WndShadow.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="YuanCheng.rc" />
