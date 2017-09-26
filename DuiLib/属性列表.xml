@@ -458,7 +458,7 @@
 		<Attribute name="autocalcwidth" default="false" type="INT" comment="是否自动计算宽度"/>
     <Attribute name="wordbreak" default="false" type="INT" comment="是否支持多行文字"/>
   </Label>
-  
+
   <Ring parent="Label" notifies="setfocus killfocus timer menu windowinit(root)">
       <Attribute name="name" default="" type="STRING" comment="控件名字，同一窗口内必须唯一，如(testbtn)"/>
       <Attribute name="pos" default="0,0,0,0" type="RECT" comment="位置，如果为float控件则指定位置和大小，否则只指定大小,如(0,0,100,100)"/>
@@ -498,7 +498,7 @@
       <Attribute name="valign" default="center" type="STRING" comment="文字纵向对齐方式,取值top、center、bottom"/>
       <Attribute name="autocalcwidth" default="false" type="INT" comment="是否自动计算宽度"/>
       <Attribute name="wordbreak" default="false" type="INT" comment="是否支持多行文字"/>
-      
+
   </Ring>
   <DateTime parent="Label" notifies="setfocus killfocus timer menu windowinit(root)">
     <Attribute name="name" default="" type="STRING" comment="控件名字，同一窗口内必须唯一，如(testbtn)"/>
@@ -578,7 +578,7 @@
     <Attribute name="rhaa" default="0" type="STRING" comment="字体质量0-5"/>
     <Attribute name="readonly" default="false" type="BOOL" comment="是否只读,如(false)"/>
   </IPAddress>
-  
+
 	<Button parent="Label" notifies="setfocus killfocus timer menu click windowinit(root)">
 		<Attribute name="name" default="" type="STRING" comment="控件名字，同一窗口内必须唯一，如(testbtn)"/>
 		<Attribute name="pos" default="0,0,0,0" type="RECT" comment="位置，如果为float控件则指定位置和大小，否则只指定大小,如(0,0,100,100)"/>
@@ -625,7 +625,7 @@
 		<Attribute name="pushedimage" default="" type="STRING" comment="鼠标按下的状态图片"/>
 		<Attribute name="focusedimage" default="" type="STRING" comment="获得焦点时的状态图片"/>
 		<Attribute name="disabledimage" default="" type="STRING" comment="禁用的状态图片"/>
-		<Attribute name="autocalcwidth" default="false" type="INT" comment="是否自动计算宽度"/>	
+		<Attribute name="autocalcwidth" default="false" type="INT" comment="是否自动计算宽度"/>
 		<Attribute name="bindtablayoutname" default="" type="STRING" comment="绑定TabLayout控件"/>
 		<Attribute name="bindtabindex" default="" type="INT" comment="点击后将触发绑定TabLayout控件的对应索引号"/>
     <Attribute name="wordbreak" default="false" type="INT" comment="是否支持多行文字"/>
@@ -727,7 +727,7 @@
 		<Attribute name="disabledtextcolor" default="0x00000000" type="DWORD" comment="disabled字体颜色，0表示使用默认disabled字体颜色,如(0xFFFF0000)"/>
 		<Attribute name="textpadding" default="2,0,2,0" type="RECT" comment="文字显示的边距,如(2,0,2,0)"/>
 		<Attribute name="showhtml" default="false" type="BOOL" comment="是否使用类html富文本绘制,如(false)"/>
-		<Attribute name="autocalcwidth" default="false" type="INT" comment="是否自动计算宽度"/>	
+		<Attribute name="autocalcwidth" default="false" type="INT" comment="是否自动计算宽度"/>
 	</Text>
 	<Progress parent="Label" notifies="setfocus killfocus timer menu windowinit(root)">
 		<Attribute name="name" default="" type="STRING" comment="控件名字，同一窗口内必须唯一，如(testbtn)"/>
@@ -772,7 +772,7 @@
 		<Attribute name="max" default="100" type="INT" comment="进度最大值，如(100)"/>
 		<Attribute name="value" default="0" type="INT" comment="进度值，如(50)"/>
 		<Attribute name="isstretchfore" default="TRUE" type="BOOL" comment="指定前景图片是否缩放显示"/>
-		<Attribute name="autocalcwidth" default="false" type="INT" comment="是否自动计算宽度"/>	
+		<Attribute name="autocalcwidth" default="false" type="INT" comment="是否自动计算宽度"/>
 	</Progress>
 	<Slider parent="Progress" notifies="setfocus killfocus timer menu valuechanged movevaluechanged windowinit(root)">
 		<Attribute name="name" default="" type="STRING" comment="控件名字，同一窗口内必须唯一，如(testbtn)"/>
@@ -1351,7 +1351,7 @@
 		<Attribute name="selhotitemtextcolor" default="0x00000000" type="DWORD" comment="item被选中时且鼠标进入时的文本颜色"/>
 		<Attribute name="defaultexpand" default="false" type="BOOL" comment="设置初始状态是否展开"/>
 	</TreeNode>
-  
+
   <Menu parent="CListUI" notifies="setfocus killfocus timer menu itemselect windowinit(root)">
     <Attribute name="inset" default="0,0,0,0" type="RECT" comment="菜单的高度等于所有菜单项的高度之和，加上inset属性的top和bottom"/>
     <!-- Menu标签的属性要通过Default来定义，为了让下级菜单也能拥有同样的外观，其他属性设置见List -->
