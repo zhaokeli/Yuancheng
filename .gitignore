@@ -242,3 +242,4 @@ ModelManifest.xml
 .fake/
 /.vs
 /DuiLib/Release_u
+/lib
