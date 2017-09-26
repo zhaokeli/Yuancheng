@@ -7,6 +7,7 @@ public:
 	CInputWnd(void);
 	~CInputWnd(void);
 private:
+	CButtonUI* m_pCloseBtn;
 	CEditUI* m_pIp;
 	CEditUI* m_pPort;
 	CEditUI* m_pUname;
@@ -15,8 +16,9 @@ private:
 	void init();
 public:
 	//LRESULT OnNcHitTest(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled);
-	LRESULT HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam);
-	void Notify(TNotifyUI& msg);
+	virtual void OnClick(TNotifyUI& msg);
+	//LRESULT HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam);
+	//void Notify(TNotifyUI& msg);
 	//添加一条信息
 	void BtnOkClick();
 	// 通过 BaseWnd 继承

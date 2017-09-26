@@ -176,7 +176,8 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE /*hPrevInstance*/, LPSTR /*l
 	//::SetWindowLong(*pFrame, GWL_STYLE, styleValue | WS_CLIPSIBLINGS | WS_CLIPCHILDREN);
 
 	//pFrame->ShowWindow(true);
-	pFrame->CWindowWnd::CenterWindow();
+	pFrame->CenterWindow();
+	pFrame->ShowModal();
 	CPaintManagerUI::MessageLoop();
 	::CoUninitialize();
 	return 0;
