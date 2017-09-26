@@ -9,6 +9,7 @@ namespace DuiLib
 		, m_dwPushedTextColor(0)
 		, m_dwFocusedTextColor(0)
 		, m_dwHotBkColor(0)
+		, m_dwPushedBkColor(0)
 		, m_uFadeAlphaDelta(0)
 		, m_uFadeAlpha(255)
 	{
@@ -173,7 +174,15 @@ namespace DuiLib
 	{
 		return m_dwHotBkColor;
 	}
+	void CButtonUI::SetPushedBkColor(DWORD dwColor)
+	{
+		m_dwPushedBkColor = dwColor;
+	}
 
+	DWORD CButtonUI::GetPushedBkColor() const
+	{
+		return m_dwPushedBkColor;
+	}
 	void CButtonUI::SetHotTextColor(DWORD dwColor)
 	{
 		m_dwHotTextColor = dwColor;
@@ -383,6 +392,13 @@ namespace DuiLib
 			DWORD clrColor = _tcstoul(pstrValue, &pstr, 16);
 			SetHotBkColor(clrColor);
 		}
+		else if (_tcsicmp(pstrName, _T("pushedbkcolor")) == 0)
+		{
+			if (*pstrValue == _T('#')) pstrValue = ::CharNext(pstrValue);
+			LPTSTR pstr = NULL;
+			DWORD clrColor = _tcstoul(pstrValue, &pstr, 16);
+			SetPushedBkColor(clrColor);
+		}
 		else if( _tcscmp(pstrName, _T("hottextcolor")) == 0 )
 		{
 			if( *pstrValue == _T('#')) pstrValue = ::CharNext(pstrValue);
@@ -406,7 +422,24 @@ namespace DuiLib
 		}
 		else CLabelUI::SetAttribute(pstrName, pstrValue);
 	}
+	//这个是自定义参考duilib_uilmate加个去的
+	void CButtonUI::PaintBkColor(HDC hDC)
+	{
+		if ((m_uButtonState & UISTATE_PUSHED) != 0) {
+			if (m_dwPushedBkColor != 0) {
+				CRenderEngine::DrawColor(hDC, m_rcPaint, GetAdjustColor(m_dwPushedBkColor));
+				return;
+			}
+		}
+		else if ((m_uButtonState & UISTATE_HOT) != 0) {
+			if (m_dwHotBkColor != 0) {
+				CRenderEngine::DrawColor(hDC, m_rcPaint, GetAdjustColor(m_dwHotBkColor));
+				return;
+			}
+		}
 
+		return CControlUI::PaintBkColor(hDC);
+	}
 	void CButtonUI::PaintText(HDC hDC)
 	{
 		if( IsFocused() ) m_uButtonState |= UISTATE_FOCUSED;

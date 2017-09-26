@@ -5,7 +5,8 @@
     <Font name="宋体" size="12" bold="false" italic="false" />
     <Font name="宋体" size="14" bold="true" italic="false" />
     <Font name="宋体" size="22" bold="true" italic="true" />
-    <Default name="Button" value="hotimage=&quot;btn_hover.png&quot; pushedimage=&quot;btn_down.png&quot;" />
+    <!-- <Default name="Button" value="hotimage=&quot;btn_hover.png&quot; pushedimage=&quot;btn_down.png&quot;" /> -->
+    <Default name="Button" value="bordersize=&quot;1&quot; bordercolor=&quot;#cccccc&quot; hotbkcolor=&quot;#ffff0000&quot; pushedbkcolor=&quot;#ffffff00&quot; padding=&quot;0,5,0,5&quot;" />
     <VerticalLayout  bkcolor="#FFFFFFFF" >
         <HorizontalLayout bordersize="1" height="40" bkcolor="#FF57C0FF" bkcolor2="#00FFFFFF">
             <HorizontalLayout>
@@ -30,10 +31,10 @@
             </List>
         </VerticalLayout>
 		<VerticalLayout padding="10,10,10,10" width="120">
-            <Button name="btn_con" text="连接" tooltip="连接服务器" width="90" height="40" roundcorner="4,4"  padding="0,5,0,0" bordercolor="#00D2D2D2" textcolor="#FF000000" roundborder="5,5" disabledtextcolor="#FFA7A6AA" font="2" align="center" normalimage="btn_default.png" hotimage="btn_hover.png" pushedimage="btn_down.png" />
-            <Button name="btn_add" text="添加" tooltip="添加新的服务器" width="90" height="40" padding="0,5,0,0" bordercolor="#00D2D2D2" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" font="2" align="center" normalimage="btn_default.png" hotimage="btn_hover.png" pushedimage="btn_down.png" />
-             <Button name="btn_del" text="删除" tooltip="删除服务器" width="90" height="40" padding="0,5,0,0" bordercolor="#00D2D2D2" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" font="2" align="center" normalimage="btn_default.png" hotimage="btn_hover.png" pushedimage="btn_down.png" />
-              <Button name="btn_mod" text="修改" tooltip="修改服务器" width="90" height="40" padding="0,5,0,0" bordercolor="#00D2D2D2" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" font="2" align="center" normalimage="btn_default.png" hotimage="btn_hover.png" pushedimage="btn_down.png" />
+            <Button name="btn_con" text="连接" tooltip="连接服务器" width="90" height="40" roundcorner="4,4"  padding="0,5,0,0" bordercolor="#00D2D2D2" textcolor="#FF000000" roundborder="5,5" disabledtextcolor="#FFA7A6AA" font="2" align="center" />
+            <Button name="btn_add" text="添加" tooltip="添加新的服务器" width="90" height="40" padding="0,5,0,0" bordercolor="#00D2D2D2" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" font="2" align="center" />
+             <Button name="btn_del" text="删除" tooltip="删除服务器" width="90" height="40" padding="0,5,0,0" bordercolor="#00D2D2D2" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" font="2" align="center" />
+              <Button name="btn_mod" text="修改" tooltip="修改服务器" width="90" height="40" padding="0,5,0,0" bordercolor="#00D2D2D2" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" font="2" align="center" />
 		</VerticalLayout>
         </HorizontalLayout>
         <HorizontalLayout>

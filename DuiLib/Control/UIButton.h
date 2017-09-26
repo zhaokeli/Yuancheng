@@ -40,6 +40,8 @@ namespace DuiLib
 
 		void SetHotBkColor(DWORD dwColor);
 		DWORD GetHotBkColor() const;
+		void SetPushedBkColor(DWORD dwColor);
+		DWORD GetPushedBkColor() const;
 		void SetHotTextColor(DWORD dwColor);
 		DWORD GetHotTextColor() const;
 		void SetPushedTextColor(DWORD dwColor);
@@ -48,7 +50,8 @@ namespace DuiLib
 		DWORD GetFocusedTextColor() const;
 		SIZE EstimateSize(SIZE szAvailable);
 		void SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue);
-
+		//这个是自定义添加上去的
+		void PaintBkColor(HDC hDC);
 		void PaintText(HDC hDC);
 		void PaintStatusImage(HDC hDC);
 
@@ -62,6 +65,7 @@ namespace DuiLib
 		UINT m_uButtonState;
 
 		DWORD m_dwHotBkColor;
+		DWORD m_dwPushedBkColor;
 		DWORD m_dwHotTextColor;
 		DWORD m_dwPushedTextColor;
 		DWORD m_dwFocusedTextColor;
