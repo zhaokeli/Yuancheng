@@ -70,16 +70,16 @@ int CListUIEx::InsertItem(int nItem, int nHeight)
 {
 	CListContainerElementUI *pListItem = new CListContainerElementUI;
 	pListItem->SetFixedHeight(nHeight);
-	pListItem->m_pHeader = CListUI::GetHeader();
-	pListItem->
-	if (NULL != pListItem->m_pHeader)
-	{
-		int nHeaderCount = pListItem->m_pHeader->GetCount();
-		for (int i = 0; i < nHeaderCount; i++)
-		{
-			pListItem->Add(new CHorizontalLayoutUI);
-		}
-	}
+	//pListItem->m_pHeader = CListUI::GetHeader();
+	//pListItem->
+	//if (NULL != pListItem->m_pHeader)
+	//{
+	//	int nHeaderCount = pListItem->m_pHeader->GetCount();
+	//	for (int i = 0; i < nHeaderCount; i++)
+	//	{
+	//		pListItem->Add(new CHorizontalLayoutUI);
+	//	}
+	//}
 	if ( !CListUI::AddAt(pListItem, nItem) )
 	{
 		delete pListItem;
@@ -111,7 +111,7 @@ void CListUIEx::SetItemData(int nItem,
 	CLabelUI *pLabel = new CLabelUI;
 	pLabel->SetText(Text);//控件属性就根据需求设置吧,我简单设置一下
 	pLabel->SetTextStyle(DT_CENTER);
-	pLabel->SetAttribute("endellipsis", "true");
+	pLabel->SetAttribute(_T("endellipsis"), _T("true"));
 	pLabel->SetName(Name);
 	SetItemData(nItem, nColumn, pLabel);//添加到父控件
 }
@@ -119,7 +119,7 @@ void CListUIEx::SetItemData(int nItem,
 void CListUIEx::SetItemData(int nItem, int nColumn,	CControlUI* pControl)
 {
 	CHorizontalLayoutUI *pSubHor = GetListSubItem(nItem, nColumn);
-	pSubHor->SetAttribute("inset", "3,1,3,1");
+	pSubHor->SetAttribute(_T("inset"), _T("3,1,3,1"));
 	pSubHor->Add(pControl);//添加到父控件
 }
 

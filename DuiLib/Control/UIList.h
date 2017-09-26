@@ -503,7 +503,7 @@ namespace DuiLib {
 		virtual void DrawItemBk(HDC hDC, const RECT& rcItem);
 
 		void SetPos(RECT rc, bool bNeedInvalidate = true);
-
+		CListHeaderUI *m_pHeader;
 	protected:
 		int m_iIndex;
 		bool m_bSelected;

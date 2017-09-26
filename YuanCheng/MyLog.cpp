@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include "MyLog.h"
 
 
@@ -12,7 +13,7 @@ MyLog::~MyLog(void)
 void MyLog::WriteLog(CString str){
 #ifdef _DEBUG
 	OutputDebugString(str );
-	OutputDebugString( "\n" );
+	OutputDebugString(_T("\n"));
 #else
 	CTime t = CTime::GetCurrentTime();
 	CString t_str=t.Format("%Y-%m-%d %H:%M:%S");

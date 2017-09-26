@@ -126,7 +126,7 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE /*hPrevInstance*/, LPSTR /*l
 
 
 	//创建命名信标对象。 
-	HANDLE hSem = CreateSemaphore(NULL, 1, 1, "重复运行标记");
+	HANDLE hSem = CreateSemaphore(NULL, 1, 1, _T("重复运行标记"));
 	if (hSem) //信标对象创建成功。 
 	{
 		//信标对象已经存在，则程序已有一个实例在运行。 
@@ -140,7 +140,7 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE /*hPrevInstance*/, LPSTR /*l
 			while (::IsWindow(hWndPrev))
 			{
 				//判断窗口是否有我们预先设置的标记，如有，则是我们寻找的窗口，并将它激活。 
-				if (::GetProp(hWndPrev, "重复运行标记"))
+				if (::GetProp(hWndPrev,_T( "重复运行标记")))
 				{
 					//如果主窗口已最小化，则恢复其大小。 
 					if (::IsIconic(hWndPrev))
