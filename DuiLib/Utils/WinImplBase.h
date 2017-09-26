@@ -1,49 +1,50 @@
+#include "StdAfx.h"
+
 #ifndef WIN_IMPL_BASE_HPP
 #define WIN_IMPL_BASE_HPP
 
 namespace DuiLib
 {
-
-	enum UILIB_RESOURCETYPE
-	{
-		UILIB_FILE=1,				// 来自磁盘文件
-		UILIB_ZIP,						// 来自磁盘zip压缩包
-		UILIB_RESOURCE,			// 来自资源
-		UILIB_ZIPRESOURCE,	// 来自资源的zip压缩包
-	};
-
 	class UILIB_API WindowImplBase
 		: public CWindowWnd
 		, public CNotifyPump
 		, public INotifyUI
 		, public IMessageFilterUI
 		, public IDialogBuilderCallback
+		, public IQueryControlText
 	{
 	public:
 		WindowImplBase(){};
 		virtual ~WindowImplBase(){};
+		// 只需主窗口重写（初始化资源与多语言接口）
+		virtual void InitResource(){};
+		// 每个窗口都可以重写
 		virtual void InitWindow(){};
 		virtual void OnFinalMessage( HWND hWnd );
 		virtual void Notify(TNotifyUI& msg);
 
 		DUI_DECLARE_MESSAGE_MAP()
 		virtual void OnClick(TNotifyUI& msg);
+		BOOL IsInStaticControl(CControlUI *pControl);
 
 	protected:
 		virtual CDuiString GetSkinFolder() = 0;
 		virtual CDuiString GetSkinFile() = 0;
 		virtual LPCTSTR GetWindowClassName(void) const = 0 ;
+		virtual LPCTSTR GetManagerName() { return NULL; }
 		virtual LRESULT ResponseDefaultKeyEvent(WPARAM wParam);
-
-		CPaintManagerUI m_PaintManager;
+		//声明两个是为啦兼容
+		CPaintManagerUI m_pm;
+		CPaintManagerUI& m_PaintManager = m_pm;
 		static LPBYTE m_lpResourceZIPBuffer;
-
 	public:
-		virtual UINT GetClassStyle() const;
+		virtual LPCTSTR GetResourceID() const;
 		virtual UILIB_RESOURCETYPE GetResourceType() const;
 		virtual CDuiString GetZIPFileName() const;
-		virtual LPCTSTR GetResourceID() const;
+		virtual UINT GetClassStyle() const;
 		virtual CControlUI* CreateControl(LPCTSTR pstrClass);
+		virtual LPCTSTR QueryControlText(LPCTSTR lpstrId, LPCTSTR lpstrType);
+
 		virtual LRESULT MessageHandler(UINT uMsg, WPARAM wParam, LPARAM /*lParam*/, bool& /*bHandled*/);
 		virtual LRESULT OnClose(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam*/, BOOL& bHandled);
 		virtual LRESULT OnDestroy(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam*/, BOOL& bHandled);

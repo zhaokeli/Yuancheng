@@ -44,7 +44,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>$(SolutionDir)bin\</OutDir>
     <TargetName>$(ProjectName)_d</TargetName>
-    <LibraryPath>$(SolutionDir)/DuiLib/bin/;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)bin;$(SolutionDir)Lib;$(SolutionDir)/DuiLib/bin/;$(LibraryPath)</LibraryPath>
     <IntDir>$(ProjectDir)Debug\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

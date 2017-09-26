@@ -9,6 +9,7 @@ namespace DuiLib
 
 	class UILIB_API CEditUI : public CLabelUI
 	{
+		DECLARE_DUICONTROL(CEditUI)
 		friend class CEditWnd;
 	public:
 		CEditUI();
@@ -41,12 +42,20 @@ namespace DuiLib
 		void SetDisabledImage(LPCTSTR pStrImage);
 		void SetNativeEditBkColor(DWORD dwBkColor);
 		DWORD GetNativeEditBkColor() const;
+		void SetNativeEditTextColor( LPCTSTR pStrColor );
+		DWORD GetNativeEditTextColor() const;
 
 		void SetSel(long nStartChar, long nEndChar);
 		void SetSelAll();
 		void SetReplaceSel(LPCTSTR lpszReplace);
 
-		void SetPos(RECT rc);
+		void SetTipValue(LPCTSTR pStrTipValue);
+		LPCTSTR GetTipValue();
+		void SetTipValueColor(LPCTSTR pStrColor);
+		DWORD GetTipValueColor();
+
+		void SetPos(RECT rc, bool bNeedInvalidate = true);
+		void Move(SIZE szOffset, bool bNeedInvalidate = true);
 		void SetVisible(bool bVisible = true);
 		void SetInternVisible(bool bVisible = true);
 		SIZE EstimateSize(SIZE szAvailable);
@@ -68,7 +77,10 @@ namespace DuiLib
 		CDuiString m_sHotImage;
 		CDuiString m_sFocusedImage;
 		CDuiString m_sDisabledImage;
+		CDuiString m_sTipValue;
+		DWORD m_dwTipValueColor;
 		DWORD m_dwEditbkColor;
+		DWORD m_dwEditTextColor;
 		int m_iWindowStyls;
 	};
 }
