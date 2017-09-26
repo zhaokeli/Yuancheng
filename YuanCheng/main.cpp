@@ -2,47 +2,6 @@
 #include "FrameWindowWnd.h"
 #include "resource.h"
 #include "DES.h"
-//下面两个函数在要把皮肤打包进exe时使用
-DWORD g_func_GetResourceDataLength(HINSTANCE hInstance,
-	UINT dwResourceId,
-	const WCHAR* sResourceType)
-{
-	if (hInstance == NULL)
-		return 0;
-
-	HRSRC hRsrc = FindResourceW(hInstance, MAKEINTRESOURCEW(dwResourceId), sResourceType);
-	if (!hRsrc)
-	{
-		return 0;
-	}
-	DWORD dwResSize = SizeofResource(hInstance, hRsrc);
-	FreeResource(hRsrc);
-	return dwResSize;
-}
-
-void g_func_GetResourceData(HINSTANCE hInstance,
-	UINT dwResourceId,
-	const WCHAR* sResourceType,
-	char* pRetData,
-	DWORD pRetLength)
-{
-	if (hInstance == NULL)
-		return;
-
-	HRSRC hRsrc = FindResourceW(hInstance, MAKEINTRESOURCEW(dwResourceId), sResourceType);
-	if (!hRsrc)
-	{
-		return;
-	}
-
-	HGLOBAL hGlobal = (char*)LoadResource(hInstance, hRsrc);
-
-	char* pData = (char*)LockResource(hGlobal);
-	memcpy(pRetData, pData, pRetLength);
-
-	FreeResource(hRsrc);
-}
-char* pData=NULL;
 // 程序入口及Duilib初始化部分
 int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE /*hPrevInstance*/, LPSTR /*lpCmdLine*/, int nCmdShow)
 {
