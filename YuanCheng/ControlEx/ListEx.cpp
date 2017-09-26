@@ -1,7 +1,5 @@
-#include "stdafx.h"
 #include "ListEx.h"
 
-namespace DuiLib {
 /************************** CListUIEx Start **************************/
 CListUIEx::CListUIEx()
 {
@@ -135,5 +133,4 @@ CHorizontalLayoutUI* CListUIEx::GetListSubItem(int iIndex, int iSubIndex)
 	if (pListItem == NULL)
 		return NULL;
 	return static_cast<CHorizontalLayoutUI*>(pListItem->GetItemAt(iSubIndex));
-}
 }

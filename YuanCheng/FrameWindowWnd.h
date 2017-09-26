@@ -1,6 +1,7 @@
 #ifndef _FRAMEWINDOWWND_H
 #define _FRAMEWINDOWWND_H
 #include "BaseWnd.h"
+#include "ListIp.h"
 class CFrameWindowWnd: public BaseWnd
 {
 private:

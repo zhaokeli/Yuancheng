@@ -1,7 +1,7 @@
 #ifndef _Lock_H
 #define _Lock_H
 
-#include <windows.h>
+#include "StdAfx.h"
 
 //锁接口类
 class IMyLock

@@ -1,7 +1,6 @@
 #include "FrameWindowWnd.h"
 #include "InputWnd.h"
 #include "Db.h"
-#include   "windows.h "
 #include   "shellapi.h "
 #include "resource.h"
 
@@ -201,7 +200,7 @@ LRESULT CFrameWindowWnd::HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam)
 		OnSetText(uMsg, wParam, lParam);
 		break;
 
-	default:               
+	default:
 		bHandled = FALSE;
 	}
 

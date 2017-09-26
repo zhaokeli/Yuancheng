@@ -1,14 +1,8 @@
+#pragma once
+#include "stdafx.h"
 #ifndef LISTEX_H
 #define LISTEX_H
-
-#pragma once
-
-#include "stdafx.h"
-
-namespace DuiLib {
-class CListContainerElementUIEx;
-class CListUIEx;
-
+//using namespace DuiLib;
 class CListUIEx : public CListUI
 {
 public:
@@ -70,5 +64,4 @@ public:
 	CHorizontalLayoutUI* GetListSubItem(int iIndex, int iSubIndex);
 	BOOL SetHeaderItemData(int nColumn, CControlUI* pControl);
 };
-}
 #endif
