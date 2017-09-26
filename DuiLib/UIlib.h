@@ -26,35 +26,35 @@
 // WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
 // NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS 
 // SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-#define UILIB_API
-//#if defined(UILIB_EXPORTS)
-//#if defined(_MSC_VER)
-//#define UILIB_API __declspec(dllexport)
-//#else
-//#define UILIB_API 
-//#endif
-//#else
-//#if defined(_MSC_VER)
-//#define UILIB_API __declspec(dllimport)
-//#else
-//#define UILIB_API 
-//#endif
-//#endif
-//#pragma comment(lib,"oledlg.lib")
-//#pragma comment(lib,"winmm.lib")
-#pragma comment(lib,"comctl32.lib") 
-//#pragma comment(lib,"Riched20.lib")
+
+#ifdef UILIB_STATIC
+#	define DUILIB_API 
+#else
+#	if defined(UILIB_EXPORTS)
+#		if	defined(_MSC_VER)
+#			define DUILIB_API __declspec(dllexport)
+#		else
+#			define DUILIB_API 
+#		endif
+#	else
+#		if defined(_MSC_VER)
+#			define DUILIB_API __declspec(dllimport)
+#		else
+#			define DUILIB_API 
+#		endif
+#	endif
+#endif
 
 #define UILIB_COMDAT __declspec(selectany)
 
 #if defined _M_IX86
-#pragma comment(linker, "/manifestdependency:\"type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' processorArchitecture='x86' publicKeyToken='6595b64144ccf1df' language='*'\"")
+#	pragma comment(linker, "/manifestdependency:\"type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' processorArchitecture='x86' publicKeyToken='6595b64144ccf1df' language='*'\"")
 #elif defined _M_IA64
-#pragma comment(linker, "/manifestdependency:\"type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' processorArchitecture='ia64' publicKeyToken='6595b64144ccf1df' language='*'\"")
+#	pragma comment(linker, "/manifestdependency:\"type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' processorArchitecture='ia64' publicKeyToken='6595b64144ccf1df' language='*'\"")
 #elif defined _M_X64
-#pragma comment(linker, "/manifestdependency:\"type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' processorArchitecture='amd64' publicKeyToken='6595b64144ccf1df' language='*'\"")
+#	pragma comment(linker, "/manifestdependency:\"type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' processorArchitecture='amd64' publicKeyToken='6595b64144ccf1df' language='*'\"")
 #else
-#pragma comment(linker, "/manifestdependency:\"type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' processorArchitecture='*' publicKeyToken='6595b64144ccf1df' language='*'\"")
+#	pragma comment(linker, "/manifestdependency:\"type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' processorArchitecture='*' publicKeyToken='6595b64144ccf1df' language='*'\"")
 #endif
 
 #include <windows.h>
@@ -66,6 +66,7 @@
 #include <assert.h>
 #include <crtdbg.h>
 #include <malloc.h>
+#include <stdio.h>
 
 #include "Utils/Utils.h"
 #include "Utils/UIDelegate.h"
@@ -78,6 +79,7 @@
 #include "Core/UIDlgBuilder.h"
 #include "Core/UIRender.h"
 #include "Utils/WinImplBase.h"
+#include "Utils/WndShadow.h"
 
 #include "Layout/UIVerticalLayout.h"
 #include "Layout/UIHorizontalLayout.h"
@@ -101,13 +103,11 @@
 #include "Control/UIProgress.h"
 #include "Control/UISlider.h"
 
-#include "Control/UIComboBox.h"
 #include "Control/UIRichEdit.h"
 #include "Control/UIDateTime.h"
 
 #include "Control/UIActiveX.h"
 #include "Control/UIWebBrowser.h"
-#include "Control/UIFlash.h"
+#include "Control/UIGifAnim.h"
 
-#include "ControlEx/ListEx.h"
-
+//#include "Control/UIFlash.h"

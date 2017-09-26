@@ -2,6 +2,7 @@
 #ifndef  _LISTIP_H_ 
 #define  _LISTIP_H_
 #include "../DuiLib/UIlib.h" 
+#include "./ControlEx/ListEx.h"
 #ifdef DEBUG
 #pragma comment(lib, "DuiLib_d.lib") 
 #else

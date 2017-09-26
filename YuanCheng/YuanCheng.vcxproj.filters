@@ -34,6 +34,12 @@
     <Filter Include="data">
       <UniqueIdentifier>{f7a75559-efbe-4633-9b8b-bd8dc9fb6ea2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="源文件\Ui\ControlEx">
+      <UniqueIdentifier>{053ff13d-74f4-484c-85a8-4b826fb510ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\Ui\ControlEx">
+      <UniqueIdentifier>{25be1693-3af9-444d-b846-9aeccb149f17}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -69,11 +75,11 @@
     <ClInclude Include="MyString.h">
       <Filter>头文件\Core</Filter>
     </ClInclude>
-    <ClInclude Include="WndShadow.h">
-      <Filter>头文件\Ui</Filter>
-    </ClInclude>
     <ClInclude Include="DES.h">
       <Filter>头文件\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="ControlEx\ListEx.h">
+      <Filter>头文件\Ui\ControlEx</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -107,11 +113,11 @@
     <ClCompile Include="MyString.cpp">
       <Filter>源文件\Core</Filter>
     </ClCompile>
-    <ClCompile Include="WndShadow.cpp">
-      <Filter>源文件\Ui</Filter>
-    </ClCompile>
     <ClCompile Include="DES.cpp">
       <Filter>源文件\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="ControlEx\ListEx.cpp">
+      <Filter>源文件\Ui\ControlEx</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

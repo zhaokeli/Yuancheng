@@ -442,10 +442,6 @@
 				RelativePath=".\UIlib.cpp"
 				>
 			</File>
-			<File
-				RelativePath=".\Utils\WinImplBase.cpp"
-				>
-			</File>
 			<Filter
 				Name="Utils"
 				>
@@ -491,6 +487,10 @@
 				</File>
 				<File
 					RelativePath=".\Utils\Utils.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Utils\WinImplBase.cpp"
 					>
 				</File>
 				<File
@@ -606,10 +606,6 @@
 					>
 				</File>
 				<File
-					RelativePath=".\Control\UIComboBox.cpp"
-					>
-				</File>
-				<File
 					RelativePath=".\Control\UIDateTime.cpp"
 					>
 				</File>
@@ -618,7 +614,7 @@
 					>
 				</File>
 				<File
-					RelativePath=".\Control\UIFlash.cpp"
+					RelativePath=".\Control\UIGifAnim.cpp"
 					>
 				</File>
 				<File
@@ -684,6 +680,10 @@
 				</File>
 				<File
 					RelativePath=".\Utils\FlashEventHandler.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Utils\stb_image.h"
 					>
 				</File>
 				<File
@@ -783,10 +783,6 @@
 					>
 				</File>
 				<File
-					RelativePath=".\Control\UIComboBox.h"
-					>
-				</File>
-				<File
 					RelativePath=".\Control\UIDateTime.h"
 					>
 				</File>
@@ -795,7 +791,7 @@
 					>
 				</File>
 				<File
-					RelativePath=".\Control\UIFlash.h"
+					RelativePath=".\Control\UIGifAnim.h"
 					>
 				</File>
 				<File
