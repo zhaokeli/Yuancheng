@@ -7,7 +7,7 @@ CDialogBuilder::CDialogBuilder() : m_pCallback(NULL), m_pstrtype(NULL)
 
 }
 
-CControlUI* CDialogBuilder::Create(STRINGorID xml, LPCTSTR type, IDialogBuilderCallback* pCallback, 
+CControlUI* CDialogBuilder::Create(STRINGorID xml, LPCTSTR type, IDialogBuilderCallback* pCallback,
                                    CPaintManagerUI* pManager, CControlUI* pParent)
 {
 	//资源ID为0-65535，两个字节；字符串指针为4个字节
@@ -143,6 +143,28 @@ CControlUI* CDialogBuilder::Create(IDialogBuilderCallback* pCallback, CPaintMana
                     pManager->AddDefaultAttributeList(pControlName, pControlValue, shared);
                 }
             }
+            else if (_tcsicmp(pstrClass, _T("Style")) == 0) {
+                nAttributes = node.GetAttributeCount();
+                LPCTSTR pControlName = NULL;
+                LPCTSTR pControlValue = NULL;
+                bool shared = false;
+                for (int i = 0; i < nAttributes; i++) {
+                    pstrName = node.GetAttributeName(i);
+                    pstrValue = node.GetAttributeValue(i);
+                    if (_tcsicmp(pstrName, _T("name")) == 0) {
+                        pControlName = pstrValue;
+                    }
+                    else if (_tcsicmp(pstrName, _T("value")) == 0) {
+                        pControlValue = pstrValue;
+                    }
+                    else if (_tcsicmp(pstrName, _T("shared")) == 0) {
+                        shared = (_tcsicmp(pstrValue, _T("true")) == 0);
+                    }
+                }
+                if (pControlName) {
+                    pManager->AddDefaultAttributeList(pControlName, pControlValue, shared);
+                }
+            }
 			else if( _tcsicmp(pstrClass, _T("MultiLanguage")) == 0 ) {
 				nAttributes = node.GetAttributeCount();
 				int id = -1;
@@ -200,8 +222,9 @@ CControlUI* CDialogBuilder::_Parse(CMarkupNode* pRoot, CControlUI* pParent, CPai
     for( CMarkupNode node = pRoot->GetChild() ; node.IsValid(); node = node.GetSibling() ) {
         LPCTSTR pstrClass = node.GetName();
         if( _tcsicmp(pstrClass, _T("Image")) == 0 || _tcsicmp(pstrClass, _T("Font")) == 0 \
-            || _tcsicmp(pstrClass, _T("Default")) == 0 
-			|| _tcsicmp(pstrClass, _T("MultiLanguage")) == 0 ) continue;
+            || _tcsicmp(pstrClass, _T("Default")) == 0
+			|| _tcsicmp(pstrClass, _T("MultiLanguage")) == 0
+            || _tcsicmp(pstrClass, _T("Style")) == 0) continue;
 
         CControlUI* pControl = NULL;
         if( _tcsicmp(pstrClass, _T("Include")) == 0 ) {
@@ -219,10 +242,10 @@ CControlUI* CDialogBuilder::_Parse(CMarkupNode* pRoot, CControlUI* pParent, CPai
 				if (!builder.GetMarkup()->IsValid())
 				{
 					if( m_pstrtype != NULL ) { // 使用资源dll，从资源中读取
-						WORD id = (WORD)_tcstol(szValue, &pstr, 10); 
+						WORD id = (WORD)_tcstol(szValue, &pstr, 10);
 						pControl = builder.Create((UINT)id, m_pstrtype, m_pCallback, pManager, pParent);
 					}
-					else 
+					else
 						pControl = builder.Create((LPCTSTR)szValue, (UINT)0, m_pCallback, pManager, pParent);
 				}
 				else
@@ -325,7 +348,7 @@ CControlUI* CDialogBuilder::_Parse(CMarkupNode* pRoot, CControlUI* pParent, CPai
             case 9:
                 if( _tcsicmp(pstrClass, DUI_CTR_CONTAINER) == 0 )             pControl = new CContainerUI;
                 else if( _tcsicmp(pstrClass, DUI_CTR_TABLAYOUT) == 0 )        pControl = new CTabLayoutUI;
-                else if( _tcsicmp(pstrClass, DUI_CTR_SCROLLBAR) == 0 )        pControl = new CScrollBarUI; 
+                else if( _tcsicmp(pstrClass, DUI_CTR_SCROLLBAR) == 0 )        pControl = new CScrollBarUI;
                 break;
             case 10:
                 if( _tcsicmp(pstrClass, DUI_CTR_LISTHEADER) == 0 )            pControl = new CListHeaderUI;
@@ -421,7 +444,23 @@ CControlUI* CDialogBuilder::_Parse(CMarkupNode* pRoot, CControlUI* pParent, CPai
             // Set ordinary attributes
             int nAttributes = node.GetAttributeCount();
             for( int i = 0; i < nAttributes; i++ ) {
-                pControl->SetAttribute(node.GetAttributeName(i), node.GetAttributeValue(i));
+                //这个是原来代码pControl->SetAttribute(node.GetAttributeName(i), node.GetAttributeValue(i));
+                //这里是自定义代码
+                const CDuiString attribute_name = node.GetAttributeName(i);
+                //这里为啦跟原来的属性一致用标签属性都用小写字母
+                if (attribute_name == _T("style"))
+                {
+                    LPCTSTR pDefaultAttributes = pManager->GetDefaultAttributeList(node.GetAttributeValue(i));
+                    if (pDefaultAttributes)
+                    {
+                        pControl->SetAttributeList(pDefaultAttributes);
+                    }
+                }
+                else
+                {
+                    pControl->SetAttribute(attribute_name, node.GetAttributeValue(i));
+                }
+                //自定义代码结束
             }
         }
         if( pManager ) {
