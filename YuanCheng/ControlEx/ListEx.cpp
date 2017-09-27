@@ -62,6 +62,7 @@ BOOL CListUIEx::SetHeaderItemData(int nColumn, CControlUI* pControl)
 	}
 	CListHeaderItemUI *pHeaderItem = (CListHeaderItemUI *)pHeader->GetItemAt(nColumn);
 	//pHeaderItem-> Add(pControl);
+	return true;
 }
 
 int CListUIEx::InsertItem(int nItem, int nHeight)

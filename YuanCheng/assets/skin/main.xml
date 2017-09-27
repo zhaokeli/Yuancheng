@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<Window size="500,400" sizebox="4,4,6,6" roundcorner="4,4" caption="0,0,0,32">
-    <Font name="宋体" size="13" bold="true" italic="false" />
-    <Font name="宋体" size="12" bold="true" italic="false" />
-    <Font name="宋体" size="12" bold="false" italic="false" />
-    <Font name="宋体" size="14" bold="true" italic="false" />
-    <Font name="宋体" size="22" bold="true" italic="true" />
+<Window size="500,400" sizebox="4,4,6,6" showshadow="true" shadowcorner="2,2,2,2" shadowsize="5" shadowsharpness="100" shadowdarkness="128" shadowposition="5" shadowcolor="#ffcccccc" roundcorner="4,4" caption="0,0,0,32">
+    <Font name="微软雅黑" size="13" bold="true" italic="false" />
+    <Font name="微软雅黑" size="12" bold="true" italic="false" />
+    <Font name="微软雅黑" size="12" bold="false" italic="false" />
+    <Font name="微软雅黑" size="14" bold="true" italic="false" />
+    <Font name="微软雅黑" size="22" bold="true" italic="true" />
 <!--     <Default name="Button" value="bordersize=&quot;1&quot; bordercolor=&quot;#cccccc&quot; textcolor=&quot;#FFFFFFFF&quot; bkcolor=&quot;#FF1AAD19&quot; hotbkcolor=&quot;#ff129611&quot; pushedbkcolor=&quot;#ff1AAD19&quot;  padding=&quot;0,5,0,5&quot; minwidth=&quot;80&quot; minheight=&quot;40&quot;" /> -->
     <!-- <Default name="Button" value="bordersize=&quot;1&quot; bordercolor=&quot;#cccccc&quot; textcolor=&quot;#FFFFFFFF&quot; bkcolor=&quot;#FF1AAD19&quot; hotbkcolor=&quot;#ff129611&quot; pushedbkcolor=&quot;#ff1AAD19&quot;  padding=&quot;0,5,0,5&quot;" /> -->
     <Style name="btn_default" value="bordersize=&quot;1&quot; bordercolor=&quot;#cccccc&quot; textcolor=&quot;#FFFFFFFF&quot; bkcolor=&quot;#FF1AAD19&quot; hotbkcolor=&quot;#ff129611&quot; pushedbkcolor=&quot;#ff1AAD19&quot;  padding=&quot;0,5,0,5&quot;" />
-    <VerticalLayout  bkcolor="#FFFFFFFF" >
-        <HorizontalLayout bordersize="1" height="40" bkcolor="#FF57C0FF" bkcolor2="#00FFFFFF">
+    <VerticalLayout  bkcolor="#FFFFFFFF" bordersize="1" bordercolor="#ffAAAAAA" >
+        <HorizontalLayout bordersize="1" height="40" bkcolor="#FFfdfdfd" bkcolor2="#00FFFFFF">
             <HorizontalLayout>
                 <Label name="wintitle" padding="20,0,0,0" text="远程桌面管理"  disabledtextcolor="#FFA7A6AA" showhtml="true" />
             </HorizontalLayout>
-            <HorizontalLayout width="55">
-                <Button name="btn_min" text="-" tooltip="最小化" width="20" height="20" padding="5,5,0,0" textcolor="#00FFFBF0" disabledtextcolor="#FFA7A6AA" align="center"  hotimage="btn_hover.png" pushedimage="btn_down.png" />
-                <Button name="btn_close" text="X" tooltip="关闭" width="20" height="20" padding="5,5,0,0" textcolor="#00FFFBF0" disabledtextcolor="#FFA7A6AA" align="center"  hotimage="close.png" pushedimage="close_down.png" />
+            <HorizontalLayout width="70">
+                <Button name="btn_min" text="" tooltip="最小化" width="35" height="27" padding="0,0,0,0" textcolor="#00FFFBF0" disabledtextcolor="#FFA7A6AA" align="center"  normalimage="btn/min.png" hotimage="btn/min_hover.png" pushedimage="btn/min_hover.png" />
+                <Button name="btn_close" text="" tooltip="关闭" width="35" height="27" padding="0,0,0,0" textcolor="#00FFFBF0" disabledtextcolor="#FFA7A6AA" align="center" normalimage="btn/close.png" hotimage="btn/close_hover.png" pushedimage="btn/close_hover.png" />
             </HorizontalLayout>
         </HorizontalLayout>
         <HorizontalLayout height="250" >
@@ -32,10 +32,10 @@
             </List>
         </VerticalLayout>
         <VerticalLayout padding="10,10,10,10" width="120">
-            <Button name="btn_con" text="连接" tooltip="连接服务器" width="90" height="40" roundcorner="4,4" roundborder="5,5" />
+            <Button name="btn_con" style="btn_default" text="连接" tooltip="连接服务器" width="90" height="40" roundcorner="4,4" roundborder="5,5" />
             <Button name="btn_add" style="btn_default" text="添加" tooltip="添加新的服务器" width="90" height="40" />
-             <Button name="btn_del" text="删除" tooltip="删除服务器" width="90" height="40" />
-              <Button name="btn_mod" text="修改" tooltip="修改服务器" width="90" height="40" />
+             <Button name="btn_del" style="btn_default" text="删除" tooltip="删除服务器" width="90" height="40" />
+              <Button name="btn_mod" style="btn_default" text="修改" tooltip="修改服务器" width="90" height="40" />
         </VerticalLayout>
         </HorizontalLayout>
         <HorizontalLayout>
